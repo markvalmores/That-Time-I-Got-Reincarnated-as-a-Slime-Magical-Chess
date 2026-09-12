@@ -1,0 +1,6 @@
+{
+  "name": "That Time I Got Reincarnated as a Slime: MAGICAL CHESS",
+  "description": "Tensura Magical Chess & Checkers with Rimuru, Great Sage/Raphael AI tactical analysis, custom character skills, Unreal/Bandai Namco inspired VFX/SFX, hardware device detection and ultra high FPS performance engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
