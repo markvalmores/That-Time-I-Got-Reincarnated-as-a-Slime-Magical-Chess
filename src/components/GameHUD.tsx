@@ -5,6 +5,7 @@ import {
   Flag, 
   Volume2, 
   VolumeX, 
+  Music,
   Home, 
   Cpu, 
   Sparkles, 
@@ -14,6 +15,7 @@ import {
 } from 'lucide-react';
 import { TensuraCharacter, GameMode, TimerMode, PieceColor } from '../types/game';
 import { soundEngine } from '../utils/audio';
+import { TensuraAvatar } from './TensuraAvatar';
 
 interface GameHUDProps {
   gameMode: GameMode;
@@ -32,6 +34,8 @@ interface GameHUDProps {
   onFlipBoard: () => void;
   onReturnTitle: () => void;
   onOpenHardware: () => void;
+  isVideoMusicOn: boolean;
+  onToggleVideoMusic: () => void;
   isAudioMuted: boolean;
   onToggleAudio: () => void;
   isAIThinking: boolean;
@@ -54,6 +58,8 @@ export const GameHUD: React.FC<GameHUDProps> = ({
   onFlipBoard,
   onReturnTitle,
   onOpenHardware,
+  isVideoMusicOn,
+  onToggleVideoMusic,
   isAudioMuted,
   onToggleAudio,
   isAIThinking
@@ -116,8 +122,22 @@ export const GameHUD: React.FC<GameHUDProps> = ({
           </span>
         </div>
 
-        {/* Right Tools: Draw, Resign, Sound, Hardware */}
+        {/* Right Tools: Video Music, Draw, Resign, Sound, Hardware */}
         <div className="flex items-center gap-1.5">
+          {/* Background Video Music Toggle (Default Auto ON) */}
+          <button
+            onClick={onToggleVideoMusic}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-mono font-bold transition border ${
+              isVideoMusicOn 
+                ? 'bg-cyan-950 text-cyan-300 border-cyan-400/80 shadow-md shadow-cyan-500/20' 
+                : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-slate-200'
+            }`}
+            title={`Background Video Music: ${isVideoMusicOn ? 'ON (Auto default)' : 'OFF'}`}
+          >
+            <Music className={`w-3.5 h-3.5 ${isVideoMusicOn ? 'text-cyan-400 animate-pulse' : 'text-slate-500'}`} />
+            <span className="hidden sm:inline">{isVideoMusicOn ? 'Music ON' : 'Music OFF'}</span>
+          </button>
+
           <button
             onClick={() => {
               soundEngine.playClick();
@@ -143,7 +163,7 @@ export const GameHUD: React.FC<GameHUDProps> = ({
           <button
             onClick={onToggleAudio}
             className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
-            title={isAudioMuted ? 'Unmute Sound' : 'Mute Sound'}
+            title={isAudioMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
           >
             {isAudioMuted ? <VolumeX className="w-3.5 h-3.5 text-slate-400" /> : <Volume2 className="w-3.5 h-3.5 text-cyan-400" />}
           </button>
@@ -171,8 +191,14 @@ export const GameHUD: React.FC<GameHUDProps> = ({
             : 'bg-slate-900/60 border-slate-800 opacity-80'
         }`}>
           <div className="flex items-center gap-3">
-            <div className={`w-11 h-11 rounded-xl bg-gradient-to-tr ${playerCharacter.avatarBg} border border-cyan-300 flex items-center justify-center text-2xl shadow shrink-0`}>
-              {playerCharacter.avatarIcon}
+            <div className="w-11 h-11 rounded-xl overflow-hidden border border-cyan-300 shadow shrink-0">
+              <TensuraAvatar
+                src={playerCharacter.image}
+                name={playerCharacter.name}
+                avatarIcon={playerCharacter.avatarIcon}
+                avatarBg={playerCharacter.avatarBg}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
@@ -205,8 +231,14 @@ export const GameHUD: React.FC<GameHUDProps> = ({
             : 'bg-slate-900/60 border-slate-800 opacity-80'
         }`}>
           <div className="flex items-center gap-3">
-            <div className={`w-11 h-11 rounded-xl bg-gradient-to-tr ${opponentCharacter.avatarBg} border border-rose-300 flex items-center justify-center text-2xl shadow shrink-0`}>
-              {opponentCharacter.avatarIcon}
+            <div className="w-11 h-11 rounded-xl overflow-hidden border border-rose-300 shadow shrink-0">
+              <TensuraAvatar
+                src={opponentCharacter.image}
+                name={opponentCharacter.name}
+                avatarIcon={opponentCharacter.avatarIcon}
+                avatarBg={opponentCharacter.avatarBg}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">

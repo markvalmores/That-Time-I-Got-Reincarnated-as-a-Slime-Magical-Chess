@@ -9,11 +9,13 @@ import {
   EyeOff, 
   Volume2, 
   VolumeX, 
+  Music,
   Move, 
   Sliders, 
   Sun,
   Tv,
-  RotateCcw
+  RotateCcw,
+  Sparkles
 } from 'lucide-react';
 import { VideoSettings, VideoFitMode } from '../types/game';
 import { soundEngine } from '../utils/audio';
@@ -50,6 +52,11 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({
     onUpdateSettings({ fitMode: mode });
   };
 
+  const handleToggleMusic = () => {
+    soundEngine.playClick();
+    onUpdateSettings({ isMuted: !settings.isMuted });
+  };
+
   const handleReset = () => {
     soundEngine.playClick();
     onUpdateSettings({
@@ -57,9 +64,12 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({
       opacity: isHomeMenu ? 0.85 : 0.45,
       fitMode: 'cover',
       panX: 0,
-      panY: 0
+      panY: 0,
+      isMuted: false // Default Auto ON
     });
   };
+
+  const isMusicOn = !settings.isMuted;
 
   return (
     <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
@@ -116,20 +126,54 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 10 }}
-              className="p-3.5 rounded-2xl bg-slate-900/95 border-2 border-cyan-400/80 shadow-2xl shadow-cyan-950/90 backdrop-blur-2xl text-slate-100 font-mono text-xs w-64 space-y-3 ring-2 ring-cyan-500/30"
+              className="p-3.5 rounded-2xl bg-slate-900/95 border-2 border-cyan-400/80 shadow-2xl shadow-cyan-950/90 backdrop-blur-2xl text-slate-100 font-mono text-xs w-72 space-y-3 ring-2 ring-cyan-500/30"
             >
               <div className="flex items-center justify-between border-b border-cyan-500/30 pb-2">
                 <div className="flex items-center gap-1.5 text-cyan-300 font-bold">
                   <Maximize2 className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>VIDEO ZOOM & VISIBILITY</span>
+                  <span>VIDEO & MUSIC SETTINGS</span>
                 </div>
                 <button
                   onClick={handleReset}
                   className="text-[10px] text-slate-400 hover:text-cyan-300 flex items-center gap-1 transition"
-                  title="Reset to default zoom"
+                  title="Reset to default settings (Auto ON)"
                 >
                   <RotateCcw className="w-3 h-3" />
-                  <span>Reset</span>
+                  <span>Reset (Auto ON)</span>
+                </button>
+              </div>
+
+              {/* Background Video Music Toggle Card */}
+              <div className="p-2 rounded-xl bg-slate-950/80 border border-cyan-500/40 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${isMusicOn ? 'bg-cyan-500/20 text-cyan-300 ring-1 ring-cyan-400' : 'bg-slate-800 text-slate-500'}`}>
+                    <Music className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-bold text-slate-200">Video Music</div>
+                    <div className="text-[9px] text-cyan-400/80">Default: Auto ON</div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleToggleMusic}
+                  className={`px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+                    isMusicOn
+                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-md shadow-cyan-500/30'
+                      : 'bg-slate-800 text-slate-400 border border-slate-700'
+                  }`}
+                >
+                  {isMusicOn ? (
+                    <>
+                      <Volume2 className="w-3.5 h-3.5" />
+                      <span>ON</span>
+                    </>
+                  ) : (
+                    <>
+                      <VolumeX className="w-3.5 h-3.5" />
+                      <span>OFF</span>
+                    </>
+                  )}
                 </button>
               </div>
 
@@ -205,15 +249,28 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({
 
         {/* Floating Quick Action Trigger Pill */}
         <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-slate-950/90 border border-cyan-500/50 shadow-2xl backdrop-blur-xl ring-2 ring-cyan-400/20">
+          
+          {/* Background Video Music Quick Toggle Button */}
           <button
-            onClick={() => {
-              soundEngine.playClick();
-              onUpdateSettings({ isMuted: !settings.isMuted });
-            }}
-            className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-cyan-300 transition"
-            title={settings.isMuted ? 'Unmute Video Audio' : 'Mute Video Audio'}
+            onClick={handleToggleMusic}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border font-mono text-xs font-bold transition ${
+              isMusicOn 
+                ? 'bg-gradient-to-r from-cyan-950 to-blue-950 text-cyan-300 border-cyan-400 shadow-md shadow-cyan-500/30' 
+                : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+            }`}
+            title={`Background Video Music is currently ${isMusicOn ? 'ON (Auto)' : 'OFF'}. Click to toggle.`}
           >
-            {settings.isMuted ? <VolumeX className="w-4 h-4 text-slate-400" /> : <Volume2 className="w-4 h-4 text-cyan-400" />}
+            {isMusicOn ? (
+              <>
+                <Music className="w-3.5 h-3.5 text-cyan-400 animate-bounce" />
+                <span>MUSIC ON</span>
+              </>
+            ) : (
+              <>
+                <VolumeX className="w-3.5 h-3.5 text-slate-400" />
+                <span>MUSIC OFF</span>
+              </>
+            )}
           </button>
 
           <button
@@ -237,7 +294,7 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({
                 ? 'bg-cyan-500 text-slate-950 border-cyan-300 shadow-lg shadow-cyan-500/40'
                 : 'bg-slate-900 text-cyan-300 border-cyan-500/30 hover:bg-slate-800'
             }`}
-            title="Open Video Zoom & Aspect Options"
+            title="Open Video Zoom, Aspect & Music Options"
           >
             <ZoomIn className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Zoom Video</span>

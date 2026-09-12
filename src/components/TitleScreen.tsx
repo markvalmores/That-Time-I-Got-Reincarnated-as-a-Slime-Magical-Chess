@@ -9,7 +9,10 @@ import {
   ShieldCheck, 
   Zap,
   ChevronRight,
-  Gamepad2
+  Gamepad2,
+  Music,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
 import { GameMode, AIDifficulty, DeviceInfo, VideoSettings, ControllerPromptStyle } from '../types/game';
 import { VideoBackground } from './VideoBackground';
@@ -40,6 +43,8 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
   promptStyle,
   onChangePromptStyle
 }) => {
+  const isMusicOn = !videoSettings.isMuted;
+
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center justify-between p-4 md:p-8 overflow-hidden bg-slate-950 text-slate-100 select-none">
       
@@ -73,9 +78,35 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
           </div>
         </div>
 
-        {/* Controller Style Toggle & Device Specs Ribbon */}
-        <div className="flex items-center gap-2 text-xs font-mono">
+        {/* Controller Style Toggle, Background Video Music Switch & Device Specs Ribbon */}
+        <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
           
+          {/* Background Video Music ON/OFF Toggle (Default Auto ON) */}
+          <button
+            onClick={() => {
+              soundEngine.playClick();
+              onUpdateVideoSettings({ isMuted: !videoSettings.isMuted });
+            }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border transition shadow-inner font-bold ${
+              isMusicOn 
+                ? 'bg-gradient-to-r from-cyan-950 to-blue-900/90 text-cyan-300 border-cyan-400 ring-1 ring-cyan-400/30' 
+                : 'bg-slate-900/90 text-slate-400 border-slate-700 hover:text-slate-200'
+            }`}
+            title={`Background Video Music is ${isMusicOn ? 'ON (Auto default)' : 'OFF'}. Click to toggle.`}
+          >
+            {isMusicOn ? (
+              <>
+                <Music className="w-3.5 h-3.5 text-cyan-300 animate-pulse" />
+                <span>BG MUSIC: <span className="text-emerald-400">AUTO ON</span></span>
+              </>
+            ) : (
+              <>
+                <VolumeX className="w-3.5 h-3.5 text-slate-400" />
+                <span>BG MUSIC: <span className="text-rose-400">OFF</span></span>
+              </>
+            )}
+          </button>
+
           {/* Quick Controller Prompt Style Selector */}
           <div className="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-cyan-500/40 shadow-inner">
             <Gamepad2 className="w-4 h-4 text-cyan-400 ml-1.5" />

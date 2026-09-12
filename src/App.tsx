@@ -52,10 +52,10 @@ export default function App() {
   // Screen views: 'title' | 'character-select' | 'game'
   const [currentScreen, setCurrentScreen] = useState<'title' | 'character-select' | 'game'>('title');
 
-  // Video Background Global Settings
+  // Video Background Global Settings (Default: Background Video Music Auto ON)
   const [videoSettings, setVideoSettings] = useState<VideoSettings>({
     showVideo: true,
-    isMuted: true,
+    isMuted: false, // Default: Background Video Music Auto ON
     zoom: 1.5,
     opacity: 0.85,
     fitMode: 'cover',
@@ -641,6 +641,11 @@ export default function App() {
               onFlipBoard={() => setIsBoardFlipped(!isBoardFlipped)}
               onReturnTitle={() => setCurrentScreen('title')}
               onOpenHardware={() => setIsHardwareOpen(true)}
+              isVideoMusicOn={!videoSettings.isMuted}
+              onToggleVideoMusic={() => {
+                soundEngine.playClick();
+                handleUpdateVideoSettings({ isMuted: !videoSettings.isMuted });
+              }}
               isAudioMuted={isAudioMuted}
               onToggleAudio={() => {
                 const nextMute = !isAudioMuted;

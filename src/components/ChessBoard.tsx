@@ -4,6 +4,7 @@ import { ChessPiece, ChessMove, BoardTheme, PieceType, PieceColor } from '../typ
 import { ChessGameState, toSquareNotation, getAllLegalMoves, isInside } from '../utils/chessEngine';
 import { PIECE_CHARACTER_MAP } from '../data/characters';
 import { soundEngine } from '../utils/audio';
+import { TensuraAvatar } from './TensuraAvatar';
 
 interface ChessBoardProps {
   state: ChessGameState;
@@ -224,16 +225,13 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
                           ? 'border-cyan-300 ring-2 ring-cyan-400/50 shadow-cyan-500/50 bg-gradient-to-tr from-cyan-900 to-slate-900' 
                           : 'border-rose-400 ring-2 ring-rose-500/50 shadow-rose-500/50 bg-gradient-to-tr from-rose-950 to-slate-900'}
                       `}>
-                        {characterInfo?.image ? (
-                          <img 
-                            src={characterInfo.image} 
-                            alt={characterInfo.name} 
-                            className="w-full h-full object-cover filter contrast-110"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <span className="text-xl">{characterInfo?.avatar || '💧'}</span>
-                        )}
+                        <TensuraAvatar
+                          src={characterInfo?.image}
+                          name={characterInfo?.name || 'Tensura Piece'}
+                          avatarIcon={characterInfo?.avatar || (piece.color === 'w' ? '💧' : '👑')}
+                          avatarBg={piece.color === 'w' ? 'from-cyan-700 to-blue-900' : 'from-rose-800 to-purple-950'}
+                          className="w-full h-full object-cover filter contrast-110"
+                        />
 
                         {/* Top Right Mini Chess Symbol Badge */}
                         <div className={`
@@ -280,10 +278,10 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
 
               <div className="grid grid-cols-4 gap-3">
                 {[
-                  { type: 'q' as PieceType, label: 'Queen (Ciel)', icon: '♛', image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/16/435165.jpg&w=150&h=150&fit=cover' },
-                  { type: 'r' as PieceType, label: 'Rook (Veldora)', icon: '♜', image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/14/368819.jpg&w=150&h=150&fit=cover' },
-                  { type: 'b' as PieceType, label: 'Bishop (Diablo)', icon: '♝', image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/9/408990.jpg&w=150&h=150&fit=cover' },
-                  { type: 'n' as PieceType, label: 'Knight (Benimaru)', icon: '♞', image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/11/368821.jpg&w=150&h=150&fit=cover' }
+                  { type: 'q' as PieceType, label: 'Queen (Ciel)', icon: '♛', image: 'https://cdn.myanimelist.net/images/characters/16/435165.jpg', avatarIcon: '✨', avatarBg: 'from-blue-500 to-cyan-700' },
+                  { type: 'r' as PieceType, label: 'Rook (Veldora)', icon: '♜', image: 'https://cdn.myanimelist.net/images/characters/14/368819.jpg', avatarIcon: '⚡', avatarBg: 'from-amber-500 to-yellow-700' },
+                  { type: 'b' as PieceType, label: 'Bishop (Diablo)', icon: '♝', image: 'https://cdn.myanimelist.net/images/characters/9/408990.jpg', avatarIcon: '🖤', avatarBg: 'from-purple-900 to-slate-950' },
+                  { type: 'n' as PieceType, label: 'Knight (Benimaru)', icon: '♞', image: 'https://cdn.myanimelist.net/images/characters/11/368821.jpg', avatarIcon: '🔥', avatarBg: 'from-orange-500 to-red-700' }
                 ].map((promo) => (
                   <button
                     key={promo.type}
@@ -291,7 +289,13 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
                     className="flex flex-col items-center p-2 rounded-xl bg-slate-800/90 hover:bg-cyan-600/80 border border-cyan-500/40 hover:border-cyan-300 transition group shadow-lg"
                   >
                     <div className="w-10 h-10 rounded-full overflow-hidden border border-cyan-300 mb-1">
-                      <img src={promo.image} alt={promo.label} className="w-full h-full object-cover" />
+                      <TensuraAvatar
+                        src={promo.image}
+                        name={promo.label}
+                        avatarIcon={promo.avatarIcon}
+                        avatarBg={promo.avatarBg}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <span className="text-[10px] font-bold text-slate-200 truncate w-full">
                       {promo.label.split(' ')[0]}

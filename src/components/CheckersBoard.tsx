@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { CheckersPiece, CheckersMove, BoardTheme } from '../types/game';
 import { CheckersGameState, getAllCheckersLegalMoves } from '../utils/checkersEngine';
 import { soundEngine } from '../utils/audio';
+import { TensuraAvatar } from './TensuraAvatar';
 
 interface CheckersBoardProps {
   state: CheckersGameState;
@@ -153,14 +154,15 @@ export const CheckersBoard: React.FC<CheckersBoardProps> = ({
                       `}
                     >
                       {/* Character Artwork Thumbnail */}
-                      <img 
+                      <TensuraAvatar 
                         src={piece.color === 'w' 
-                          ? 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/8/364239.jpg&w=100&h=100&fit=cover'
-                          : 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/13/447230.jpg&w=100&h=100&fit=cover'
+                          ? 'https://cdn.myanimelist.net/images/characters/8/364239.jpg'
+                          : 'https://cdn.myanimelist.net/images/characters/13/447230.jpg'
                         }
-                        alt="Piece"
-                        className="w-full h-full object-cover opacity-80"
-                        loading="lazy"
+                        name={piece.color === 'w' ? 'Rimuru Slime' : 'Guy Crimson'}
+                        avatarIcon={piece.color === 'w' ? '💧' : '👑'}
+                        avatarBg={piece.color === 'w' ? 'from-cyan-600 to-blue-700' : 'from-rose-700 to-red-900'}
+                        className="w-full h-full object-cover opacity-90"
                       />
 
                       {/* King Crown Overlay */}

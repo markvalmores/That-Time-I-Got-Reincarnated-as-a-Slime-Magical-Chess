@@ -15,6 +15,7 @@ import {
 import { GameMode, AIDifficulty, TimerMode, BoardTheme, TensuraCharacter } from '../types/game';
 import { TENSURA_CHARACTERS } from '../data/characters';
 import { soundEngine } from '../utils/audio';
+import { TensuraAvatar } from './TensuraAvatar';
 
 interface MatchSetupModalProps {
   isOpen: boolean;
@@ -285,8 +286,14 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
           {/* Combatant Selection Preview */}
           <div className="grid grid-cols-2 gap-4 mb-6 p-4 rounded-2xl bg-slate-950/80 border border-slate-800">
             <div className="flex items-center gap-3">
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-tr ${playerChar.avatarBg} flex items-center justify-center text-2xl shadow`}>
-                {playerChar.avatarIcon}
+              <div className="w-12 h-12 rounded-xl overflow-hidden border border-cyan-400/50 shadow">
+                <TensuraAvatar
+                  src={playerChar.image}
+                  name={playerChar.name}
+                  avatarIcon={playerChar.avatarIcon}
+                  avatarBg={playerChar.avatarBg}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="min-w-0">
                 <span className="text-[10px] text-cyan-400 font-mono uppercase block">PLAYER (TEMPEST)</span>
@@ -299,8 +306,14 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
                 <span className="text-[10px] text-rose-400 font-mono uppercase block">OPPONENT</span>
                 <h4 className="text-sm font-bold text-white truncate">{opponentChar.name}</h4>
               </div>
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-tr ${opponentChar.avatarBg} flex items-center justify-center text-2xl shadow`}>
-                {opponentChar.avatarIcon}
+              <div className="w-12 h-12 rounded-xl overflow-hidden border border-rose-400/50 shadow">
+                <TensuraAvatar
+                  src={opponentChar.image}
+                  name={opponentChar.name}
+                  avatarIcon={opponentChar.avatarIcon}
+                  avatarBg={opponentChar.avatarBg}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

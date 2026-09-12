@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { TensuraCharacter } from '../types/game';
 import { MessageSquare, Sparkles } from 'lucide-react';
+import { TensuraAvatar } from './TensuraAvatar';
 
 interface CharacterBanterProps {
   speaker: TensuraCharacter;
@@ -34,8 +35,14 @@ export const CharacterBanter: React.FC<CharacterBanterProps> = ({
           <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border-2 border-cyan-400/80 rounded-2xl p-4 shadow-2xl shadow-cyan-950/80 backdrop-blur-xl flex items-center gap-4 ring-2 ring-cyan-500/30 pointer-events-auto">
             
             {/* Character Avatar Stamp */}
-            <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${speaker.avatarBg} border-2 border-cyan-300 flex items-center justify-center text-3xl shadow-lg shrink-0 relative`}>
-              <span>{speaker.avatarIcon}</span>
+            <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-cyan-300 shadow-lg shrink-0 relative">
+              <TensuraAvatar
+                src={speaker.image}
+                name={speaker.name}
+                avatarIcon={speaker.avatarIcon}
+                avatarBg={speaker.avatarBg}
+                className="w-full h-full object-cover"
+              />
               <span className="absolute -bottom-1 -right-1 text-[10px] bg-slate-950 px-1.5 py-0.5 rounded-full border border-cyan-400 font-mono font-bold text-cyan-300">
                 EP {Math.round(speaker.ep / 10000)}k
               </span>
