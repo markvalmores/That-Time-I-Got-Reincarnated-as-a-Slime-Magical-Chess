@@ -183,7 +183,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
         </motion.div>
 
         {/* Mode Selector Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-4xl px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-6xl px-4">
           
           {/* 1. Normal Chess Mode Card */}
           <motion.div
@@ -226,7 +226,48 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
             </div>
           </motion.div>
 
-          {/* 2. Checkers Chess Mode Card */}
+          {/* 2. Chess960 Mode Card */}
+          <motion.div
+            whileHover={{ scale: 1.02, y: -4 }}
+            whileTap={{ scale: 0.98 }}
+            className="group relative rounded-3xl p-6 bg-gradient-to-b from-slate-900/95 via-slate-950/90 to-purple-950/80 border-2 border-purple-500/40 hover:border-purple-400 shadow-2xl shadow-purple-950/80 backdrop-blur-2xl flex flex-col justify-between text-left cursor-pointer transition-all overflow-hidden ring-1 ring-purple-500/20"
+            onClick={() => {
+              soundEngine.playClick();
+              onOpenSetup('chess960');
+            }}
+          >
+            <div className="absolute -top-12 -right-12 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl group-hover:bg-purple-400/30 transition-all" />
+            
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-purple-500/20 border-2 border-purple-400/50 flex items-center justify-center text-3xl shadow-inner">
+                  🎲
+                </div>
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-purple-300 bg-purple-950/90 px-3 py-1 rounded-full border border-purple-500/40">
+                  FISCHER RANDOM
+                </span>
+              </div>
+              <h2 className="text-2xl font-bold font-slime text-white group-hover:text-purple-200 transition-colors">
+                CHESS960 MODE
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 mt-2 line-clamp-2 font-sans">
+                Starting positions are randomized based on Fischer Random rules. Throw off Great Sage's opening book and test your raw adaptability.
+              </p>
+            </div>
+
+            <div className="mt-5 flex items-center justify-between pt-4 border-t border-purple-500/20">
+              <div className="flex items-center gap-2 text-xs text-purple-300 font-mono">
+                <Sparkles className="w-4 h-4 text-purple-400" />
+                <span>960 Starting States</span>
+              </div>
+              <button className="flex items-center gap-1 text-sm font-bold text-purple-300 group-hover:translate-x-1 transition-transform">
+                <span>Configure & Play</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
+
+          {/* 3. Checkers Chess Mode Card */}
           <motion.div
             whileHover={{ scale: 1.02, y: -4 }}
             whileTap={{ scale: 0.98 }}

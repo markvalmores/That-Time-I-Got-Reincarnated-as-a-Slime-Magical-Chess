@@ -1,4 +1,4 @@
-export type GameMode = 'chess' | 'checkers';
+export type GameMode = 'chess' | 'checkers' | 'chess960';
 
 export type AIDifficulty = 'easy' | 'normal' | 'hard' | 'grandmaster' | 'king';
 

@@ -104,7 +104,7 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
             <label className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider block mb-2">
               GAME MODE
             </label>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <button
                 onClick={() => {
                   soundEngine.playClick();
@@ -122,6 +122,26 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
                 </div>
                 <p className="text-xs text-slate-300">
                   Full 64-square grandmaster tactical combat with Raphael AI assistance.
+                </p>
+              </button>
+
+              <button
+                onClick={() => {
+                  soundEngine.playClick();
+                  setMode('chess960');
+                }}
+                className={`p-4 rounded-xl border text-left transition-all ${
+                  mode === 'chess960'
+                    ? 'bg-purple-950/90 border-purple-400 ring-2 ring-purple-400/40 text-white'
+                    : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:border-purple-500/40'
+                }`}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-2xl">🎲</span>
+                  <span className="font-bold text-base font-['Orbitron']">CHESS 960</span>
+                </div>
+                <p className="text-xs text-slate-300">
+                  Randomized Fischer back-rank. Test raw adaptability over opening theory.
                 </p>
               </button>
 

@@ -150,7 +150,7 @@ export default function App() {
     if (currentScreen !== 'game' || timerMode === 'none' || isGameOverOpen) return;
 
     const interval = setInterval(() => {
-      const currentTurn = gameMode === 'chess' ? chessState.turn : checkersState.turn;
+      const currentTurn = gameMode.startsWith('chess') ? chessState.turn : checkersState.turn;
 
       if (currentTurn === 'w') {
         setWhiteTime(prev => {
@@ -192,7 +192,7 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           gameMode,
-          turn: gameMode === 'chess' ? chessState.turn : checkersState.turn,
+          turn: gameMode.startsWith('chess') ? chessState.turn : checkersState.turn,
           difficulty,
           lastMove: lastMoveText,
           inCheck,
@@ -391,7 +391,7 @@ export default function App() {
     setIsVsAI(config.isVsAI);
 
     // Reset board states
-    setChessState(createInitialGameState());
+    setChessState(createInitialGameState(config.mode === 'chess960'));
     setCheckersState(createInitialCheckersState());
     setIsGameOverOpen(false);
     setGameOverWinner(null);
@@ -416,7 +416,7 @@ export default function App() {
 
   // Ask Great Sage for optimal hint
   const handleRequestHint = () => {
-    if (gameMode === 'chess') {
+    if (gameMode.startsWith('chess')) {
       const best = getChessAIMove(chessState, 'king');
       if (best) {
         const fromNot = toSquareNotation(best.from.row, best.from.col);
@@ -432,10 +432,10 @@ export default function App() {
 
   // Undo Move
   const handleUndoMove = () => {
-    if (gameMode === 'chess') {
+    if (gameMode.startsWith('chess')) {
       if (chessState.moveHistory.length >= (isVsAI ? 2 : 1)) {
         const newHistory = isVsAI ? chessState.moveHistory.slice(0, -2) : chessState.moveHistory.slice(0, -1);
-        let rebuilt = createInitialGameState();
+        let rebuilt = createInitialGameState(gameMode === 'chess960');
         for (const m of newHistory) {
           rebuilt = makeChessMove(rebuilt, m);
         }
@@ -483,7 +483,7 @@ export default function App() {
       },
       onHint: handleRequestHint,
       onAnalyze: () => {
-        const score = gameMode === 'chess' 
+        const score = gameMode.startsWith('chess') 
           ? evaluateChessBoard(chessState.board) / 100 
           : evaluateCheckersBoard(checkersState.board) / 100;
         runGreatSageAnalysis(score, 'Gamepad Deep Analysis', chessState.isCheck);
@@ -618,15 +618,15 @@ export default function App() {
           <div className="relative z-10 w-full flex justify-center mb-2">
             <GameHUD
               gameMode={gameMode}
-              turn={gameMode === 'chess' ? chessState.turn : checkersState.turn}
+              turn={gameMode.startsWith('chess') ? chessState.turn : checkersState.turn}
               playerCharacter={playerCharacter}
               opponentCharacter={opponentCharacter}
               isVsAI={isVsAI}
               whiteTime={whiteTime}
               blackTime={blackTime}
               timerMode={timerMode}
-              capturedByWhite={gameMode === 'chess' ? chessState.capturedByWhite : []}
-              capturedByBlack={gameMode === 'chess' ? chessState.capturedByBlack : []}
+              capturedByWhite={gameMode.startsWith('chess') ? chessState.capturedByWhite : []}
+              capturedByBlack={gameMode.startsWith('chess') ? chessState.capturedByBlack : []}
               onUndo={handleUndoMove}
               onResign={() => {
                 setGameOverWinner('b');
@@ -658,7 +658,7 @@ export default function App() {
 
           {/* Central Game Board Stage */}
           <main className="relative z-10 w-full flex flex-col items-center justify-center my-auto py-2">
-            {gameMode === 'chess' ? (
+            {gameMode.startsWith('chess') ? (
               <ChessBoard
                 state={chessState}
                 onMakeMove={handleChessPlayerMove}
@@ -688,7 +688,7 @@ export default function App() {
             <GreatSageHUD
               analysis={greatSage}
               onTriggerAnalysis={() => {
-                const score = gameMode === 'chess' 
+                const score = gameMode.startsWith('chess') 
                   ? evaluateChessBoard(chessState.board) / 100 
                   : evaluateCheckersBoard(checkersState.board) / 100;
                 runGreatSageAnalysis(score, 'Manual Deep Analysis', chessState.isCheck);
@@ -709,7 +709,7 @@ export default function App() {
                 onCancelAction={handleUndoMove}
                 onHintAction={handleRequestHint}
                 onAnalyzeAction={() => {
-                  const score = gameMode === 'chess' 
+                  const score = gameMode.startsWith('chess') 
                     ? evaluateChessBoard(chessState.board) / 100 
                     : evaluateCheckersBoard(checkersState.board) / 100;
                   runGreatSageAnalysis(score, 'Touch Deep Analysis', chessState.isCheck);

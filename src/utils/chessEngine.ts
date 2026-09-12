@@ -54,10 +54,41 @@ const KNIGHT_TABLE = [
   [-50,-40,-30,-30,-30,-30,-40,-50]
 ];
 
-export function createInitialBoard(): BoardState {
+function generateChess960BackRank(): PieceType[] {
+  const rank: (PieceType | null)[] = Array(8).fill(null);
+  // 1. Place bishops on opposite colors
+  const darkBishop = Math.floor(Math.random() * 4) * 2; // 0, 2, 4, 6
+  const lightBishop = Math.floor(Math.random() * 4) * 2 + 1; // 1, 3, 5, 7
+  rank[darkBishop] = 'b';
+  rank[lightBishop] = 'b';
+
+  // 2. Place queen in one of the 6 remaining empty spots
+  let emptySpots = rank.map((p, i) => p === null ? i : null).filter(i => i !== null) as number[];
+  const queenPos = emptySpots[Math.floor(Math.random() * emptySpots.length)];
+  rank[queenPos] = 'q';
+
+  // 3. Place knights in 2 of the 5 remaining spots
+  emptySpots = rank.map((p, i) => p === null ? i : null).filter(i => i !== null) as number[];
+  const n1 = emptySpots.splice(Math.floor(Math.random() * emptySpots.length), 1)[0];
+  const n2 = emptySpots.splice(Math.floor(Math.random() * emptySpots.length), 1)[0];
+  rank[n1] = 'n';
+  rank[n2] = 'n';
+
+  // 4. Place Rooks and King in the 3 remaining spots (King in the middle)
+  emptySpots = rank.map((p, i) => p === null ? i : null).filter(i => i !== null) as number[];
+  rank[emptySpots[0]] = 'r';
+  rank[emptySpots[1]] = 'k';
+  rank[emptySpots[2]] = 'r';
+
+  return rank as PieceType[];
+}
+
+export function createInitialBoard(isChess960: boolean = false): BoardState {
   const board: BoardState = Array(8).fill(null).map(() => Array(8).fill(null));
 
-  const backRank: PieceType[] = ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'];
+  const backRank: PieceType[] = isChess960 
+    ? generateChess960BackRank()
+    : ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'];
 
   // Black pieces (top: rows 0 and 1)
   for (let c = 0; c < 8; c++) {
@@ -74,9 +105,9 @@ export function createInitialBoard(): BoardState {
   return board;
 }
 
-export function createInitialGameState(): ChessGameState {
+export function createInitialGameState(isChess960: boolean = false): ChessGameState {
   return {
-    board: createInitialBoard(),
+    board: createInitialBoard(isChess960),
     turn: 'w',
     castling: {
       w: { k: true, q: true },

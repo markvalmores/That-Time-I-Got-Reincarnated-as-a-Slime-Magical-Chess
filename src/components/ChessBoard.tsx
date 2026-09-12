@@ -5,6 +5,7 @@ import { ChessGameState, toSquareNotation, getAllLegalMoves, isInside } from '..
 import { PIECE_CHARACTER_MAP } from '../data/characters';
 import { soundEngine } from '../utils/audio';
 import { TensuraAvatar } from './TensuraAvatar';
+import { SkillParticleOverlay } from './SkillParticleOverlay';
 
 interface ChessBoardProps {
   state: ChessGameState;
@@ -41,9 +42,25 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
   const [selectedSquare, setSelectedSquare] = useState<{ row: number; col: number } | null>(null);
   const [legalMovesForSelected, setLegalMovesForSelected] = useState<ChessMove[]>([]);
   const [pendingPromotionMove, setPendingPromotionMove] = useState<ChessMove | null>(null);
+  
+  const [captureEffects, setCaptureEffects] = useState<Array<{ id: string, r: number, c: number, element: string, color: string }>>([]);
 
   const { board, turn, isCheck, moveHistory } = state;
   const lastMove = moveHistory[moveHistory.length - 1];
+
+  useEffect(() => {
+    if (lastMove && lastMove.captured) {
+      const pieceKey = `${lastMove.piece.color}-${lastMove.piece.type}`;
+      const charInfo = PIECE_CHARACTER_MAP[pieceKey];
+      if (charInfo) {
+        const id = Date.now().toString() + Math.random();
+        setCaptureEffects(prev => [...prev, { id, r: lastMove.to.row, c: lastMove.to.col, element: charInfo.element, color: charInfo.accentColor }]);
+        setTimeout(() => {
+          setCaptureEffects(prev => prev.filter(e => e.id !== id));
+        }, 1500);
+      }
+    }
+  }, [lastMove]);
 
   // Theme configuration
   const themeStyles = {
@@ -183,6 +200,13 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
                     hover:brightness-125
                   `}
                 >
+                  {/* Skill / Capture Particle Overlay */}
+                  {captureEffects.map(effect => 
+                    effect.r === r && effect.c === c ? (
+                      <SkillParticleOverlay key={effect.id} element={effect.element} color={effect.color} />
+                    ) : null
+                  )}
+
                   {/* Subtle Coordinate Notation */}
                   {c === (isFlipped ? 7 : 0) && (
                     <span className="absolute top-0.5 left-1 text-[8px] sm:text-[9px] font-mono font-bold opacity-40">
