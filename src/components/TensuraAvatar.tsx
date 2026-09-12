@@ -5,6 +5,7 @@ interface TensuraAvatarProps {
   character?: Partial<TensuraCharacter> | null;
   name?: string;
   image?: string;
+  src?: string;
   avatarIcon?: string;
   avatarBg?: string;
   accentColor?: string;
@@ -21,6 +22,7 @@ export const TensuraAvatar: React.FC<TensuraAvatarProps> = ({
   character,
   name: explicitName,
   image: explicitImage,
+  src,
   avatarIcon: explicitIcon,
   avatarBg: explicitBg,
   accentColor: explicitAccent,
@@ -36,7 +38,7 @@ export const TensuraAvatar: React.FC<TensuraAvatarProps> = ({
   const [fallbackIndex, setFallbackIndex] = useState(0);
 
   const name = character?.name || explicitName || 'Tensura Warrior';
-  const rawImage = explicitImage || character?.image;
+  const rawImage = src || explicitImage || character?.image;
   const avatarIcon = character?.avatarIcon || explicitIcon || '💧';
   const avatarBg = character?.avatarBg || explicitBg || 'from-cyan-600 to-blue-800';
   const accentColor = character?.accentColor || explicitAccent || '#06b6d4';

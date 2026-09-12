@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ZoomIn, 
@@ -32,10 +32,25 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({
   isHomeMenu = false
 }) => {
   const [showControls, setShowControls] = useState(false);
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
   const videoId = 'zvIS6EIkXx8';
 
   const zoomLevels = [0.8, 1.0, 1.25, 1.5, 2.0, 2.5];
   const opacityLevels = [0.25, 0.5, 0.75, 0.95];
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (settings.showVideo) {
+      // Fallback: Open the eye after 1 second even if events don't fire
+      // (sometimes browsers block unmuted autoplay, preventing onPlay)
+      timer = setTimeout(() => {
+        setIsEyeOpen(true);
+      }, 1000);
+    } else {
+      setIsEyeOpen(false);
+    }
+    return () => clearTimeout(timer);
+  }, [settings.showVideo]);
 
   const handleZoomChange = (newZoom: number) => {
     soundEngine.playClick();
@@ -71,50 +86,80 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({
 
   const isMusicOn = !settings.isMuted;
 
-  return (
-    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
-      
-      {/* 1. Main YouTube Video IFrame Container */}
-      {settings.showVideo ? (
-        <div 
-          className="relative w-full h-full overflow-hidden transition-transform duration-300 ease-out"
-          style={{
-            transform: `scale(${settings.zoom}) translate(${settings.panX}px, ${settings.panY}px)`
-          }}
-        >
-          <iframe
-            className={`
-              absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none filter contrast-115 brightness-90
-              ${settings.fitMode === 'cover' ? 'w-[180vw] h-[180vh] min-w-[100vw] min-h-[100vh] object-cover' : ''}
-              ${settings.fitMode === 'fit' ? 'w-[100vw] h-[100vh] object-contain' : ''}
-              ${settings.fitMode === 'fill' ? 'w-full h-full object-fill' : ''}
-              ${settings.fitMode === 'pan' ? 'w-[220vw] h-[220vh] object-cover' : ''}
-            `}
-            style={{
-              opacity: settings.opacity,
-              transition: 'opacity 0.4s ease-in-out'
-            }}
-            src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=${settings.isMuted ? 1 : 0}&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1`}
-            title="Tensura Background Theme Anime Video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          />
+  // We no longer strictly require playing/ready to show, 
+  // as isEyeOpen is also driven by a timeout fallback
+  const isVideoVisible = isEyeOpen;
 
-          {/* Gradient Shading - Softens when opacity is high so video shines through brightly */}
-          <div 
-            className="absolute inset-0 bg-radial from-transparent via-slate-950/40 to-slate-950 transition-opacity"
-            style={{ opacity: Math.max(0.15, 1 - settings.opacity) }}
-          />
-          <div 
-            className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-cyan-950/30 transition-opacity"
-            style={{ opacity: Math.max(0.2, 1 - settings.opacity * 0.7) }}
-          />
-        </div>
-      ) : (
-        /* Fallback Ambient Canvas Grid */
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/40 via-slate-950 to-slate-950">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#06b6d40a_1px,transparent_1px),linear-gradient(to_bottom,#06b6d40a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
-        </div>
-      )}
+  return (
+    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none bg-slate-950">
+      
+      {/* 1. Main YouTube Video Player Container */}
+      <AnimatePresence>
+        {settings.showVideo && (
+          <motion.div 
+            className="absolute inset-0 z-0 flex items-center justify-center bg-slate-950"
+            initial={{ clipPath: 'ellipse(0% 0% at 50% 50%)', opacity: 0 }}
+            animate={{ 
+              clipPath: isVideoVisible ? 'ellipse(150% 150% at 50% 50%)' : 'ellipse(0% 0% at 50% 50%)',
+              opacity: isVideoVisible ? 1 : 0
+            }}
+            transition={{ 
+              duration: 2.0, 
+              ease: [0.7, 0, 0.3, 1], // cinematic ease in out
+              opacity: { duration: 1.0 }
+            }}
+          >
+            <div 
+              className="relative w-full h-full overflow-hidden transition-transform duration-300 ease-out"
+              style={{
+                transform: `scale(${settings.zoom}) translate(${settings.panX}px, ${settings.panY}px)`
+              }}
+            >
+              <iframe
+                className={`
+                  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none filter contrast-115 brightness-90
+                  ${settings.fitMode === 'cover' ? 'w-[180vw] h-[180vh] min-w-[100vw] min-h-[100vh] object-cover' : ''}
+                  ${settings.fitMode === 'fit' ? 'w-[100vw] h-[100vh] object-contain' : ''}
+                  ${settings.fitMode === 'fill' ? 'w-full h-full object-fill' : ''}
+                  ${settings.fitMode === 'pan' ? 'w-[220vw] h-[220vh] object-cover' : ''}
+                `}
+                style={{
+                  opacity: settings.opacity,
+                  transition: 'opacity 0.4s ease-in-out'
+                }}
+                src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=${settings.isMuted ? 1 : 0}&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1`}
+                title="Tensura Background Theme Anime Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              />
+
+              {/* Gradient Shading - Softens when opacity is high so video shines through brightly */}
+              <div 
+                className="absolute inset-0 bg-radial from-transparent via-slate-950/40 to-slate-950 transition-opacity"
+                style={{ opacity: Math.max(0.15, 1 - settings.opacity) }}
+              />
+              <div 
+                className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-cyan-950/30 transition-opacity"
+                style={{ opacity: Math.max(0.2, 1 - settings.opacity * 0.7) }}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Fallback Ambient Canvas Grid while loading or hidden */}
+      <AnimatePresence>
+        {(!settings.showVideo || !isVideoVisible) && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.0 }}
+            className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/40 via-slate-950 to-slate-950 -z-10"
+          >
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#06b6d40a_1px,transparent_1px),linear-gradient(to_bottom,#06b6d40a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 2. Floating On-Screen Video Zoom & Clarity Floating Toolbar (Interactive) */}
       <div className="absolute bottom-16 right-4 sm:bottom-4 sm:right-4 z-40 pointer-events-auto flex flex-col items-end gap-2">
