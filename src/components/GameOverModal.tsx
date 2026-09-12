@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { Trophy, RotateCcw, Home, Sparkles, Swords, Award } from 'lucide-react';
@@ -24,17 +24,38 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
   onRematch,
   onReturnTitle
 }) => {
+  const [phase, setPhase] = useState<'hidden' | 'flash' | 'text' | 'reveal'>('hidden');
+
   useEffect(() => {
-    if (isOpen && winner === 'w') {
-      soundEngine.playCheckmate(true);
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.6 },
-        colors: ['#06b6d4', '#3b82f6', '#eab308', '#ec4899', '#ffffff']
-      });
-    } else if (isOpen && winner === 'b') {
-      soundEngine.playCheckmate(false);
+    if (isOpen && winner) {
+      setPhase('flash');
+      
+      const t1 = setTimeout(() => {
+        setPhase('text');
+        soundEngine.playSkillActivation();
+      }, 400);
+
+      const t2 = setTimeout(() => {
+        setPhase('reveal');
+        if (winner === 'w') {
+          soundEngine.playCheckmate(true);
+          confetti({
+            particleCount: 120,
+            spread: 80,
+            origin: { y: 0.6 },
+            colors: ['#06b6d4', '#3b82f6', '#eab308', '#ec4899', '#ffffff']
+          });
+        } else if (winner === 'b') {
+          soundEngine.playCheckmate(false);
+        }
+      }, 2800);
+
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+      };
+    } else {
+      setPhase('hidden');
     }
   }, [isOpen, winner]);
 
@@ -45,14 +66,75 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-xl select-none">
+      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none">
         
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 30 }}
-          className="relative w-full max-w-md bg-slate-900 border-2 border-cyan-500/60 rounded-3xl p-6 text-center shadow-2xl shadow-cyan-950/80 text-slate-100 ring-2 ring-cyan-400/30 overflow-hidden"
-        >
+        {/* Phase 1 & 2: Skill Activation Cinematic Overlay */}
+        {(phase === 'flash' || phase === 'text') && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+            className="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center z-50"
+          >
+            {/* Geometric Great Sage overlay grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#06b6d41a_1px,transparent_1px),linear-gradient(to_bottom,#06b6d41a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] opacity-30" />
+            
+            <AnimatePresence>
+              {phase === 'text' && (
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0, filter: 'blur(10px)' }}
+                  animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ scale: 1.1, opacity: 0, filter: 'blur(10px)' }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="relative z-10 flex flex-col items-center"
+                >
+                  <div className="absolute -inset-12 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
+                  
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="h-px bg-cyan-400/50 mb-4 overflow-hidden"
+                  />
+                  
+                  <h1 className="text-4xl md:text-6xl font-black font-mono tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 drop-shadow-[0_0_15px_rgba(6,182,212,0.8)] text-center uppercase">
+                    &lt;&lt; Notice &gt;&gt;
+                  </h1>
+                  
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.6 }}
+                    className="mt-6 text-xl md:text-2xl text-cyan-400 font-bold tracking-[0.2em] uppercase text-center"
+                  >
+                    {isPlayerWinner ? 'Checkmate Condition Met' : isDraw ? 'Equilibrium Detected' : 'Tactical Defeat Logged'}
+                  </motion.div>
+
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="h-px bg-cyan-400/50 mt-6"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+
+        {/* Phase 3: Reveal standard modal overlay */}
+        {phase === 'reveal' && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="absolute inset-0 bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-4 z-40"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 30 }}
+              className="relative w-full max-w-md bg-slate-900 border-2 border-cyan-500/60 rounded-3xl p-6 text-center shadow-2xl shadow-cyan-950/80 text-slate-100 ring-2 ring-cyan-400/30 overflow-hidden"
+            >
           {/* Header Glow */}
           <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -129,6 +211,8 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
           </div>
 
         </motion.div>
+          </motion.div>
+        )}
       </div>
     </AnimatePresence>
   );
