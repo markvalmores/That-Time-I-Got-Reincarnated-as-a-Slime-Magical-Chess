@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { CheckersPiece, CheckersMove, BoardTheme } from '../types/game';
-import { CheckersGameState, getAllCheckersLegalMoves, getCheckersJumpsForPiece, getCheckersSimpleMovesForPiece } from '../utils/checkersEngine';
+import { CheckersGameState, getAllCheckersLegalMoves } from '../utils/checkersEngine';
 import { soundEngine } from '../utils/audio';
 
 interface CheckersBoardProps {
@@ -10,6 +10,8 @@ interface CheckersBoardProps {
   theme: BoardTheme;
   playerColor: 'w' | 'b';
   graphicsQuality: 'ultra' | 'high' | 'medium' | 'low';
+  gamepadCursor?: { row: number; col: number } | null;
+  onSquareHover?: (row: number, col: number) => void;
 }
 
 export const CheckersBoard: React.FC<CheckersBoardProps> = ({
@@ -17,7 +19,9 @@ export const CheckersBoard: React.FC<CheckersBoardProps> = ({
   onMakeMove,
   theme,
   playerColor,
-  graphicsQuality
+  graphicsQuality,
+  gamepadCursor,
+  onSquareHover
 }) => {
   const [selectedSquare, setSelectedSquare] = useState<{ row: number; col: number } | null>(null);
   const [legalMovesForSelected, setLegalMovesForSelected] = useState<CheckersMove[]>([]);
@@ -27,7 +31,6 @@ export const CheckersBoard: React.FC<CheckersBoardProps> = ({
 
   const allLegalMoves = getAllCheckersLegalMoves(state);
 
-  // Theme configuration
   const themeStyles = {
     tempest: {
       lightSquare: 'bg-emerald-950/30 border-cyan-500/10 text-cyan-200',
@@ -58,7 +61,6 @@ export const CheckersBoard: React.FC<CheckersBoardProps> = ({
   const handleSquareClick = (r: number, c: number) => {
     const piece = board[r][c];
 
-    // If already selected, check if click is one of the legal moves
     if (selectedSquare) {
       const targetMove = legalMovesForSelected.find(
         m => m.to.row === r && m.to.col === c
@@ -79,7 +81,6 @@ export const CheckersBoard: React.FC<CheckersBoardProps> = ({
       }
     }
 
-    // Select piece if it's player's piece and has legal moves
     if (piece && piece.color === turn) {
       const moves = allLegalMoves.filter(m => m.from.row === r && m.from.col === c);
       if (moves.length > 0) {
@@ -98,10 +99,10 @@ export const CheckersBoard: React.FC<CheckersBoardProps> = ({
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center select-none">
+    <div className="relative flex flex-col items-center justify-center select-none w-full">
       
       {/* Outer 3D Board Wrapper */}
-      <div className={`relative p-3 md:p-4 rounded-3xl bg-gradient-to-br ${themeStyles.boardGlow} border-2 ${themeStyles.boardBorder} shadow-2xl backdrop-blur-xl ring-4 max-w-[95vw] sm:max-w-[560px] md:max-w-[620px] lg:max-w-[680px] w-full transition-all`}>
+      <div className={`relative p-2 sm:p-3 md:p-4 rounded-3xl bg-gradient-to-br ${themeStyles.boardGlow} border-2 ${themeStyles.boardBorder} shadow-2xl backdrop-blur-xl ring-4 max-w-[95vw] sm:max-w-[560px] md:max-w-[620px] lg:max-w-[680px] w-full transition-all`}>
         
         {/* Board Grid */}
         <div className="grid grid-cols-8 grid-rows-8 aspect-square w-full rounded-2xl overflow-hidden border border-slate-700/60 shadow-inner bg-slate-950">
@@ -110,6 +111,7 @@ export const CheckersBoard: React.FC<CheckersBoardProps> = ({
               const isDark = (r + c) % 2 === 1;
               const piece = board[r][c];
               const isSelected = selectedSquare?.row === r && selectedSquare?.col === c;
+              const isGamepadFocused = gamepadCursor?.row === r && gamepadCursor?.col === c;
               const isLegalTarget = legalMovesForSelected.some(m => m.to.row === r && m.to.col === c);
               const isLastFrom = lastMove && lastMove.from.row === r && lastMove.from.col === c;
               const isLastTo = lastMove && lastMove.to.row === r && lastMove.to.col === c;
@@ -118,22 +120,24 @@ export const CheckersBoard: React.FC<CheckersBoardProps> = ({
                 <div
                   key={`checkers-sq-${r}-${c}`}
                   onClick={() => isDark && handleSquareClick(r, c)}
+                  onMouseEnter={() => onSquareHover?.(r, c)}
                   className={`
-                    relative flex items-center justify-center transition-all duration-150
+                    relative flex items-center justify-center transition-all duration-150 p-1
                     ${isDark ? themeStyles.darkSquare : themeStyles.lightSquare}
-                    ${isDark ? 'cursor-pointer hover:brightness-125' : 'cursor-not-allowed opacity-40'}
+                    ${isDark ? 'cursor-pointer hover:brightness-125' : 'cursor-not-allowed opacity-30'}
                     ${isSelected ? 'ring-4 ring-cyan-400 z-20 bg-cyan-900/70' : ''}
+                    ${isGamepadFocused ? 'ring-4 ring-amber-300 ring-offset-1 ring-offset-slate-950 z-20 bg-amber-900/40 animate-pulse' : ''}
                     ${isLastFrom || isLastTo ? 'bg-amber-500/25 ring-2 ring-amber-400/40' : ''}
                   `}
                 >
                   {/* Legal Jump / Move Ring */}
                   {isLegalTarget && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                      <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-cyan-400/40 border-2 border-cyan-300 ring-2 ring-cyan-200 animate-ping" />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-cyan-400/50 border-2 border-cyan-300 ring-2 ring-cyan-200 animate-ping" />
                     </div>
                   )}
 
-                  {/* Checkers Piece Token */}
+                  {/* Checkers Piece Token with Anime Picture */}
                   {piece && (
                     <motion.div
                       layoutId={`checkers-piece-${piece.id}`}
@@ -141,27 +145,34 @@ export const CheckersBoard: React.FC<CheckersBoardProps> = ({
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                       className={`
-                        w-4/5 h-4/5 rounded-full flex flex-col items-center justify-center shadow-2xl relative
+                        w-4/5 h-4/5 rounded-full flex flex-col items-center justify-center shadow-2xl relative overflow-hidden border-2
                         ${piece.color === 'w' 
-                          ? 'bg-gradient-to-tr from-cyan-600 via-blue-500 to-cyan-300 text-slate-950 border-2 border-cyan-200 shadow-cyan-500/50' 
-                          : 'bg-gradient-to-tr from-rose-700 via-red-600 to-amber-500 text-white border-2 border-rose-300 shadow-rose-500/50'}
-                        ${piece.isKing ? 'ring-4 ring-amber-400' : ''}
+                          ? 'border-cyan-300 ring-2 ring-cyan-400/60 shadow-cyan-500/50 bg-gradient-to-tr from-cyan-600 via-blue-500 to-cyan-300' 
+                          : 'border-rose-400 ring-2 ring-rose-500/60 shadow-rose-500/50 bg-gradient-to-tr from-rose-700 via-red-600 to-amber-600'}
+                        ${piece.isKing ? 'ring-4 ring-amber-300' : ''}
                       `}
                     >
-                      {/* King Crown or Slime Disc Motif */}
-                      {piece.isKing ? (
-                        <span className="text-xl sm:text-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] animate-pulse">
+                      {/* Character Artwork Thumbnail */}
+                      <img 
+                        src={piece.color === 'w' 
+                          ? 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/8/364239.jpg&w=100&h=100&fit=cover'
+                          : 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/13/447230.jpg&w=100&h=100&fit=cover'
+                        }
+                        alt="Piece"
+                        className="w-full h-full object-cover opacity-80"
+                        loading="lazy"
+                      />
+
+                      {/* King Crown Overlay */}
+                      {piece.isKing && (
+                        <span className="absolute inset-0 flex items-center justify-center text-xl sm:text-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] animate-pulse bg-slate-950/40">
                           👑
-                        </span>
-                      ) : (
-                        <span className="text-lg sm:text-xl drop-shadow">
-                          {piece.color === 'w' ? '💧' : '🔥'}
                         </span>
                       )}
 
-                      {/* Rank Sub-label */}
-                      <span className="text-[8px] font-mono font-bold tracking-tighter opacity-80 uppercase leading-none">
-                        {piece.isKing ? 'DEMON LORD' : (piece.color === 'w' ? 'TEMPEST' : 'OCTAGRAM')}
+                      {/* Token Rim Badge */}
+                      <span className="absolute bottom-0.5 text-[7px] font-mono font-bold tracking-tighter opacity-90 uppercase leading-none bg-slate-950/80 px-1 rounded text-cyan-200">
+                        {piece.isKing ? 'KING' : (piece.color === 'w' ? 'SLIME' : 'DEMON')}
                       </span>
                     </motion.div>
                   )}

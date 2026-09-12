@@ -36,6 +36,177 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
 });
 
+// Tensura Anime Roster & Sprites API (Season 1, 2, 3, 4, Movie & Light Novel)
+app.get('/api/tensura/characters', (req, res) => {
+  const { season, search } = req.query;
+  // Dynamic anime assets metadata
+  const characters = [
+    {
+      id: 'rimuru',
+      name: 'Rimuru Tempest',
+      jpName: 'リムル＝テンペスト',
+      title: 'Chaos Creator / Supreme Demon Lord',
+      season: 'Season 4',
+      race: 'Ultimate Slime (Viscous Draconic Demonoid)',
+      element: 'water',
+      ep: 10000000,
+      ultimateSkill: 'Void God Nodens & Beelzebuth',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/8/364239.jpg&w=400&h=400&fit=cover',
+      animeMalId: 37430
+    },
+    {
+      id: 'ciel_raphael',
+      name: 'Ciel / Wisdom King Raphael',
+      jpName: 'シエル / 智恵之王 (ラファエル)',
+      title: 'Manas / Voice of the World',
+      season: 'Season 4',
+      race: 'Divine Thinking Manas Core',
+      element: 'holy',
+      ep: 25000000,
+      ultimateSkill: 'Knowledge God Raphael & Akashic Records',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/16/435165.jpg&w=400&h=400&fit=cover',
+      animeMalId: 37430
+    },
+    {
+      id: 'veldora',
+      name: 'Veldora Tempest',
+      jpName: 'ヴェルドラ＝テンペスト',
+      title: 'Storm Dragon',
+      season: 'Season 4',
+      race: 'True Dragon (High Dragon Species)',
+      element: 'lightning',
+      ep: 88126610,
+      ultimateSkill: 'King of Investigation Faust & Nyarlathotep',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/14/368819.jpg&w=400&h=400&fit=cover',
+      animeMalId: 37430
+    },
+    {
+      id: 'milim',
+      name: 'Milim Nava',
+      jpName: 'ミリム・ナーヴァ',
+      title: 'Destroyer / Dragonoid Demon Lord',
+      season: 'Season 4',
+      race: 'Dragonoid Demon Lord',
+      element: 'fire',
+      ep: 40000000,
+      ultimateSkill: 'Wrathful King Satanael',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/13/368820.jpg&w=400&h=400&fit=cover',
+      animeMalId: 37430
+    },
+    {
+      id: 'guy_crimson',
+      name: 'Guy Crimson (Rouge)',
+      jpName: 'ギィ・クリムゾン',
+      title: 'Lord of Darkness / Red Primordial',
+      season: 'Season 4',
+      race: 'Primordial Demon Lord',
+      element: 'fire',
+      ep: 40000000,
+      ultimateSkill: 'Pride King Lucifer',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/13/447230.jpg&w=400&h=400&fit=cover',
+      animeMalId: 41487
+    },
+    {
+      id: 'diablo',
+      name: 'Diablo (Noir)',
+      jpName: 'ディアブロ',
+      title: 'Black Primordial / Demon Duke',
+      season: 'Season 4',
+      race: 'Primordial Demon',
+      element: 'dark',
+      ep: 6666666,
+      ultimateSkill: 'Temptation King Azazel',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/9/408990.jpg&w=400&h=400&fit=cover',
+      animeMalId: 39551
+    },
+    {
+      id: 'velgrynd',
+      name: 'Velgrynd',
+      jpName: 'ヴェルグリンド',
+      title: 'Scorch Dragon / True Dragon Sister',
+      season: 'Season 4',
+      race: 'True Dragon (Scorch Species)',
+      element: 'fire',
+      ep: 74350087,
+      ultimateSkill: 'Charity King Raguel & Flame God Cthugha',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/11/498877.jpg&w=400&h=400&fit=cover',
+      animeMalId: 53580
+    },
+    {
+      id: 'velzard',
+      name: 'Velzard',
+      jpName: 'ヴェルザード',
+      title: 'White Ice Dragon / Northern Sovereign',
+      season: 'Season 4',
+      race: 'True Dragon (Ice Species)',
+      element: 'ice',
+      ep: 80000000,
+      ultimateSkill: 'Patience King Gabriel & Ice God Cthulhu',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/6/498878.jpg&w=400&h=400&fit=cover',
+      animeMalId: 53580
+    },
+    {
+      id: 'testarossa',
+      name: 'Testarossa (Blanc)',
+      jpName: 'テスタロッサ',
+      title: 'Killer Lord / White Primordial',
+      season: 'Season 4',
+      race: 'Primordial Demon',
+      element: 'fire',
+      ep: 3333333,
+      ultimateSkill: 'Hell King Belial',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/11/498880.jpg&w=400&h=400&fit=cover',
+      animeMalId: 53580
+    },
+    {
+      id: 'luminous',
+      name: 'Luminous Valentine',
+      jpName: 'ルミナス・バレンタイン',
+      title: 'Queen of Nightmares / Demon Lord of Lubelius',
+      season: 'Season 3',
+      race: 'True Ancestor Vampire Demon Lord',
+      element: 'holy',
+      ep: 5000000,
+      ultimateSkill: 'Lustful King Asmodeus',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/15/447231.jpg&w=400&h=400&fit=cover',
+      animeMalId: 41487
+    },
+    {
+      id: 'hinata',
+      name: 'Hinata Sakaguchi',
+      jpName: 'ヒナタ・サカグチ',
+      title: 'Saint of Lubelius / Chief Knight Captain',
+      season: 'Season 3',
+      race: 'Saint',
+      element: 'holy',
+      ep: 2500000,
+      ultimateSkill: 'Mathematician & Usurper',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/11/435166.jpg&w=400&h=400&fit=cover',
+      animeMalId: 41487
+    },
+    {
+      id: 'chloe',
+      name: 'Chloe Aubert / Chronoa',
+      jpName: 'クロエ・オベール / クロノア',
+      title: 'Hero of Time / True Hero',
+      season: 'Season 4',
+      race: 'Human Hero',
+      element: 'space',
+      ep: 30000000,
+      ultimateSkill: 'Space-Time King Yog-Sothoth',
+      image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/4/447233.jpg&w=400&h=400&fit=cover',
+      animeMalId: 53580
+    }
+  ];
+
+  res.json({
+    success: true,
+    total: characters.length,
+    seasons: ['Season 1', 'Season 2', 'Season 3', 'Season 4', 'Movie / LN'],
+    characters
+  });
+});
+
 // Device & Network IP Detection API
 app.get('/api/device-info', (req, res) => {
   const forwardedFor = req.headers['x-forwarded-for'];

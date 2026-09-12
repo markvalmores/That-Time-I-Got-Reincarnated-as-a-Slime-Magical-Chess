@@ -9,7 +9,9 @@ import {
   DeviceInfo, 
   GreatSageAnalysis, 
   ChessMove, 
-  CheckersMove 
+  CheckersMove,
+  VideoSettings,
+  ControllerPromptStyle
 } from './types/game';
 import { TENSURA_CHARACTERS } from './data/characters';
 import { 
@@ -17,19 +19,23 @@ import {
   makeMove as makeChessMove, 
   getAIMove as getChessAIMove, 
   evaluateBoard as evaluateChessBoard,
-  toSquareNotation 
+  toSquareNotation,
+  getAllLegalMoves 
 } from './utils/chessEngine';
 import { 
   createInitialCheckersState, 
   makeCheckersMove, 
   getAICheckersMove, 
-  evaluateCheckersBoard 
+  evaluateCheckersBoard,
+  getAllCheckersLegalMoves 
 } from './utils/checkersEngine';
 import { detectCompleteDeviceInfo, FPSTracker } from './utils/hardware';
 import { soundEngine } from './utils/audio';
+import { globalGamepad } from './utils/gamepad';
 
 // Components
 import { TitleScreen } from './components/TitleScreen';
+import { CharacterSelectScreen } from './components/CharacterSelectScreen';
 import { ChessBoard } from './components/ChessBoard';
 import { CheckersBoard } from './components/CheckersBoard';
 import { GreatSageHUD } from './components/GreatSageHUD';
@@ -39,10 +45,29 @@ import { MatchSetupModal } from './components/MatchSetupModal';
 import { HardwareMonitorModal } from './components/HardwareMonitorModal';
 import { CharacterEncyclopedia } from './components/CharacterEncyclopedia';
 import { GameOverModal } from './components/GameOverModal';
+import { VideoBackground } from './components/VideoBackground';
+import { ControllerHUD } from './components/ControllerHUD';
 
 export default function App() {
-  // Screen views: 'title' | 'game'
-  const [currentScreen, setCurrentScreen] = useState<'title' | 'game'>('title');
+  // Screen views: 'title' | 'character-select' | 'game'
+  const [currentScreen, setCurrentScreen] = useState<'title' | 'character-select' | 'game'>('title');
+
+  // Video Background Global Settings
+  const [videoSettings, setVideoSettings] = useState<VideoSettings>({
+    showVideo: true,
+    isMuted: true,
+    zoom: 1.5,
+    opacity: 0.85,
+    fitMode: 'cover',
+    panX: 0,
+    panY: 0
+  });
+
+  // Controller Prompt Display Style: 'playstation' | 'xbox' | 'generic' | 'nintendo'
+  const [promptStyle, setPromptStyle] = useState<ControllerPromptStyle>('playstation');
+
+  // Gamepad / Keyboard Board Cursor Focus
+  const [gamepadCursor, setGamepadCursor] = useState<{ row: number; col: number }>({ row: 6, col: 4 });
 
   // Match Config
   const [gameMode, setGameMode] = useState<GameMode>('chess');
@@ -109,6 +134,16 @@ export default function App() {
       tracker.stop();
     };
   }, []);
+
+  // Update prompt style in GamepadManager
+  const handleUpdatePromptStyle = (style: ControllerPromptStyle) => {
+    setPromptStyle(style);
+    globalGamepad.setPromptStyle(style);
+  };
+
+  const handleUpdateVideoSettings = (newSettings: Partial<VideoSettings>) => {
+    setVideoSettings(prev => ({ ...prev, ...newSettings }));
+  };
 
   // Timer Countdown loop
   useEffect(() => {
@@ -411,6 +446,90 @@ export default function App() {
     }
   };
 
+  // Gamepad cursor navigation handler
+  const handleDpadMove = (dir: 'up' | 'down' | 'left' | 'right') => {
+    setGamepadCursor((prev) => {
+      let r = prev.row;
+      let c = prev.col;
+      if (dir === 'up') r = Math.max(0, r - 1);
+      if (dir === 'down') r = Math.min(7, r + 1);
+      if (dir === 'left') c = Math.max(0, c - 1);
+      if (dir === 'right') c = Math.min(7, c + 1);
+      soundEngine.playClick();
+      return { row: r, col: c };
+    });
+  };
+
+  // Gamepad / Keyboard Action Trigger on current board square
+  const handleGamepadSelect = () => {
+    const squareElement = document.getElementById(`square-${toSquareNotation(gamepadCursor.row, gamepadCursor.col)}`);
+    if (squareElement) {
+      squareElement.click();
+    }
+  };
+
+  // Gamepad manager listeners & Keyboard shortcuts setup
+  useEffect(() => {
+    globalGamepad.setCallbacks({
+      onNavigate: handleDpadMove,
+      onSelect: handleGamepadSelect,
+      onCancel: () => {
+        soundEngine.playClick();
+        if (currentScreen === 'game') {
+          handleUndoMove();
+        } else if (currentScreen === 'character-select') {
+          setCurrentScreen('title');
+        }
+      },
+      onHint: handleRequestHint,
+      onAnalyze: () => {
+        const score = gameMode === 'chess' 
+          ? evaluateChessBoard(chessState.board) / 100 
+          : evaluateCheckersBoard(checkersState.board) / 100;
+        runGreatSageAnalysis(score, 'Gamepad Deep Analysis', chessState.isCheck);
+      },
+      onUndo: handleUndoMove,
+      onFlip: () => setIsBoardFlipped(prev => !prev),
+      onZoomToggle: () => {
+        setVideoSettings(prev => ({
+          ...prev,
+          zoom: prev.zoom >= 2.0 ? 1.0 : prev.zoom + 0.5
+        }));
+      },
+      onMuteToggle: () => {
+        setIsAudioMuted(prev => {
+          const next = !prev;
+          soundEngine.setMuted(next);
+          return next;
+        });
+      }
+    });
+
+    globalGamepad.start();
+
+    // Keyboard Shortcuts
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') handleDpadMove('up');
+      else if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') handleDpadMove('down');
+      else if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') handleDpadMove('left');
+      else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') handleDpadMove('right');
+      else if (e.key === 'Enter' || e.key === ' ') handleGamepadSelect();
+      else if (e.key === 'h' || e.key === 'H') handleRequestHint();
+      else if (e.key === 'u' || e.key === 'U') handleUndoMove();
+      else if (e.key === 'f' || e.key === 'F') setIsBoardFlipped(prev => !prev);
+      else if (e.key === 'Escape') {
+        if (currentScreen === 'character-select') setCurrentScreen('title');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      globalGamepad.stop();
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [currentScreen, gameMode, chessState, checkersState, gamepadCursor]);
+
   // Auto-tune graphics
   const handleAutoTuneGraphics = () => {
     if (!deviceInfo) return;
@@ -435,7 +554,7 @@ export default function App() {
   return (
     <div className="min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col items-center justify-between relative overflow-x-hidden font-sans">
       
-      {/* View Switch: Title Screen vs Game Board Arena */}
+      {/* 1. View Switch: Title Screen vs Character Selection vs Game Board Arena */}
       {currentScreen === 'title' ? (
         <TitleScreen
           onStartGame={(mode, diff) => {
@@ -444,8 +563,8 @@ export default function App() {
               difficulty: diff,
               timerMode: 'none',
               theme: 'tempest',
-              playerCharacter: TENSURA_CHARACTERS[0],
-              opponentCharacter: TENSURA_CHARACTERS[1],
+              playerCharacter: playerCharacter || TENSURA_CHARACTERS[0],
+              opponentCharacter: opponentCharacter || TENSURA_CHARACTERS[1],
               isVsAI: true
             });
           }}
@@ -453,15 +572,47 @@ export default function App() {
             setGameMode(m);
             setIsSetupOpen(true);
           }}
+          onOpenCharacterSelect={() => {
+            soundEngine.playClick();
+            setCurrentScreen('character-select');
+          }}
           onOpenEncyclopedia={() => setIsEncyclopediaOpen(true)}
           onOpenHardware={() => setIsHardwareOpen(true)}
           deviceInfo={deviceInfo}
+          videoSettings={videoSettings}
+          onUpdateVideoSettings={handleUpdateVideoSettings}
+          promptStyle={promptStyle}
+          onChangePromptStyle={handleUpdatePromptStyle}
+        />
+      ) : currentScreen === 'character-select' ? (
+        <CharacterSelectScreen
+          playerCharacter={playerCharacter}
+          opponentCharacter={opponentCharacter}
+          onConfirmSelection={(p, o) => {
+            setPlayerCharacter(p);
+            setOpponentCharacter(o);
+            startNewMatch({
+              mode: gameMode,
+              difficulty,
+              timerMode,
+              theme,
+              playerCharacter: p,
+              opponentCharacter: o,
+              isVsAI
+            });
+          }}
+          onBack={() => setCurrentScreen('title')}
+          promptStyle={promptStyle}
         />
       ) : (
         <div className="relative w-full min-h-screen flex flex-col items-center justify-between p-2 sm:p-4 md:p-6 bg-slate-950">
           
-          {/* Background Ambient Aura Glow */}
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-950/20 via-slate-950 to-slate-950" />
+          {/* Zoomable Background Video */}
+          <VideoBackground 
+            settings={videoSettings} 
+            onUpdateSettings={handleUpdateVideoSettings} 
+            isHomeMenu={false}
+          />
           
           {/* Top In-Game Navigation & Turn HUD */}
           <div className="relative z-10 w-full flex justify-center mb-2">
@@ -511,6 +662,8 @@ export default function App() {
                 isFlipped={isBoardFlipped}
                 hintMove={hintMove}
                 graphicsQuality={deviceInfo?.graphicsQuality || 'high'}
+                gamepadCursor={gamepadCursor}
+                onSquareHover={(r, c) => setGamepadCursor({ row: r, col: c })}
               />
             ) : (
               <CheckersBoard
@@ -519,12 +672,14 @@ export default function App() {
                 theme={theme}
                 playerColor="w"
                 graphicsQuality={deviceInfo?.graphicsQuality || 'high'}
+                gamepadCursor={gamepadCursor}
+                onSquareHover={(r, c) => setGamepadCursor({ row: r, col: c })}
               />
             )}
           </main>
 
-          {/* Bottom Great Sage / Raphael Tactical AI HUD */}
-          <div className="relative z-10 w-full flex justify-center mt-3">
+          {/* Bottom Great Sage / Raphael Tactical AI HUD & Gamepad Controls Bar */}
+          <div className="relative z-10 w-full flex flex-col items-center gap-2 mt-3 max-w-5xl">
             <GreatSageHUD
               analysis={greatSage}
               onTriggerAnalysis={() => {
@@ -538,6 +693,27 @@ export default function App() {
               opponentCharacter={opponentCharacter}
               isAIThinking={isAIThinking}
             />
+
+            {/* Controller HUD Bar (Xbox / PlayStation / Generic / Touch Buttons) */}
+            <div className="w-full">
+              <ControllerHUD
+                promptStyle={promptStyle}
+                onChangePromptStyle={handleUpdatePromptStyle}
+                onDpadAction={handleDpadMove}
+                onSelectAction={handleGamepadSelect}
+                onCancelAction={handleUndoMove}
+                onHintAction={handleRequestHint}
+                onAnalyzeAction={() => {
+                  const score = gameMode === 'chess' 
+                    ? evaluateChessBoard(chessState.board) / 100 
+                    : evaluateCheckersBoard(checkersState.board) / 100;
+                  runGreatSageAnalysis(score, 'Touch Deep Analysis', chessState.isCheck);
+                }}
+                onUndoAction={handleUndoMove}
+                onFlipAction={() => setIsBoardFlipped(!isBoardFlipped)}
+                showVirtualTouch={true}
+              />
+            </div>
           </div>
 
         </div>

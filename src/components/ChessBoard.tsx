@@ -13,6 +13,8 @@ interface ChessBoardProps {
   isFlipped?: boolean;
   hintMove?: { from: string; to: string } | null;
   graphicsQuality: 'ultra' | 'high' | 'medium' | 'low';
+  gamepadCursor?: { row: number; col: number } | null;
+  onSquareHover?: (row: number, col: number) => void;
 }
 
 const CHESS_SYMBOLS: Record<PieceType, { w: string; b: string }> = {
@@ -31,7 +33,9 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
   playerColor,
   isFlipped = false,
   hintMove,
-  graphicsQuality
+  graphicsQuality,
+  gamepadCursor,
+  onSquareHover
 }) => {
   const [selectedSquare, setSelectedSquare] = useState<{ row: number; col: number } | null>(null);
   const [legalMovesForSelected, setLegalMovesForSelected] = useState<ChessMove[]>([]);
@@ -75,26 +79,22 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
   const allLegal = getAllLegalMoves(state);
 
   const handleSquareClick = (row: number, col: number) => {
-    // If promotion popup is open, ignore board clicks
     if (pendingPromotionMove) return;
 
     const clickedPiece = board[row][col];
 
-    // If currently selected a piece, check if click is a legal move
     if (selectedSquare) {
       const targetMove = legalMovesForSelected.find(
         m => m.to.row === row && m.to.col === col
       );
 
       if (targetMove) {
-        // If it's a promotion, open promotion selector
         if (targetMove.piece.type === 'p' && (row === 0 || row === 7)) {
           setPendingPromotionMove(targetMove);
           soundEngine.playClick();
           return;
         }
 
-        // Normal move execute
         soundEngine.playMove();
         if (targetMove.captured) {
           soundEngine.playCapture();
@@ -106,7 +106,6 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
       }
     }
 
-    // Select piece if it belongs to current player's turn
     if (clickedPiece && clickedPiece.color === turn) {
       soundEngine.playClick();
       setSelectedSquare({ row, col });
@@ -134,28 +133,28 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
     setLegalMovesForSelected([]);
   };
 
-  // Convert row and col for display if flipped
   const rows = isFlipped ? [7, 6, 5, 4, 3, 2, 1, 0] : [0, 1, 2, 3, 4, 5, 6, 7];
   const cols = isFlipped ? [7, 6, 5, 4, 3, 2, 1, 0] : [0, 1, 2, 3, 4, 5, 6, 7];
 
   return (
-    <div className="relative flex flex-col items-center justify-center select-none">
+    <div className="relative flex flex-col items-center justify-center select-none w-full">
       
-      {/* Outer 3D Mesh Rim & Dynamic Rune Border */}
-      <div className={`relative p-3 md:p-4 rounded-3xl bg-gradient-to-br ${themeStyles.boardGlow} border-2 ${themeStyles.boardBorder} shadow-2xl backdrop-blur-xl ring-4 max-w-[95vw] sm:max-w-[560px] md:max-w-[620px] lg:max-w-[680px] w-full transition-all`}>
+      {/* Outer Layered Mesh & Dynamic Rune Border */}
+      <div className={`relative p-2 sm:p-3 md:p-4 rounded-3xl bg-gradient-to-br ${themeStyles.boardGlow} border-2 ${themeStyles.boardBorder} shadow-2xl backdrop-blur-xl ring-4 max-w-[95vw] sm:max-w-[560px] md:max-w-[620px] lg:max-w-[680px] w-full transition-all`}>
         
-        {/* Ambient Top Lighting Glow on Ultra & High */}
+        {/* Ambient Top Light */}
         {(graphicsQuality === 'ultra' || graphicsQuality === 'high') && (
           <div className="absolute top-0 left-1/4 right-1/4 h-1.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent blur-[2px] opacity-75" />
         )}
 
-        {/* Board Grid 8x8 */}
+        {/* 8x8 Chess Grid */}
         <div className="grid grid-cols-8 grid-rows-8 aspect-square w-full rounded-2xl overflow-hidden border border-slate-700/60 shadow-inner bg-slate-950">
           {rows.map((r) =>
             cols.map((c) => {
               const isDark = (r + c) % 2 === 1;
               const piece = board[r][c];
               const isSelected = selectedSquare?.row === r && selectedSquare?.col === c;
+              const isGamepadFocused = gamepadCursor?.row === r && gamepadCursor?.col === c;
               const isLegalTarget = legalMovesForSelected.some(m => m.to.row === r && m.to.col === c);
               const isKingCheck = isCheck && piece && piece.type === 'k' && piece.color === turn;
               const isLastMoveFrom = lastMove && lastMove.from.row === r && lastMove.from.col === c;
@@ -171,66 +170,83 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
                   key={`sq-${r}-${c}`}
                   id={`square-${squareNotation}`}
                   onClick={() => handleSquareClick(r, c)}
+                  onMouseEnter={() => onSquareHover?.(r, c)}
                   className={`
-                    relative flex items-center justify-center cursor-pointer transition-all duration-150
+                    relative flex items-center justify-center cursor-pointer transition-all duration-150 p-0.5
                     ${isDark ? themeStyles.darkSquare : themeStyles.lightSquare}
                     ${isSelected ? 'ring-4 ring-cyan-400 z-20 bg-cyan-900/60' : ''}
+                    ${isGamepadFocused ? 'ring-4 ring-amber-300 ring-offset-1 ring-offset-slate-950 z-20 bg-amber-900/40 animate-pulse' : ''}
                     ${isLastMoveFrom || isLastMoveTo ? 'bg-amber-500/25 ring-2 ring-amber-400/40' : ''}
                     ${isKingCheck ? 'ring-4 ring-rose-500 animate-pulse bg-rose-950/80 z-20' : ''}
                     ${isHinted ? 'ring-4 ring-amber-400 animate-bounce bg-amber-900/50 z-20' : ''}
                     hover:brightness-125
                   `}
                 >
-                  {/* Subtle Square Coordinate Labels */}
+                  {/* Subtle Coordinate Notation */}
                   {c === (isFlipped ? 7 : 0) && (
-                    <span className="absolute top-0.5 left-1 text-[9px] font-mono font-bold opacity-40">
+                    <span className="absolute top-0.5 left-1 text-[8px] sm:text-[9px] font-mono font-bold opacity-40">
                       {8 - r}
                     </span>
                   )}
                   {r === (isFlipped ? 0 : 7) && (
-                    <span className="absolute bottom-0.5 right-1 text-[9px] font-mono font-bold opacity-40">
+                    <span className="absolute bottom-0.5 right-1 text-[8px] sm:text-[9px] font-mono font-bold opacity-40">
                       {String.fromCharCode(97 + c)}
                     </span>
                   )}
 
                   {/* Valid Move Indicator Dots / Capture Rings */}
                   {isLegalTarget && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
                       {piece ? (
-                        <div className="w-full h-full rounded-full border-4 border-rose-400/80 bg-rose-500/20 animate-pulse" />
+                        <div className="w-full h-full rounded-full border-4 border-rose-400/90 bg-rose-500/25 animate-pulse" />
                       ) : (
-                        <div className="w-3.5 h-3.5 md:w-4 md:h-4 rounded-full bg-cyan-400 shadow-lg shadow-cyan-400/60 ring-2 ring-cyan-200 animate-ping" style={{ animationDuration: '2s' }} />
+                        <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-cyan-400 shadow-lg shadow-cyan-400/80 ring-2 ring-cyan-200 animate-ping" style={{ animationDuration: '1.8s' }} />
                       )}
                     </div>
                   )}
 
-                  {/* Chess Piece with Tensura Character Crest & Aura */}
+                  {/* Chess Piece with Character Image & Avatar Aura */}
                   {piece && (
                     <motion.div
                       layoutId={`piece-${piece.id}`}
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      transition={{ type: 'spring', stiffness: 320, damping: 24 }}
+                      transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                       className={`
-                        relative flex flex-col items-center justify-center w-full h-full p-1
-                        ${piece.color === 'w' ? 'text-cyan-100 drop-shadow-[0_4px_8px_rgba(6,182,212,0.6)]' : 'text-rose-200 drop-shadow-[0_4px_8px_rgba(244,63,94,0.6)]'}
+                        relative flex flex-col items-center justify-center w-full h-full p-0.5
+                        ${piece.color === 'w' ? 'text-cyan-100' : 'text-rose-200'}
                       `}
                     >
-                      {/* Character Mini Avatar Icon */}
-                      {characterInfo && (
-                        <span className="text-[10px] md:text-xs absolute -top-1 right-0.5 z-10 opacity-90 drop-shadow">
-                          {characterInfo.avatar}
-                        </span>
-                      )}
+                      {/* Character Anime Picture Token */}
+                      <div className={`
+                        relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 shadow-lg flex items-center justify-center
+                        ${piece.color === 'w' 
+                          ? 'border-cyan-300 ring-2 ring-cyan-400/50 shadow-cyan-500/50 bg-gradient-to-tr from-cyan-900 to-slate-900' 
+                          : 'border-rose-400 ring-2 ring-rose-500/50 shadow-rose-500/50 bg-gradient-to-tr from-rose-950 to-slate-900'}
+                      `}>
+                        {characterInfo?.image ? (
+                          <img 
+                            src={characterInfo.image} 
+                            alt={characterInfo.name} 
+                            className="w-full h-full object-cover filter contrast-110"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span className="text-xl">{characterInfo?.avatar || '💧'}</span>
+                        )}
 
-                      {/* Primary Chess Glyph */}
-                      <span className="text-3xl sm:text-4xl md:text-5xl font-serif font-black leading-none select-none">
-                        {CHESS_SYMBOLS[piece.type][piece.color]}
-                      </span>
+                        {/* Top Right Mini Chess Symbol Badge */}
+                        <div className={`
+                          absolute bottom-0 right-0 px-1 py-0.2 rounded-full text-[9px] sm:text-[10px] font-serif font-black leading-none border shadow
+                          ${piece.color === 'w' ? 'bg-cyan-950 text-cyan-300 border-cyan-400' : 'bg-rose-950 text-rose-300 border-rose-400'}
+                        `}>
+                          {CHESS_SYMBOLS[piece.type][piece.color]}
+                        </div>
+                      </div>
 
-                      {/* Character Name Tag on Hover */}
+                      {/* Character Name Tag */}
                       {characterInfo && (
-                        <span className="text-[8px] sm:text-[9px] font-mono tracking-tighter opacity-70 truncate max-w-full leading-none mt-0.5 hidden sm:inline-block">
+                        <span className="text-[7px] sm:text-[8px] md:text-[9px] font-mono tracking-tighter opacity-80 truncate max-w-full leading-none mt-0.5 hidden sm:inline-block">
                           {characterInfo.name.split(' ')[0]}
                         </span>
                       )}
@@ -251,7 +267,7 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md rounded-3xl p-6"
+            className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md rounded-3xl p-6"
           >
             <div className="bg-gradient-to-b from-slate-900 to-cyan-950 border-2 border-cyan-400 p-6 rounded-2xl shadow-2xl text-center max-w-md w-full">
               <span className="text-3xl">✨</span>
@@ -264,24 +280,24 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
 
               <div className="grid grid-cols-4 gap-3">
                 {[
-                  { type: 'q' as PieceType, label: 'Queen (Raphael)', icon: '♛', avatar: '✨' },
-                  { type: 'r' as PieceType, label: 'Rook (Veldora)', icon: '♜', avatar: '⚡' },
-                  { type: 'b' as PieceType, label: 'Bishop (Diablo)', icon: '♝', avatar: '🖤' },
-                  { type: 'n' as PieceType, label: 'Knight (Benimaru)', icon: '♞', avatar: '🔥' }
+                  { type: 'q' as PieceType, label: 'Queen (Ciel)', icon: '♛', image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/16/435165.jpg&w=150&h=150&fit=cover' },
+                  { type: 'r' as PieceType, label: 'Rook (Veldora)', icon: '♜', image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/14/368819.jpg&w=150&h=150&fit=cover' },
+                  { type: 'b' as PieceType, label: 'Bishop (Diablo)', icon: '♝', image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/9/408990.jpg&w=150&h=150&fit=cover' },
+                  { type: 'n' as PieceType, label: 'Knight (Benimaru)', icon: '♞', image: 'https://images.weserv.nl/?url=cdn.myanimelist.net/images/characters/11/368821.jpg&w=150&h=150&fit=cover' }
                 ].map((promo) => (
                   <button
                     key={promo.type}
                     onClick={() => handlePromoteChoice(promo.type)}
-                    className="flex flex-col items-center p-3 rounded-xl bg-slate-800/80 hover:bg-cyan-600/80 border border-cyan-500/40 hover:border-cyan-300 transition group shadow-lg"
+                    className="flex flex-col items-center p-2 rounded-xl bg-slate-800/90 hover:bg-cyan-600/80 border border-cyan-500/40 hover:border-cyan-300 transition group shadow-lg"
                   >
-                    <span className="text-3xl text-cyan-300 group-hover:scale-110 transition-transform">
-                      {promo.icon}
-                    </span>
-                    <span className="text-xs font-bold text-slate-200 mt-1">
+                    <div className="w-10 h-10 rounded-full overflow-hidden border border-cyan-300 mb-1">
+                      <img src={promo.image} alt={promo.label} className="w-full h-full object-cover" />
+                    </div>
+                    <span className="text-[10px] font-bold text-slate-200 truncate w-full">
                       {promo.label.split(' ')[0]}
                     </span>
-                    <span className="text-[10px] text-cyan-400 opacity-80">
-                      {promo.avatar}
+                    <span className="text-xs text-cyan-300">
+                      {promo.icon}
                     </span>
                   </button>
                 ))}
