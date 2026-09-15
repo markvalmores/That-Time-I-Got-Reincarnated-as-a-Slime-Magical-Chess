@@ -2,7 +2,7 @@ import { TensuraCharacter } from '../types/game';
 
 export const TENSURA_CHARACTERS: TensuraCharacter[] = [
   {
-    "id": "rimuru_s1",
+    "id": "rimuru_Season1",
     "name": "Rimuru Tempest",
     "jpName": "リムル＝テンペスト",
     "title": "Chaos Creator / Supreme Demon Lord",
@@ -27,32 +27,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "ciel_raphael_s1",
-    "name": "Ciel / Wisdom King Raphael",
-    "jpName": "シエル / 智恵之王 (ラファエル)",
-    "title": "Manas / Voice of the World",
-    "season": "Season 1",
-    "race": "Divine Thinking Manas Core",
-    "element": "holy",
-    "ep": 25000000,
-    "ultimateSkill": "Knowledge God Raphael & Akashic Records",
-    "ultimateDescription": "Parallel processing, analytical appraisal, all-creation synthesis, and absolute calculation of all universal laws.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/1/1c/LN_White_Shirt_Rimuru.png/revision/latest/scale-to-width-down/240?cb=20220629192231",
-    "avatarBg": "from-blue-400 via-indigo-600 to-cyan-500",
-    "accentColor": "#38bdf8",
-    "glowColor": "rgba(56, 189, 248, 0.8)",
-    "avatarIcon": "✨",
-    "voiceLines": {
-      "start": "<<Notice>> Master Rimuru, all 100,000 game branches have been simulated. Victory probability: 99.8%.",
-      "capture": "<<Report>> Opponent asset disintegrated and converted into magicules.",
-      "check": "<<Notice>> Critical threat detected on enemy king axis. Check.",
-      "advantage": "<<Report>> Positional dominance confirmed. Proceeding with optimal sequence.",
-      "loss": "<<Analysis>> An unpredictable cognitive anomaly occurred in player decision-making.",
-      "win": "<<Notice>> Absolute domain victory executed as calculated by Ciel."
-    }
-  },
-  {
-    "id": "veldora_s1",
+    "id": "veldora_Season1",
     "name": "Veldora Tempest",
     "jpName": "ヴェルドラ＝テンペスト",
     "title": "Storm Dragon",
@@ -77,7 +52,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "milim_s1",
+    "id": "milim_Season1",
     "name": "Milim Nava",
     "jpName": "ミリム・ナーヴァ",
     "title": "Destroyer / Dragonoid Demon Lord",
@@ -102,257 +77,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "guy_crimson_s1",
-    "name": "Guy Crimson (Rouge)",
-    "jpName": "ギィ・クリムゾン",
-    "title": "Lord of Darkness / Red Primordial",
-    "season": "Season 1",
-    "race": "Primordial Demon Lord (Arbiter of the World)",
-    "element": "fire",
-    "ep": 40000000,
-    "ultimateSkill": "Pride King Lucifer & Abyss God Nodens",
-    "ultimateDescription": "Instantly analyzes and copies any observed skill and exercises supreme authority over hellish crimson flames.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/7/7a/Guy_Novel_Colour.png/revision/latest/scale-to-width-down/353?cb=20180928134016",
-    "avatarBg": "from-red-600 to-amber-900",
-    "accentColor": "#ef4444",
-    "glowColor": "rgba(239, 68, 68, 0.8)",
-    "avatarIcon": "👑",
-    "voiceLines": {
-      "start": "Heh. Show me what a newly awakened True Dragon and Demon Lord is truly capable of.",
-      "capture": "Incinerated into ash. You should know better than to leave pieces exposed.",
-      "check": "Is this the best the Octagram can muster? Check.",
-      "advantage": "The board burns with my authority. Yield, or be extinguished.",
-      "loss": "Hahahahaha! Splendid! You never fail to entertain me, Rimuru!",
-      "win": "As expected of the Arbiter of the World. Checkmate."
-    }
-  },
-  {
-    "id": "diablo_s1",
-    "name": "Diablo (Noir)",
-    "jpName": "ディアブロ",
-    "title": "Black Primordial / Demon Duke",
-    "season": "Season 1",
-    "race": "Primordial Demon (Black Progenitor)",
-    "element": "dark",
-    "ep": 6666666,
-    "ultimateSkill": "Temptation King Azazel",
-    "ultimateDescription": "Mastery over illusions, temptation world, time manipulation, and despair-inducing spiritual dominance.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/2/2d/DiabloLN.png/revision/latest/scale-to-width-down/208?cb=20210124222857",
-    "avatarBg": "from-purple-950 via-slate-900 to-purple-900",
-    "accentColor": "#a855f7",
-    "glowColor": "rgba(168, 85, 247, 0.7)",
-    "avatarIcon": "🖤",
-    "voiceLines": {
-      "start": "Kufufufu... It is my supreme honor to test my intellect against Lord Rimuru.",
-      "capture": "Kufufufu... Your piece has succumbed to the Temptation World.",
-      "check": "A delightful position. Your king is completely enveloped in darkness.",
-      "advantage": "All proceeds precisely according to the glorious vision of Lord Rimuru.",
-      "loss": "Magnificent! As expected of such peerless tactical supremacy.",
-      "win": "Kufufufu... Despair is but an illusion. Game complete."
-    }
-  },
-  {
-    "id": "velgrynd_s1",
-    "name": "Velgrynd",
-    "jpName": "ヴェルグリンド",
-    "title": "Scorch Dragon / True Dragon Sister",
-    "season": "Season 1",
-    "race": "True Dragon (Scorch Species)",
-    "element": "fire",
-    "ep": 74350087,
-    "ultimateSkill": "Charity King Raguel & Flame God Cthugha",
-    "ultimateDescription": "Wields the burning acceleration and dimension-leaping flames capable of incinerating entire armies.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/c/c0/Velgrynd_LN.png/revision/latest/scale-to-width-down/169?cb=20210525224438",
-    "avatarBg": "from-red-600 via-rose-600 to-amber-500",
-    "accentColor": "#f43f5e",
-    "glowColor": "rgba(244, 63, 94, 0.8)",
-    "avatarIcon": "🔥",
-    "voiceLines": {
-      "start": "Do not test my patience. The Scorch Dragon’s flame does not forgive mistakes.",
-      "capture": "Charred to nonexistence! You cannot withstand my heat.",
-      "check": "Burning Acceleration! Your king is engulfed in flames!",
-      "advantage": "My blazing aura covers all escape routes. Surrender.",
-      "loss": "Impressive... You managed to extinguish the Scorch Dragon’s advance.",
-      "win": "Cardinal Acceleration Checkmate! Burn into eternity."
-    }
-  },
-  {
-    "id": "velzard_s1",
-    "name": "Velzard",
-    "jpName": "ヴェルザード",
-    "title": "White Ice Dragon / Northern Sovereign",
-    "season": "Season 1",
-    "race": "True Dragon (Ice Species)",
-    "element": "ice",
-    "ep": 80000000,
-    "ultimateSkill": "Patience King Gabriel & Ice God Cthulhu",
-    "ultimateDescription": "Absolute zero deceleration, eternal frozen domain, and impenetrable crystal ice defense.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/5/52/LN_20_08.jpg/revision/latest/scale-to-width-down/352?cb=20220929152738",
-    "avatarBg": "from-cyan-300 via-blue-500 to-indigo-700",
-    "accentColor": "#38bdf8",
-    "glowColor": "rgba(56, 189, 248, 0.8)",
-    "avatarIcon": "❄️",
-    "voiceLines": {
-      "start": "Let us see if your mind can withstand absolute zero stillness.",
-      "capture": "Frozen in eternity. Your piece will never move again.",
-      "check": "Diamond Dust! Your king cannot escape the frost.",
-      "advantage": "The entire board is frozen under my sovereign command.",
-      "loss": "Fascinating. You managed to shatter my eternal glacier.",
-      "win": "Absolute Zero Checkmate. Sleep peacefully in the ice."
-    }
-  },
-  {
-    "id": "testarossa_s1",
-    "name": "Testarossa (Blanc)",
-    "jpName": "テスタロッサ",
-    "title": "Killer Lord / White Primordial",
-    "season": "Season 1",
-    "race": "Primordial Demon (White Progenitor)",
-    "element": "fire",
-    "ep": 3333333,
-    "ultimateSkill": "Hell King Belial",
-    "ultimateDescription": "Commands Death Streak and hellish nuclear magic that extinguishes souls instantly without a trace.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/9e/Testarossa_LN.png/revision/latest/scale-to-width-down/315?cb=20250903072845",
-    "avatarBg": "from-rose-500 via-red-800 to-slate-950",
-    "accentColor": "#fb7185",
-    "glowColor": "rgba(251, 113, 133, 0.8)",
-    "avatarIcon": "🌹",
-    "voiceLines": {
-      "start": "Allow me, Testarossa, to handle our diplomatic resolution on this board.",
-      "capture": "Death Streak. A clean and silent execution.",
-      "check": "Check. How unfortunate for your royal defender.",
-      "advantage": "My diplomatic calculations guarantee total victory for Lord Rimuru.",
-      "loss": "An exquisite duel. You have my sincere compliments.",
-      "win": "Nuclear Flame Checkmate. The negotiations are concluded."
-    }
-  },
-  {
-    "id": "carrera_s1",
-    "name": "Carrera (Jaune)",
-    "jpName": "カレラ",
-    "title": "Menace Lord / Yellow Primordial",
-    "season": "Season 1",
-    "race": "Primordial Demon (Yellow Progenitor)",
-    "element": "lightning",
-    "ep": 7000000,
-    "ultimateSkill": "Extinction King Abaddon",
-    "ultimateDescription": "Unleashes the golden nuclear blade Abyss Annihilation and the God-class gun handgun.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/95/Carrera_LN.png/revision/latest/scale-to-width-down/351?cb=20210531221712",
-    "avatarBg": "from-yellow-400 via-amber-600 to-red-700",
-    "accentColor": "#f59e0b",
-    "glowColor": "rgba(245, 158, 11, 0.8)",
-    "avatarIcon": "⚡",
-    "voiceLines": {
-      "start": "AHAHAHA! Time to blow up the entire board with gold nuclear magic!",
-      "capture": "Abyss Annihilation! That piece was vaporized into dust!",
-      "check": "Target locked! Golden strike aimed at your king!",
-      "advantage": "Ahahaha! The explosions are getting louder! We win!",
-      "loss": "WHAT?! How did you dodge my nuclear shot?! Next game, I won’t hold back!",
-      "win": "Extinction Checkmate! A glorious golden victory!"
-    }
-  },
-  {
-    "id": "ultima_s1",
-    "name": "Ultima (Violet)",
-    "jpName": "ウルティマ",
-    "title": "Pain Lord / Violet Primordial",
-    "season": "Season 1",
-    "race": "Primordial Demon (Purple Progenitor)",
-    "element": "dark",
-    "ep": 2666666,
-    "ultimateSkill": "Poison King Samael",
-    "ultimateDescription": "Commands incurable spiritual venom and the agonizing spatial blade Bloody Bite.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/45/Ultima_LN.png/revision/latest/scale-to-width-down/342?cb=20220219055228",
-    "avatarBg": "from-purple-600 via-violet-800 to-slate-900",
-    "accentColor": "#c084fc",
-    "glowColor": "rgba(192, 132, 252, 0.8)",
-    "avatarIcon": "🔮",
-    "voiceLines": {
-      "start": "Hehehe! Lord Rimuru, watch me poison their entire defensive formation!",
-      "capture": "Bloody Bite! Did that sting? Hehehe!",
-      "check": "Check! Your king is shivering with dread!",
-      "advantage": "My poison is already circulating through all your files!",
-      "loss": "Uuuugh! You’re so mean for countering my trap!",
-      "win": "Venomous Checkmate! Another victory dedicated to Lord Rimuru!"
-    }
-  },
-  {
-    "id": "luminous_s1",
-    "name": "Luminous Valentine",
-    "jpName": "ルミナス・バレンタイン",
-    "title": "Queen of Nightmares / Demon Lord of Lubelius",
-    "season": "Season 1",
-    "race": "True Ancestor Vampire Demon Lord",
-    "element": "holy",
-    "ep": 5000000,
-    "ultimateSkill": "Lustful King Asmodeus",
-    "ultimateDescription": "Mastery over the laws of Life and Death, resurrecting allies and commanding Sanctuary disintegration.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/b/b2/Luminous_LN_Profile.png/revision/latest/scale-to-width-down/370?cb=20260627094126",
-    "avatarBg": "from-rose-900 via-indigo-950 to-slate-900",
-    "accentColor": "#f43f5e",
-    "glowColor": "rgba(244, 63, 94, 0.7)",
-    "avatarIcon": "🩸",
-    "voiceLines": {
-      "start": "Insolent mortals. Gaze upon the true elegance of the Holy Sanctuary.",
-      "capture": "Sanctuary Disintegration. Your sacrifice was predetermined.",
-      "check": "Check. Bow your head before the Queen of Nightmares.",
-      "advantage": "The balance of life and death tilts entirely in my favor.",
-      "loss": "Hmph. You possess more intellect than the foolish dragon Veldora.",
-      "win": "Nightmare Checkmate. Fall into eternal crimson slumber."
-    }
-  },
-  {
-    "id": "hinata_s1",
-    "name": "Hinata Sakaguchi",
-    "jpName": "ヒナタ・サカグチ",
-    "title": "Saint of Lubelius / Chief Knight Captain",
-    "season": "Season 1",
-    "race": "Saint (Supreme Human Hero)",
-    "element": "holy",
-    "ep": 2500000,
-    "ultimateSkill": "Mathematician & Usurper & Fortuna",
-    "ultimateDescription": "Calculates every strike with mathematical precision and seizes opponent tactical advantages.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/1/11/Hinata_Sakaguchi_LN.png/revision/latest/scale-to-width-down/192?cb=20230301071450",
-    "avatarBg": "from-blue-600 to-indigo-900",
-    "accentColor": "#6366f1",
-    "glowColor": "rgba(99, 102, 241, 0.7)",
-    "avatarIcon": "⚔️",
-    "voiceLines": {
-      "start": "I calculate 10,000 moves ahead. You have zero margin for error.",
-      "capture": "Seven Celestial Slashes. You sacrificed a vital guard.",
-      "check": "Melt Slash ready. Your king is in my sight line. Check.",
-      "advantage": "My mathematical evaluation shows your defense is crumbling.",
-      "loss": "...Remarkable. You broke through my calculation array.",
-      "win": "Seven Slashes Checkmate. As calculated."
-    }
-  },
-  {
-    "id": "chloe_s1",
-    "name": "Chloe Aubert / Chronoa",
-    "jpName": "クロエ・オベール / クロノア",
-    "title": "Hero of Time / True Hero",
-    "season": "Season 1",
-    "race": "Human Hero (Temporal Transcendence)",
-    "element": "space",
-    "ep": 30000000,
-    "ultimateSkill": "Space-Time King Yog-Sothoth & Sariel",
-    "ultimateDescription": "Absolute time stop, temporal reversal, infinite severance, and infinite loop memory.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/b/bd/Chloe_Aubert_LN.png/revision/latest/scale-to-width-down/335?cb=20230907213640",
-    "avatarBg": "from-cyan-400 via-indigo-500 to-pink-500",
-    "accentColor": "#38bdf8",
-    "glowColor": "rgba(56, 189, 248, 0.8)",
-    "avatarIcon": "⏳",
-    "voiceLines": {
-      "start": "Rimuru-sensei! I have seen this match thousands of times in the time loops!",
-      "capture": "Absolute Severance! Time cannot be turned back for that piece.",
-      "check": "Time Stop! Your king is suspended in motion. Check!",
-      "advantage": "The flow of time points directly to our victory!",
-      "loss": "Sensei is still as amazing as ever! I have so much more to learn!",
-      "win": "Infinite Severance Checkmate! I won, Sensei!"
-    }
-  },
-  {
-    "id": "benimaru_s1",
+    "id": "benimaru_Season1",
     "name": "Benimaru",
     "jpName": "ベニマル",
     "title": "Samurai General / Flare Lord",
@@ -377,7 +102,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "shion_s1",
+    "id": "shion_Season1",
     "name": "Shion",
     "jpName": "シオン",
     "title": "War Lord / Rimuru’s Bodyguard",
@@ -402,7 +127,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "shuna_s1",
+    "id": "shuna_Season1",
     "name": "Shuna",
     "jpName": "シュナ",
     "title": "Holy Princess / Tempest Weaver",
@@ -427,7 +152,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "souei_s1",
+    "id": "souei_Season1",
     "name": "Souei",
     "jpName": "ソウエイ",
     "title": "Shadow Lord / Spy Leader",
@@ -452,7 +177,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "hakuro_s1",
+    "id": "hakuro_Season1",
     "name": "Hakuro",
     "jpName": "ハクロウ",
     "title": "Sword Saint / Military Instructor",
@@ -477,32 +202,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "zegion_s1",
-    "name": "Zegion",
-    "jpName": "ゼギオン",
-    "title": "Mist Lord / Supreme Labyrinth Guardian",
-    "season": "Season 1",
-    "race": "Insectoid Emperor / Water Spirit Demon",
-    "element": "space",
-    "ep": 4988888,
-    "ultimateSkill": "Illusion King Mephisto",
-    "ultimateDescription": "Ultimate martial hand-to-hand combat, dimension severance, and impenetrable magic adamantine armor.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/e/eb/LN16_-_10.jpg/revision/latest/scale-to-width-down/351?cb=20200504155713",
-    "avatarBg": "from-cyan-900 via-indigo-950 to-slate-950",
-    "accentColor": "#06b6d4",
-    "glowColor": "rgba(6, 182, 212, 0.8)",
-    "avatarIcon": "🪲",
-    "voiceLines": {
-      "start": "I shall dismantle any adversary that stands before the glory of Lord Rimuru.",
-      "capture": "Dimensional Severance. Your piece has been pulverized.",
-      "check": "Check. You cannot breach my adamantine defense.",
-      "advantage": "The labyrinthine domain belongs entirely to Tempest.",
-      "loss": "I have failed Lord Rimuru’s teachings. I shall discipline my body anew.",
-      "win": "Illusion God Checkmate. Absolute victory achieved."
-    }
-  },
-  {
-    "id": "gobta_s1",
+    "id": "gobta_Season1",
     "name": "Gobta & Ranga",
     "jpName": "ゴブタ ＆ ランガ",
     "title": "Star Wolf Rider / Lucky Genius",
@@ -527,57 +227,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "yuuki_s1",
-    "name": "Yuuki Kagurazaka",
-    "jpName": "ユウキ・カグラザカ",
-    "title": "Grandmaster / Leader of Moderate Harlequin",
-    "season": "Season 1",
-    "race": "Otherworlder Human Hero",
-    "element": "dark",
-    "ep": 2000000,
-    "ultimateSkill": "Greed King Mammon & Creator",
-    "ultimateDescription": "Steals life energy and skills, and alters creation properties through cunning stratagems.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/e/e9/Yuuki_LN12_05.png/revision/latest/scale-to-width-down/345?cb=20210503074258",
-    "avatarBg": "from-amber-700 via-stone-800 to-slate-900",
-    "accentColor": "#d97706",
-    "glowColor": "rgba(217, 119, 6, 0.7)",
-    "avatarIcon": "🎭",
-    "voiceLines": {
-      "start": "Let’s see if your ideals can hold up against my grand stratagem, Rimuru-san.",
-      "capture": "Greed King! Your piece is now part of my resource pool.",
-      "check": "Check! An unforeseen plot twist in our story.",
-      "advantage": "Everything is moving just as I orchestrated behind the scenes.",
-      "loss": "Hahaha... You truly are one step ahead of every scheme, Rimuru-san.",
-      "win": "Grandmaster Stratagem Checkmate. The game is mine!"
-    }
-  },
-  {
-    "id": "shizue-izawa_s1",
-    "name": "Shizue Izawa",
-    "title": "The Conqueror of Flames",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/8/8c/Volume_11_-_Shizu.png/revision/latest/scale-to-width-down/304?cb=20220813053213",
-    "accentColor": "#ef4444",
-    "element": "fire",
-    "ultimateSkill": "Degenerate",
-    "jpName": "",
-    "season": "Season 1",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "ramiris_s1",
+    "id": "ramiris_Season1",
     "name": "Ramiris",
     "title": "Fairy of the Labyrinth",
     "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/a/a4/Ramiris_LN.png/revision/latest/scale-to-width-down/496?cb=20220701180204",
@@ -602,7 +252,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "geld_s1",
+    "id": "geld_Season1",
     "name": "Geld",
     "title": "Orc Disaster / Orc King",
     "image": "https://tensura.fandom.com/wiki/Special:FilePath/Geld_Anime.png",
@@ -627,57 +277,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "gabiru_s1",
-    "name": "Gabiru",
-    "title": "Dragonewt Leader",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/49/Gabil_Novel.png/revision/latest/scale-to-width-down/413?cb=20180928121050",
-    "accentColor": "#6366f1",
-    "element": "water",
-    "ultimateSkill": "Vortex Spear",
-    "jpName": "",
-    "season": "Season 1",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "clayman_s1",
-    "name": "Clayman",
-    "title": "Marionette Master",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/6/6c/Clayman_LN.png/revision/latest/scale-to-width-down/550?cb=20220220082304",
-    "accentColor": "#8b5cf6",
-    "element": "dark",
-    "ultimateSkill": "Demon Lord Haki",
-    "jpName": "",
-    "season": "Season 1",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "treyni_s1",
+    "id": "treyni_Season1",
     "name": "Treyni",
     "title": "Dryad of the Great Forest",
     "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/6/6d/Treyni_LN.jpg/revision/latest/scale-to-width-down/338?cb=20230907163946",
@@ -702,32 +302,32 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "gazel-dwargo_s1",
-    "name": "Gazel Dwargo",
-    "title": "King of Dwargon",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/a/a3/LN_15_04.jpg/revision/latest/scale-to-width-down/442?cb=20190928081119",
-    "accentColor": "#f59e0b",
-    "element": "earth",
-    "ultimateSkill": "King of Swords",
-    "jpName": "",
+    "id": "yuuki_Season1",
+    "name": "Yuuki Kagurazaka",
+    "jpName": "ユウキ・カグラザカ",
+    "title": "Grandmaster / Leader of Moderate Harlequin",
     "season": "Season 1",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
+    "race": "Otherworlder Human Hero",
+    "element": "dark",
+    "ep": 2000000,
+    "ultimateSkill": "Greed King Mammon & Creator",
+    "ultimateDescription": "Steals life energy and skills, and alters creation properties through cunning stratagems.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/e/e9/Yuuki_LN12_05.png/revision/latest/scale-to-width-down/345?cb=20210503074258",
+    "avatarBg": "from-amber-700 via-stone-800 to-slate-900",
+    "accentColor": "#d97706",
+    "glowColor": "rgba(217, 119, 6, 0.7)",
+    "avatarIcon": "🎭",
     "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
+      "start": "Let’s see if your ideals can hold up against my grand stratagem, Rimuru-san.",
+      "capture": "Greed King! Your piece is now part of my resource pool.",
+      "check": "Check! An unforeseen plot twist in our story.",
+      "advantage": "Everything is moving just as I orchestrated behind the scenes.",
+      "loss": "Hahaha... You truly are one step ahead of every scheme, Rimuru-san.",
+      "win": "Grandmaster Stratagem Checkmate. The game is mine!"
     }
   },
   {
-    "id": "rimuru_s2",
+    "id": "rimuru_Season2",
     "name": "Rimuru Tempest",
     "jpName": "リムル＝テンペスト",
     "title": "Chaos Creator / Supreme Demon Lord",
@@ -752,7 +352,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "ciel_raphael_s2",
+    "id": "ciel_raphael_Season2",
     "name": "Ciel / Wisdom King Raphael",
     "jpName": "シエル / 智恵之王 (ラファエル)",
     "title": "Manas / Voice of the World",
@@ -777,7 +377,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "veldora_s2",
+    "id": "veldora_Season2",
     "name": "Veldora Tempest",
     "jpName": "ヴェルドラ＝テンペスト",
     "title": "Storm Dragon",
@@ -802,7 +402,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "milim_s2",
+    "id": "milim_Season2",
     "name": "Milim Nava",
     "jpName": "ミリム・ナーヴァ",
     "title": "Destroyer / Dragonoid Demon Lord",
@@ -827,32 +427,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "guy_crimson_s2",
-    "name": "Guy Crimson (Rouge)",
-    "jpName": "ギィ・クリムゾン",
-    "title": "Lord of Darkness / Red Primordial",
-    "season": "Season 2",
-    "race": "Primordial Demon Lord (Arbiter of the World)",
-    "element": "fire",
-    "ep": 40000000,
-    "ultimateSkill": "Pride King Lucifer & Abyss God Nodens",
-    "ultimateDescription": "Instantly analyzes and copies any observed skill and exercises supreme authority over hellish crimson flames.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/7/7a/Guy_Novel_Colour.png/revision/latest/scale-to-width-down/353?cb=20180928134016",
-    "avatarBg": "from-red-600 to-amber-900",
-    "accentColor": "#ef4444",
-    "glowColor": "rgba(239, 68, 68, 0.8)",
-    "avatarIcon": "👑",
-    "voiceLines": {
-      "start": "Heh. Show me what a newly awakened True Dragon and Demon Lord is truly capable of.",
-      "capture": "Incinerated into ash. You should know better than to leave pieces exposed.",
-      "check": "Is this the best the Octagram can muster? Check.",
-      "advantage": "The board burns with my authority. Yield, or be extinguished.",
-      "loss": "Hahahahaha! Splendid! You never fail to entertain me, Rimuru!",
-      "win": "As expected of the Arbiter of the World. Checkmate."
-    }
-  },
-  {
-    "id": "diablo_s2",
+    "id": "diablo_Season2",
     "name": "Diablo (Noir)",
     "jpName": "ディアブロ",
     "title": "Black Primordial / Demon Duke",
@@ -877,157 +452,32 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "velgrynd_s2",
-    "name": "Velgrynd",
-    "jpName": "ヴェルグリンド",
-    "title": "Scorch Dragon / True Dragon Sister",
+    "id": "guy_crimson_Season2",
+    "name": "Guy Crimson (Rouge)",
+    "jpName": "ギィ・クリムゾン",
+    "title": "Lord of Darkness / Red Primordial",
     "season": "Season 2",
-    "race": "True Dragon (Scorch Species)",
+    "race": "Primordial Demon Lord (Arbiter of the World)",
     "element": "fire",
-    "ep": 74350087,
-    "ultimateSkill": "Charity King Raguel & Flame God Cthugha",
-    "ultimateDescription": "Wields the burning acceleration and dimension-leaping flames capable of incinerating entire armies.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/c/c0/Velgrynd_LN.png/revision/latest/scale-to-width-down/169?cb=20210525224438",
-    "avatarBg": "from-red-600 via-rose-600 to-amber-500",
-    "accentColor": "#f43f5e",
-    "glowColor": "rgba(244, 63, 94, 0.8)",
-    "avatarIcon": "🔥",
+    "ep": 40000000,
+    "ultimateSkill": "Pride King Lucifer & Abyss God Nodens",
+    "ultimateDescription": "Instantly analyzes and copies any observed skill and exercises supreme authority over hellish crimson flames.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/7/7a/Guy_Novel_Colour.png/revision/latest/scale-to-width-down/353?cb=20180928134016",
+    "avatarBg": "from-red-600 to-amber-900",
+    "accentColor": "#ef4444",
+    "glowColor": "rgba(239, 68, 68, 0.8)",
+    "avatarIcon": "👑",
     "voiceLines": {
-      "start": "Do not test my patience. The Scorch Dragon’s flame does not forgive mistakes.",
-      "capture": "Charred to nonexistence! You cannot withstand my heat.",
-      "check": "Burning Acceleration! Your king is engulfed in flames!",
-      "advantage": "My blazing aura covers all escape routes. Surrender.",
-      "loss": "Impressive... You managed to extinguish the Scorch Dragon’s advance.",
-      "win": "Cardinal Acceleration Checkmate! Burn into eternity."
+      "start": "Heh. Show me what a newly awakened True Dragon and Demon Lord is truly capable of.",
+      "capture": "Incinerated into ash. You should know better than to leave pieces exposed.",
+      "check": "Is this the best the Octagram can muster? Check.",
+      "advantage": "The board burns with my authority. Yield, or be extinguished.",
+      "loss": "Hahahahaha! Splendid! You never fail to entertain me, Rimuru!",
+      "win": "As expected of the Arbiter of the World. Checkmate."
     }
   },
   {
-    "id": "velzard_s2",
-    "name": "Velzard",
-    "jpName": "ヴェルザード",
-    "title": "White Ice Dragon / Northern Sovereign",
-    "season": "Season 2",
-    "race": "True Dragon (Ice Species)",
-    "element": "ice",
-    "ep": 80000000,
-    "ultimateSkill": "Patience King Gabriel & Ice God Cthulhu",
-    "ultimateDescription": "Absolute zero deceleration, eternal frozen domain, and impenetrable crystal ice defense.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/5/52/LN_20_08.jpg/revision/latest/scale-to-width-down/352?cb=20220929152738",
-    "avatarBg": "from-cyan-300 via-blue-500 to-indigo-700",
-    "accentColor": "#38bdf8",
-    "glowColor": "rgba(56, 189, 248, 0.8)",
-    "avatarIcon": "❄️",
-    "voiceLines": {
-      "start": "Let us see if your mind can withstand absolute zero stillness.",
-      "capture": "Frozen in eternity. Your piece will never move again.",
-      "check": "Diamond Dust! Your king cannot escape the frost.",
-      "advantage": "The entire board is frozen under my sovereign command.",
-      "loss": "Fascinating. You managed to shatter my eternal glacier.",
-      "win": "Absolute Zero Checkmate. Sleep peacefully in the ice."
-    }
-  },
-  {
-    "id": "testarossa_s2",
-    "name": "Testarossa (Blanc)",
-    "jpName": "テスタロッサ",
-    "title": "Killer Lord / White Primordial",
-    "season": "Season 2",
-    "race": "Primordial Demon (White Progenitor)",
-    "element": "fire",
-    "ep": 3333333,
-    "ultimateSkill": "Hell King Belial",
-    "ultimateDescription": "Commands Death Streak and hellish nuclear magic that extinguishes souls instantly without a trace.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/9e/Testarossa_LN.png/revision/latest/scale-to-width-down/315?cb=20250903072845",
-    "avatarBg": "from-rose-500 via-red-800 to-slate-950",
-    "accentColor": "#fb7185",
-    "glowColor": "rgba(251, 113, 133, 0.8)",
-    "avatarIcon": "🌹",
-    "voiceLines": {
-      "start": "Allow me, Testarossa, to handle our diplomatic resolution on this board.",
-      "capture": "Death Streak. A clean and silent execution.",
-      "check": "Check. How unfortunate for your royal defender.",
-      "advantage": "My diplomatic calculations guarantee total victory for Lord Rimuru.",
-      "loss": "An exquisite duel. You have my sincere compliments.",
-      "win": "Nuclear Flame Checkmate. The negotiations are concluded."
-    }
-  },
-  {
-    "id": "carrera_s2",
-    "name": "Carrera (Jaune)",
-    "jpName": "カレラ",
-    "title": "Menace Lord / Yellow Primordial",
-    "season": "Season 2",
-    "race": "Primordial Demon (Yellow Progenitor)",
-    "element": "lightning",
-    "ep": 7000000,
-    "ultimateSkill": "Extinction King Abaddon",
-    "ultimateDescription": "Unleashes the golden nuclear blade Abyss Annihilation and the God-class gun handgun.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/95/Carrera_LN.png/revision/latest/scale-to-width-down/351?cb=20210531221712",
-    "avatarBg": "from-yellow-400 via-amber-600 to-red-700",
-    "accentColor": "#f59e0b",
-    "glowColor": "rgba(245, 158, 11, 0.8)",
-    "avatarIcon": "⚡",
-    "voiceLines": {
-      "start": "AHAHAHA! Time to blow up the entire board with gold nuclear magic!",
-      "capture": "Abyss Annihilation! That piece was vaporized into dust!",
-      "check": "Target locked! Golden strike aimed at your king!",
-      "advantage": "Ahahaha! The explosions are getting louder! We win!",
-      "loss": "WHAT?! How did you dodge my nuclear shot?! Next game, I won’t hold back!",
-      "win": "Extinction Checkmate! A glorious golden victory!"
-    }
-  },
-  {
-    "id": "ultima_s2",
-    "name": "Ultima (Violet)",
-    "jpName": "ウルティマ",
-    "title": "Pain Lord / Violet Primordial",
-    "season": "Season 2",
-    "race": "Primordial Demon (Purple Progenitor)",
-    "element": "dark",
-    "ep": 2666666,
-    "ultimateSkill": "Poison King Samael",
-    "ultimateDescription": "Commands incurable spiritual venom and the agonizing spatial blade Bloody Bite.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/45/Ultima_LN.png/revision/latest/scale-to-width-down/342?cb=20220219055228",
-    "avatarBg": "from-purple-600 via-violet-800 to-slate-900",
-    "accentColor": "#c084fc",
-    "glowColor": "rgba(192, 132, 252, 0.8)",
-    "avatarIcon": "🔮",
-    "voiceLines": {
-      "start": "Hehehe! Lord Rimuru, watch me poison their entire defensive formation!",
-      "capture": "Bloody Bite! Did that sting? Hehehe!",
-      "check": "Check! Your king is shivering with dread!",
-      "advantage": "My poison is already circulating through all your files!",
-      "loss": "Uuuugh! You’re so mean for countering my trap!",
-      "win": "Venomous Checkmate! Another victory dedicated to Lord Rimuru!"
-    }
-  },
-  {
-    "id": "luminous_s2",
-    "name": "Luminous Valentine",
-    "jpName": "ルミナス・バレンタイン",
-    "title": "Queen of Nightmares / Demon Lord of Lubelius",
-    "season": "Season 2",
-    "race": "True Ancestor Vampire Demon Lord",
-    "element": "holy",
-    "ep": 5000000,
-    "ultimateSkill": "Lustful King Asmodeus",
-    "ultimateDescription": "Mastery over the laws of Life and Death, resurrecting allies and commanding Sanctuary disintegration.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/b/b2/Luminous_LN_Profile.png/revision/latest/scale-to-width-down/370?cb=20260627094126",
-    "avatarBg": "from-rose-900 via-indigo-950 to-slate-900",
-    "accentColor": "#f43f5e",
-    "glowColor": "rgba(244, 63, 94, 0.7)",
-    "avatarIcon": "🩸",
-    "voiceLines": {
-      "start": "Insolent mortals. Gaze upon the true elegance of the Holy Sanctuary.",
-      "capture": "Sanctuary Disintegration. Your sacrifice was predetermined.",
-      "check": "Check. Bow your head before the Queen of Nightmares.",
-      "advantage": "The balance of life and death tilts entirely in my favor.",
-      "loss": "Hmph. You possess more intellect than the foolish dragon Veldora.",
-      "win": "Nightmare Checkmate. Fall into eternal crimson slumber."
-    }
-  },
-  {
-    "id": "hinata_s2",
+    "id": "hinata_Season2",
     "name": "Hinata Sakaguchi",
     "jpName": "ヒナタ・サカグチ",
     "title": "Saint of Lubelius / Chief Knight Captain",
@@ -1052,32 +502,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "chloe_s2",
-    "name": "Chloe Aubert / Chronoa",
-    "jpName": "クロエ・オベール / クロノア",
-    "title": "Hero of Time / True Hero",
-    "season": "Season 2",
-    "race": "Human Hero (Temporal Transcendence)",
-    "element": "space",
-    "ep": 30000000,
-    "ultimateSkill": "Space-Time King Yog-Sothoth & Sariel",
-    "ultimateDescription": "Absolute time stop, temporal reversal, infinite severance, and infinite loop memory.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/b/bd/Chloe_Aubert_LN.png/revision/latest/scale-to-width-down/335?cb=20230907213640",
-    "avatarBg": "from-cyan-400 via-indigo-500 to-pink-500",
-    "accentColor": "#38bdf8",
-    "glowColor": "rgba(56, 189, 248, 0.8)",
-    "avatarIcon": "⏳",
-    "voiceLines": {
-      "start": "Rimuru-sensei! I have seen this match thousands of times in the time loops!",
-      "capture": "Absolute Severance! Time cannot be turned back for that piece.",
-      "check": "Time Stop! Your king is suspended in motion. Check!",
-      "advantage": "The flow of time points directly to our victory!",
-      "loss": "Sensei is still as amazing as ever! I have so much more to learn!",
-      "win": "Infinite Severance Checkmate! I won, Sensei!"
-    }
-  },
-  {
-    "id": "benimaru_s2",
+    "id": "benimaru_Season2",
     "name": "Benimaru",
     "jpName": "ベニマル",
     "title": "Samurai General / Flare Lord",
@@ -1102,7 +527,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "shion_s2",
+    "id": "shion_Season2",
     "name": "Shion",
     "jpName": "シオン",
     "title": "War Lord / Rimuru’s Bodyguard",
@@ -1127,7 +552,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "shuna_s2",
+    "id": "shuna_Season2",
     "name": "Shuna",
     "jpName": "シュナ",
     "title": "Holy Princess / Tempest Weaver",
@@ -1152,7 +577,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "souei_s2",
+    "id": "souei_Season2",
     "name": "Souei",
     "jpName": "ソウエイ",
     "title": "Shadow Lord / Spy Leader",
@@ -1177,7 +602,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "hakuro_s2",
+    "id": "hakuro_Season2",
     "name": "Hakuro",
     "jpName": "ハクロウ",
     "title": "Sword Saint / Military Instructor",
@@ -1202,32 +627,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "zegion_s2",
-    "name": "Zegion",
-    "jpName": "ゼギオン",
-    "title": "Mist Lord / Supreme Labyrinth Guardian",
-    "season": "Season 2",
-    "race": "Insectoid Emperor / Water Spirit Demon",
-    "element": "space",
-    "ep": 4988888,
-    "ultimateSkill": "Illusion King Mephisto",
-    "ultimateDescription": "Ultimate martial hand-to-hand combat, dimension severance, and impenetrable magic adamantine armor.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/e/eb/LN16_-_10.jpg/revision/latest/scale-to-width-down/351?cb=20200504155713",
-    "avatarBg": "from-cyan-900 via-indigo-950 to-slate-950",
-    "accentColor": "#06b6d4",
-    "glowColor": "rgba(6, 182, 212, 0.8)",
-    "avatarIcon": "🪲",
-    "voiceLines": {
-      "start": "I shall dismantle any adversary that stands before the glory of Lord Rimuru.",
-      "capture": "Dimensional Severance. Your piece has been pulverized.",
-      "check": "Check. You cannot breach my adamantine defense.",
-      "advantage": "The labyrinthine domain belongs entirely to Tempest.",
-      "loss": "I have failed Lord Rimuru’s teachings. I shall discipline my body anew.",
-      "win": "Illusion God Checkmate. Absolute victory achieved."
-    }
-  },
-  {
-    "id": "gobta_s2",
+    "id": "gobta_Season2",
     "name": "Gobta & Ranga",
     "jpName": "ゴブタ ＆ ランガ",
     "title": "Star Wolf Rider / Lucky Genius",
@@ -1252,57 +652,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "yuuki_s2",
-    "name": "Yuuki Kagurazaka",
-    "jpName": "ユウキ・カグラザカ",
-    "title": "Grandmaster / Leader of Moderate Harlequin",
-    "season": "Season 2",
-    "race": "Otherworlder Human Hero",
-    "element": "dark",
-    "ep": 2000000,
-    "ultimateSkill": "Greed King Mammon & Creator",
-    "ultimateDescription": "Steals life energy and skills, and alters creation properties through cunning stratagems.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/e/e9/Yuuki_LN12_05.png/revision/latest/scale-to-width-down/345?cb=20210503074258",
-    "avatarBg": "from-amber-700 via-stone-800 to-slate-900",
-    "accentColor": "#d97706",
-    "glowColor": "rgba(217, 119, 6, 0.7)",
-    "avatarIcon": "🎭",
-    "voiceLines": {
-      "start": "Let’s see if your ideals can hold up against my grand stratagem, Rimuru-san.",
-      "capture": "Greed King! Your piece is now part of my resource pool.",
-      "check": "Check! An unforeseen plot twist in our story.",
-      "advantage": "Everything is moving just as I orchestrated behind the scenes.",
-      "loss": "Hahaha... You truly are one step ahead of every scheme, Rimuru-san.",
-      "win": "Grandmaster Stratagem Checkmate. The game is mine!"
-    }
-  },
-  {
-    "id": "shizue-izawa_s2",
-    "name": "Shizue Izawa",
-    "title": "The Conqueror of Flames",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/8/8c/Volume_11_-_Shizu.png/revision/latest/scale-to-width-down/304?cb=20220813053213",
-    "accentColor": "#ef4444",
-    "element": "fire",
-    "ultimateSkill": "Degenerate",
-    "jpName": "",
-    "season": "Season 2",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "ramiris_s2",
+    "id": "ramiris_Season2",
     "name": "Ramiris",
     "title": "Fairy of the Labyrinth",
     "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/a/a4/Ramiris_LN.png/revision/latest/scale-to-width-down/496?cb=20220701180204",
@@ -1327,7 +677,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "geld_s2",
+    "id": "geld_Season2",
     "name": "Geld",
     "title": "Orc Disaster / Orc King",
     "image": "https://tensura.fandom.com/wiki/Special:FilePath/Geld_Anime.png",
@@ -1352,32 +702,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "gabiru_s2",
-    "name": "Gabiru",
-    "title": "Dragonewt Leader",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/49/Gabil_Novel.png/revision/latest/scale-to-width-down/413?cb=20180928121050",
-    "accentColor": "#6366f1",
-    "element": "water",
-    "ultimateSkill": "Vortex Spear",
-    "jpName": "",
-    "season": "Season 2",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "clayman_s2",
+    "id": "clayman_Season2",
     "name": "Clayman",
     "title": "Marionette Master",
     "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/6/6c/Clayman_LN.png/revision/latest/scale-to-width-down/550?cb=20220220082304",
@@ -1402,7 +727,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "treyni_s2",
+    "id": "treyni_Season2",
     "name": "Treyni",
     "title": "Dryad of the Great Forest",
     "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/6/6d/Treyni_LN.jpg/revision/latest/scale-to-width-down/338?cb=20230907163946",
@@ -1427,32 +752,32 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "gazel-dwargo_s2",
-    "name": "Gazel Dwargo",
-    "title": "King of Dwargon",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/a/a3/LN_15_04.jpg/revision/latest/scale-to-width-down/442?cb=20190928081119",
-    "accentColor": "#f59e0b",
-    "element": "earth",
-    "ultimateSkill": "King of Swords",
-    "jpName": "",
+    "id": "yuuki_Season2",
+    "name": "Yuuki Kagurazaka",
+    "jpName": "ユウキ・カグラザカ",
+    "title": "Grandmaster / Leader of Moderate Harlequin",
     "season": "Season 2",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
+    "race": "Otherworlder Human Hero",
+    "element": "dark",
+    "ep": 2000000,
+    "ultimateSkill": "Greed King Mammon & Creator",
+    "ultimateDescription": "Steals life energy and skills, and alters creation properties through cunning stratagems.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/e/e9/Yuuki_LN12_05.png/revision/latest/scale-to-width-down/345?cb=20210503074258",
+    "avatarBg": "from-amber-700 via-stone-800 to-slate-900",
+    "accentColor": "#d97706",
+    "glowColor": "rgba(217, 119, 6, 0.7)",
+    "avatarIcon": "🎭",
     "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
+      "start": "Let’s see if your ideals can hold up against my grand stratagem, Rimuru-san.",
+      "capture": "Greed King! Your piece is now part of my resource pool.",
+      "check": "Check! An unforeseen plot twist in our story.",
+      "advantage": "Everything is moving just as I orchestrated behind the scenes.",
+      "loss": "Hahaha... You truly are one step ahead of every scheme, Rimuru-san.",
+      "win": "Grandmaster Stratagem Checkmate. The game is mine!"
     }
   },
   {
-    "id": "rimuru_s3",
+    "id": "rimuru_Season3",
     "name": "Rimuru Tempest",
     "jpName": "リムル＝テンペスト",
     "title": "Chaos Creator / Supreme Demon Lord",
@@ -1477,7 +802,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "ciel_raphael_s3",
+    "id": "ciel_raphael_Season3",
     "name": "Ciel / Wisdom King Raphael",
     "jpName": "シエル / 智恵之王 (ラファエル)",
     "title": "Manas / Voice of the World",
@@ -1502,7 +827,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "veldora_s3",
+    "id": "veldora_Season3",
     "name": "Veldora Tempest",
     "jpName": "ヴェルドラ＝テンペスト",
     "title": "Storm Dragon",
@@ -1527,7 +852,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "milim_s3",
+    "id": "milim_Season3",
     "name": "Milim Nava",
     "jpName": "ミリム・ナーヴァ",
     "title": "Destroyer / Dragonoid Demon Lord",
@@ -1552,32 +877,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "guy_crimson_s3",
-    "name": "Guy Crimson (Rouge)",
-    "jpName": "ギィ・クリムゾン",
-    "title": "Lord of Darkness / Red Primordial",
-    "season": "Season 3",
-    "race": "Primordial Demon Lord (Arbiter of the World)",
-    "element": "fire",
-    "ep": 40000000,
-    "ultimateSkill": "Pride King Lucifer & Abyss God Nodens",
-    "ultimateDescription": "Instantly analyzes and copies any observed skill and exercises supreme authority over hellish crimson flames.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/7/7a/Guy_Novel_Colour.png/revision/latest/scale-to-width-down/353?cb=20180928134016",
-    "avatarBg": "from-red-600 to-amber-900",
-    "accentColor": "#ef4444",
-    "glowColor": "rgba(239, 68, 68, 0.8)",
-    "avatarIcon": "👑",
-    "voiceLines": {
-      "start": "Heh. Show me what a newly awakened True Dragon and Demon Lord is truly capable of.",
-      "capture": "Incinerated into ash. You should know better than to leave pieces exposed.",
-      "check": "Is this the best the Octagram can muster? Check.",
-      "advantage": "The board burns with my authority. Yield, or be extinguished.",
-      "loss": "Hahahahaha! Splendid! You never fail to entertain me, Rimuru!",
-      "win": "As expected of the Arbiter of the World. Checkmate."
-    }
-  },
-  {
-    "id": "diablo_s3",
+    "id": "diablo_Season3",
     "name": "Diablo (Noir)",
     "jpName": "ディアブロ",
     "title": "Black Primordial / Demon Duke",
@@ -1602,157 +902,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "velgrynd_s3",
-    "name": "Velgrynd",
-    "jpName": "ヴェルグリンド",
-    "title": "Scorch Dragon / True Dragon Sister",
-    "season": "Season 3",
-    "race": "True Dragon (Scorch Species)",
-    "element": "fire",
-    "ep": 74350087,
-    "ultimateSkill": "Charity King Raguel & Flame God Cthugha",
-    "ultimateDescription": "Wields the burning acceleration and dimension-leaping flames capable of incinerating entire armies.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/c/c0/Velgrynd_LN.png/revision/latest/scale-to-width-down/169?cb=20210525224438",
-    "avatarBg": "from-red-600 via-rose-600 to-amber-500",
-    "accentColor": "#f43f5e",
-    "glowColor": "rgba(244, 63, 94, 0.8)",
-    "avatarIcon": "🔥",
-    "voiceLines": {
-      "start": "Do not test my patience. The Scorch Dragon’s flame does not forgive mistakes.",
-      "capture": "Charred to nonexistence! You cannot withstand my heat.",
-      "check": "Burning Acceleration! Your king is engulfed in flames!",
-      "advantage": "My blazing aura covers all escape routes. Surrender.",
-      "loss": "Impressive... You managed to extinguish the Scorch Dragon’s advance.",
-      "win": "Cardinal Acceleration Checkmate! Burn into eternity."
-    }
-  },
-  {
-    "id": "velzard_s3",
-    "name": "Velzard",
-    "jpName": "ヴェルザード",
-    "title": "White Ice Dragon / Northern Sovereign",
-    "season": "Season 3",
-    "race": "True Dragon (Ice Species)",
-    "element": "ice",
-    "ep": 80000000,
-    "ultimateSkill": "Patience King Gabriel & Ice God Cthulhu",
-    "ultimateDescription": "Absolute zero deceleration, eternal frozen domain, and impenetrable crystal ice defense.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/5/52/LN_20_08.jpg/revision/latest/scale-to-width-down/352?cb=20220929152738",
-    "avatarBg": "from-cyan-300 via-blue-500 to-indigo-700",
-    "accentColor": "#38bdf8",
-    "glowColor": "rgba(56, 189, 248, 0.8)",
-    "avatarIcon": "❄️",
-    "voiceLines": {
-      "start": "Let us see if your mind can withstand absolute zero stillness.",
-      "capture": "Frozen in eternity. Your piece will never move again.",
-      "check": "Diamond Dust! Your king cannot escape the frost.",
-      "advantage": "The entire board is frozen under my sovereign command.",
-      "loss": "Fascinating. You managed to shatter my eternal glacier.",
-      "win": "Absolute Zero Checkmate. Sleep peacefully in the ice."
-    }
-  },
-  {
-    "id": "testarossa_s3",
-    "name": "Testarossa (Blanc)",
-    "jpName": "テスタロッサ",
-    "title": "Killer Lord / White Primordial",
-    "season": "Season 3",
-    "race": "Primordial Demon (White Progenitor)",
-    "element": "fire",
-    "ep": 3333333,
-    "ultimateSkill": "Hell King Belial",
-    "ultimateDescription": "Commands Death Streak and hellish nuclear magic that extinguishes souls instantly without a trace.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/9e/Testarossa_LN.png/revision/latest/scale-to-width-down/315?cb=20250903072845",
-    "avatarBg": "from-rose-500 via-red-800 to-slate-950",
-    "accentColor": "#fb7185",
-    "glowColor": "rgba(251, 113, 133, 0.8)",
-    "avatarIcon": "🌹",
-    "voiceLines": {
-      "start": "Allow me, Testarossa, to handle our diplomatic resolution on this board.",
-      "capture": "Death Streak. A clean and silent execution.",
-      "check": "Check. How unfortunate for your royal defender.",
-      "advantage": "My diplomatic calculations guarantee total victory for Lord Rimuru.",
-      "loss": "An exquisite duel. You have my sincere compliments.",
-      "win": "Nuclear Flame Checkmate. The negotiations are concluded."
-    }
-  },
-  {
-    "id": "carrera_s3",
-    "name": "Carrera (Jaune)",
-    "jpName": "カレラ",
-    "title": "Menace Lord / Yellow Primordial",
-    "season": "Season 3",
-    "race": "Primordial Demon (Yellow Progenitor)",
-    "element": "lightning",
-    "ep": 7000000,
-    "ultimateSkill": "Extinction King Abaddon",
-    "ultimateDescription": "Unleashes the golden nuclear blade Abyss Annihilation and the God-class gun handgun.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/95/Carrera_LN.png/revision/latest/scale-to-width-down/351?cb=20210531221712",
-    "avatarBg": "from-yellow-400 via-amber-600 to-red-700",
-    "accentColor": "#f59e0b",
-    "glowColor": "rgba(245, 158, 11, 0.8)",
-    "avatarIcon": "⚡",
-    "voiceLines": {
-      "start": "AHAHAHA! Time to blow up the entire board with gold nuclear magic!",
-      "capture": "Abyss Annihilation! That piece was vaporized into dust!",
-      "check": "Target locked! Golden strike aimed at your king!",
-      "advantage": "Ahahaha! The explosions are getting louder! We win!",
-      "loss": "WHAT?! How did you dodge my nuclear shot?! Next game, I won’t hold back!",
-      "win": "Extinction Checkmate! A glorious golden victory!"
-    }
-  },
-  {
-    "id": "ultima_s3",
-    "name": "Ultima (Violet)",
-    "jpName": "ウルティマ",
-    "title": "Pain Lord / Violet Primordial",
-    "season": "Season 3",
-    "race": "Primordial Demon (Purple Progenitor)",
-    "element": "dark",
-    "ep": 2666666,
-    "ultimateSkill": "Poison King Samael",
-    "ultimateDescription": "Commands incurable spiritual venom and the agonizing spatial blade Bloody Bite.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/45/Ultima_LN.png/revision/latest/scale-to-width-down/342?cb=20220219055228",
-    "avatarBg": "from-purple-600 via-violet-800 to-slate-900",
-    "accentColor": "#c084fc",
-    "glowColor": "rgba(192, 132, 252, 0.8)",
-    "avatarIcon": "🔮",
-    "voiceLines": {
-      "start": "Hehehe! Lord Rimuru, watch me poison their entire defensive formation!",
-      "capture": "Bloody Bite! Did that sting? Hehehe!",
-      "check": "Check! Your king is shivering with dread!",
-      "advantage": "My poison is already circulating through all your files!",
-      "loss": "Uuuugh! You’re so mean for countering my trap!",
-      "win": "Venomous Checkmate! Another victory dedicated to Lord Rimuru!"
-    }
-  },
-  {
-    "id": "luminous_s3",
-    "name": "Luminous Valentine",
-    "jpName": "ルミナス・バレンタイン",
-    "title": "Queen of Nightmares / Demon Lord of Lubelius",
-    "season": "Season 3",
-    "race": "True Ancestor Vampire Demon Lord",
-    "element": "holy",
-    "ep": 5000000,
-    "ultimateSkill": "Lustful King Asmodeus",
-    "ultimateDescription": "Mastery over the laws of Life and Death, resurrecting allies and commanding Sanctuary disintegration.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/b/b2/Luminous_LN_Profile.png/revision/latest/scale-to-width-down/370?cb=20260627094126",
-    "avatarBg": "from-rose-900 via-indigo-950 to-slate-900",
-    "accentColor": "#f43f5e",
-    "glowColor": "rgba(244, 63, 94, 0.7)",
-    "avatarIcon": "🩸",
-    "voiceLines": {
-      "start": "Insolent mortals. Gaze upon the true elegance of the Holy Sanctuary.",
-      "capture": "Sanctuary Disintegration. Your sacrifice was predetermined.",
-      "check": "Check. Bow your head before the Queen of Nightmares.",
-      "advantage": "The balance of life and death tilts entirely in my favor.",
-      "loss": "Hmph. You possess more intellect than the foolish dragon Veldora.",
-      "win": "Nightmare Checkmate. Fall into eternal crimson slumber."
-    }
-  },
-  {
-    "id": "hinata_s3",
+    "id": "hinata_Season3",
     "name": "Hinata Sakaguchi",
     "jpName": "ヒナタ・サカグチ",
     "title": "Saint of Lubelius / Chief Knight Captain",
@@ -1777,32 +927,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "chloe_s3",
-    "name": "Chloe Aubert / Chronoa",
-    "jpName": "クロエ・オベール / クロノア",
-    "title": "Hero of Time / True Hero",
-    "season": "Season 3",
-    "race": "Human Hero (Temporal Transcendence)",
-    "element": "space",
-    "ep": 30000000,
-    "ultimateSkill": "Space-Time King Yog-Sothoth & Sariel",
-    "ultimateDescription": "Absolute time stop, temporal reversal, infinite severance, and infinite loop memory.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/b/bd/Chloe_Aubert_LN.png/revision/latest/scale-to-width-down/335?cb=20230907213640",
-    "avatarBg": "from-cyan-400 via-indigo-500 to-pink-500",
-    "accentColor": "#38bdf8",
-    "glowColor": "rgba(56, 189, 248, 0.8)",
-    "avatarIcon": "⏳",
-    "voiceLines": {
-      "start": "Rimuru-sensei! I have seen this match thousands of times in the time loops!",
-      "capture": "Absolute Severance! Time cannot be turned back for that piece.",
-      "check": "Time Stop! Your king is suspended in motion. Check!",
-      "advantage": "The flow of time points directly to our victory!",
-      "loss": "Sensei is still as amazing as ever! I have so much more to learn!",
-      "win": "Infinite Severance Checkmate! I won, Sensei!"
-    }
-  },
-  {
-    "id": "benimaru_s3",
+    "id": "benimaru_Season3",
     "name": "Benimaru",
     "jpName": "ベニマル",
     "title": "Samurai General / Flare Lord",
@@ -1827,7 +952,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "shion_s3",
+    "id": "shion_Season3",
     "name": "Shion",
     "jpName": "シオン",
     "title": "War Lord / Rimuru’s Bodyguard",
@@ -1852,7 +977,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "shuna_s3",
+    "id": "shuna_Season3",
     "name": "Shuna",
     "jpName": "シュナ",
     "title": "Holy Princess / Tempest Weaver",
@@ -1877,7 +1002,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "souei_s3",
+    "id": "souei_Season3",
     "name": "Souei",
     "jpName": "ソウエイ",
     "title": "Shadow Lord / Spy Leader",
@@ -1902,7 +1027,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "hakuro_s3",
+    "id": "hakuro_Season3",
     "name": "Hakuro",
     "jpName": "ハクロウ",
     "title": "Sword Saint / Military Instructor",
@@ -1927,32 +1052,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "zegion_s3",
-    "name": "Zegion",
-    "jpName": "ゼギオン",
-    "title": "Mist Lord / Supreme Labyrinth Guardian",
-    "season": "Season 3",
-    "race": "Insectoid Emperor / Water Spirit Demon",
-    "element": "space",
-    "ep": 4988888,
-    "ultimateSkill": "Illusion King Mephisto",
-    "ultimateDescription": "Ultimate martial hand-to-hand combat, dimension severance, and impenetrable magic adamantine armor.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/e/eb/LN16_-_10.jpg/revision/latest/scale-to-width-down/351?cb=20200504155713",
-    "avatarBg": "from-cyan-900 via-indigo-950 to-slate-950",
-    "accentColor": "#06b6d4",
-    "glowColor": "rgba(6, 182, 212, 0.8)",
-    "avatarIcon": "🪲",
-    "voiceLines": {
-      "start": "I shall dismantle any adversary that stands before the glory of Lord Rimuru.",
-      "capture": "Dimensional Severance. Your piece has been pulverized.",
-      "check": "Check. You cannot breach my adamantine defense.",
-      "advantage": "The labyrinthine domain belongs entirely to Tempest.",
-      "loss": "I have failed Lord Rimuru’s teachings. I shall discipline my body anew.",
-      "win": "Illusion God Checkmate. Absolute victory achieved."
-    }
-  },
-  {
-    "id": "gobta_s3",
+    "id": "gobta_Season3",
     "name": "Gobta & Ranga",
     "jpName": "ゴブタ ＆ ランガ",
     "title": "Star Wolf Rider / Lucky Genius",
@@ -1977,57 +1077,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "yuuki_s3",
-    "name": "Yuuki Kagurazaka",
-    "jpName": "ユウキ・カグラザカ",
-    "title": "Grandmaster / Leader of Moderate Harlequin",
-    "season": "Season 3",
-    "race": "Otherworlder Human Hero",
-    "element": "dark",
-    "ep": 2000000,
-    "ultimateSkill": "Greed King Mammon & Creator",
-    "ultimateDescription": "Steals life energy and skills, and alters creation properties through cunning stratagems.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/e/e9/Yuuki_LN12_05.png/revision/latest/scale-to-width-down/345?cb=20210503074258",
-    "avatarBg": "from-amber-700 via-stone-800 to-slate-900",
-    "accentColor": "#d97706",
-    "glowColor": "rgba(217, 119, 6, 0.7)",
-    "avatarIcon": "🎭",
-    "voiceLines": {
-      "start": "Let’s see if your ideals can hold up against my grand stratagem, Rimuru-san.",
-      "capture": "Greed King! Your piece is now part of my resource pool.",
-      "check": "Check! An unforeseen plot twist in our story.",
-      "advantage": "Everything is moving just as I orchestrated behind the scenes.",
-      "loss": "Hahaha... You truly are one step ahead of every scheme, Rimuru-san.",
-      "win": "Grandmaster Stratagem Checkmate. The game is mine!"
-    }
-  },
-  {
-    "id": "shizue-izawa_s3",
-    "name": "Shizue Izawa",
-    "title": "The Conqueror of Flames",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/8/8c/Volume_11_-_Shizu.png/revision/latest/scale-to-width-down/304?cb=20220813053213",
-    "accentColor": "#ef4444",
-    "element": "fire",
-    "ultimateSkill": "Degenerate",
-    "jpName": "",
-    "season": "Season 3",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "ramiris_s3",
+    "id": "ramiris_Season3",
     "name": "Ramiris",
     "title": "Fairy of the Labyrinth",
     "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/a/a4/Ramiris_LN.png/revision/latest/scale-to-width-down/496?cb=20220701180204",
@@ -2052,7 +1102,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "geld_s3",
+    "id": "geld_Season3",
     "name": "Geld",
     "title": "Orc Disaster / Orc King",
     "image": "https://tensura.fandom.com/wiki/Special:FilePath/Geld_Anime.png",
@@ -2077,57 +1127,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "gabiru_s3",
-    "name": "Gabiru",
-    "title": "Dragonewt Leader",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/49/Gabil_Novel.png/revision/latest/scale-to-width-down/413?cb=20180928121050",
-    "accentColor": "#6366f1",
-    "element": "water",
-    "ultimateSkill": "Vortex Spear",
-    "jpName": "",
-    "season": "Season 3",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "clayman_s3",
-    "name": "Clayman",
-    "title": "Marionette Master",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/6/6c/Clayman_LN.png/revision/latest/scale-to-width-down/550?cb=20220220082304",
-    "accentColor": "#8b5cf6",
-    "element": "dark",
-    "ultimateSkill": "Demon Lord Haki",
-    "jpName": "",
-    "season": "Season 3",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "treyni_s3",
+    "id": "treyni_Season3",
     "name": "Treyni",
     "title": "Dryad of the Great Forest",
     "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/6/6d/Treyni_LN.jpg/revision/latest/scale-to-width-down/338?cb=20230907163946",
@@ -2152,32 +1152,32 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "gazel-dwargo_s3",
-    "name": "Gazel Dwargo",
-    "title": "King of Dwargon",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/a/a3/LN_15_04.jpg/revision/latest/scale-to-width-down/442?cb=20190928081119",
-    "accentColor": "#f59e0b",
-    "element": "earth",
-    "ultimateSkill": "King of Swords",
-    "jpName": "",
+    "id": "yuuki_Season3",
+    "name": "Yuuki Kagurazaka",
+    "jpName": "ユウキ・カグラザカ",
+    "title": "Grandmaster / Leader of Moderate Harlequin",
     "season": "Season 3",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
+    "race": "Otherworlder Human Hero",
+    "element": "dark",
+    "ep": 2000000,
+    "ultimateSkill": "Greed King Mammon & Creator",
+    "ultimateDescription": "Steals life energy and skills, and alters creation properties through cunning stratagems.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/e/e9/Yuuki_LN12_05.png/revision/latest/scale-to-width-down/345?cb=20210503074258",
+    "avatarBg": "from-amber-700 via-stone-800 to-slate-900",
+    "accentColor": "#d97706",
+    "glowColor": "rgba(217, 119, 6, 0.7)",
+    "avatarIcon": "🎭",
     "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
+      "start": "Let’s see if your ideals can hold up against my grand stratagem, Rimuru-san.",
+      "capture": "Greed King! Your piece is now part of my resource pool.",
+      "check": "Check! An unforeseen plot twist in our story.",
+      "advantage": "Everything is moving just as I orchestrated behind the scenes.",
+      "loss": "Hahaha... You truly are one step ahead of every scheme, Rimuru-san.",
+      "win": "Grandmaster Stratagem Checkmate. The game is mine!"
     }
   },
   {
-    "id": "rimuru_s4",
+    "id": "rimuru_Season4",
     "name": "Rimuru Tempest",
     "jpName": "リムル＝テンペスト",
     "title": "Chaos Creator / Supreme Demon Lord",
@@ -2202,7 +1202,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "ciel_raphael_s4",
+    "id": "ciel_raphael_Season4",
     "name": "Ciel / Wisdom King Raphael",
     "jpName": "シエル / 智恵之王 (ラファエル)",
     "title": "Manas / Voice of the World",
@@ -2227,7 +1227,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "veldora_s4",
+    "id": "veldora_Season4",
     "name": "Veldora Tempest",
     "jpName": "ヴェルドラ＝テンペスト",
     "title": "Storm Dragon",
@@ -2252,7 +1252,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "milim_s4",
+    "id": "milim_Season4",
     "name": "Milim Nava",
     "jpName": "ミリム・ナーヴァ",
     "title": "Destroyer / Dragonoid Demon Lord",
@@ -2277,32 +1277,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "guy_crimson_s4",
-    "name": "Guy Crimson (Rouge)",
-    "jpName": "ギィ・クリムゾン",
-    "title": "Lord of Darkness / Red Primordial",
-    "season": "Season 4",
-    "race": "Primordial Demon Lord (Arbiter of the World)",
-    "element": "fire",
-    "ep": 40000000,
-    "ultimateSkill": "Pride King Lucifer & Abyss God Nodens",
-    "ultimateDescription": "Instantly analyzes and copies any observed skill and exercises supreme authority over hellish crimson flames.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/7/7a/Guy_Novel_Colour.png/revision/latest/scale-to-width-down/353?cb=20180928134016",
-    "avatarBg": "from-red-600 to-amber-900",
-    "accentColor": "#ef4444",
-    "glowColor": "rgba(239, 68, 68, 0.8)",
-    "avatarIcon": "👑",
-    "voiceLines": {
-      "start": "Heh. Show me what a newly awakened True Dragon and Demon Lord is truly capable of.",
-      "capture": "Incinerated into ash. You should know better than to leave pieces exposed.",
-      "check": "Is this the best the Octagram can muster? Check.",
-      "advantage": "The board burns with my authority. Yield, or be extinguished.",
-      "loss": "Hahahahaha! Splendid! You never fail to entertain me, Rimuru!",
-      "win": "As expected of the Arbiter of the World. Checkmate."
-    }
-  },
-  {
-    "id": "diablo_s4",
+    "id": "diablo_Season4",
     "name": "Diablo (Noir)",
     "jpName": "ディアブロ",
     "title": "Black Primordial / Demon Duke",
@@ -2327,157 +1302,32 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "velgrynd_s4",
-    "name": "Velgrynd",
-    "jpName": "ヴェルグリンド",
-    "title": "Scorch Dragon / True Dragon Sister",
+    "id": "guy_crimson_Season4",
+    "name": "Guy Crimson (Rouge)",
+    "jpName": "ギィ・クリムゾン",
+    "title": "Lord of Darkness / Red Primordial",
     "season": "Season 4",
-    "race": "True Dragon (Scorch Species)",
+    "race": "Primordial Demon Lord (Arbiter of the World)",
     "element": "fire",
-    "ep": 74350087,
-    "ultimateSkill": "Charity King Raguel & Flame God Cthugha",
-    "ultimateDescription": "Wields the burning acceleration and dimension-leaping flames capable of incinerating entire armies.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/c/c0/Velgrynd_LN.png/revision/latest/scale-to-width-down/169?cb=20210525224438",
-    "avatarBg": "from-red-600 via-rose-600 to-amber-500",
-    "accentColor": "#f43f5e",
-    "glowColor": "rgba(244, 63, 94, 0.8)",
-    "avatarIcon": "🔥",
+    "ep": 40000000,
+    "ultimateSkill": "Pride King Lucifer & Abyss God Nodens",
+    "ultimateDescription": "Instantly analyzes and copies any observed skill and exercises supreme authority over hellish crimson flames.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/7/7a/Guy_Novel_Colour.png/revision/latest/scale-to-width-down/353?cb=20180928134016",
+    "avatarBg": "from-red-600 to-amber-900",
+    "accentColor": "#ef4444",
+    "glowColor": "rgba(239, 68, 68, 0.8)",
+    "avatarIcon": "👑",
     "voiceLines": {
-      "start": "Do not test my patience. The Scorch Dragon’s flame does not forgive mistakes.",
-      "capture": "Charred to nonexistence! You cannot withstand my heat.",
-      "check": "Burning Acceleration! Your king is engulfed in flames!",
-      "advantage": "My blazing aura covers all escape routes. Surrender.",
-      "loss": "Impressive... You managed to extinguish the Scorch Dragon’s advance.",
-      "win": "Cardinal Acceleration Checkmate! Burn into eternity."
+      "start": "Heh. Show me what a newly awakened True Dragon and Demon Lord is truly capable of.",
+      "capture": "Incinerated into ash. You should know better than to leave pieces exposed.",
+      "check": "Is this the best the Octagram can muster? Check.",
+      "advantage": "The board burns with my authority. Yield, or be extinguished.",
+      "loss": "Hahahahaha! Splendid! You never fail to entertain me, Rimuru!",
+      "win": "As expected of the Arbiter of the World. Checkmate."
     }
   },
   {
-    "id": "velzard_s4",
-    "name": "Velzard",
-    "jpName": "ヴェルザード",
-    "title": "White Ice Dragon / Northern Sovereign",
-    "season": "Season 4",
-    "race": "True Dragon (Ice Species)",
-    "element": "ice",
-    "ep": 80000000,
-    "ultimateSkill": "Patience King Gabriel & Ice God Cthulhu",
-    "ultimateDescription": "Absolute zero deceleration, eternal frozen domain, and impenetrable crystal ice defense.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/5/52/LN_20_08.jpg/revision/latest/scale-to-width-down/352?cb=20220929152738",
-    "avatarBg": "from-cyan-300 via-blue-500 to-indigo-700",
-    "accentColor": "#38bdf8",
-    "glowColor": "rgba(56, 189, 248, 0.8)",
-    "avatarIcon": "❄️",
-    "voiceLines": {
-      "start": "Let us see if your mind can withstand absolute zero stillness.",
-      "capture": "Frozen in eternity. Your piece will never move again.",
-      "check": "Diamond Dust! Your king cannot escape the frost.",
-      "advantage": "The entire board is frozen under my sovereign command.",
-      "loss": "Fascinating. You managed to shatter my eternal glacier.",
-      "win": "Absolute Zero Checkmate. Sleep peacefully in the ice."
-    }
-  },
-  {
-    "id": "testarossa_s4",
-    "name": "Testarossa (Blanc)",
-    "jpName": "テスタロッサ",
-    "title": "Killer Lord / White Primordial",
-    "season": "Season 4",
-    "race": "Primordial Demon (White Progenitor)",
-    "element": "fire",
-    "ep": 3333333,
-    "ultimateSkill": "Hell King Belial",
-    "ultimateDescription": "Commands Death Streak and hellish nuclear magic that extinguishes souls instantly without a trace.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/9e/Testarossa_LN.png/revision/latest/scale-to-width-down/315?cb=20250903072845",
-    "avatarBg": "from-rose-500 via-red-800 to-slate-950",
-    "accentColor": "#fb7185",
-    "glowColor": "rgba(251, 113, 133, 0.8)",
-    "avatarIcon": "🌹",
-    "voiceLines": {
-      "start": "Allow me, Testarossa, to handle our diplomatic resolution on this board.",
-      "capture": "Death Streak. A clean and silent execution.",
-      "check": "Check. How unfortunate for your royal defender.",
-      "advantage": "My diplomatic calculations guarantee total victory for Lord Rimuru.",
-      "loss": "An exquisite duel. You have my sincere compliments.",
-      "win": "Nuclear Flame Checkmate. The negotiations are concluded."
-    }
-  },
-  {
-    "id": "carrera_s4",
-    "name": "Carrera (Jaune)",
-    "jpName": "カレラ",
-    "title": "Menace Lord / Yellow Primordial",
-    "season": "Season 4",
-    "race": "Primordial Demon (Yellow Progenitor)",
-    "element": "lightning",
-    "ep": 7000000,
-    "ultimateSkill": "Extinction King Abaddon",
-    "ultimateDescription": "Unleashes the golden nuclear blade Abyss Annihilation and the God-class gun handgun.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/95/Carrera_LN.png/revision/latest/scale-to-width-down/351?cb=20210531221712",
-    "avatarBg": "from-yellow-400 via-amber-600 to-red-700",
-    "accentColor": "#f59e0b",
-    "glowColor": "rgba(245, 158, 11, 0.8)",
-    "avatarIcon": "⚡",
-    "voiceLines": {
-      "start": "AHAHAHA! Time to blow up the entire board with gold nuclear magic!",
-      "capture": "Abyss Annihilation! That piece was vaporized into dust!",
-      "check": "Target locked! Golden strike aimed at your king!",
-      "advantage": "Ahahaha! The explosions are getting louder! We win!",
-      "loss": "WHAT?! How did you dodge my nuclear shot?! Next game, I won’t hold back!",
-      "win": "Extinction Checkmate! A glorious golden victory!"
-    }
-  },
-  {
-    "id": "ultima_s4",
-    "name": "Ultima (Violet)",
-    "jpName": "ウルティマ",
-    "title": "Pain Lord / Violet Primordial",
-    "season": "Season 4",
-    "race": "Primordial Demon (Purple Progenitor)",
-    "element": "dark",
-    "ep": 2666666,
-    "ultimateSkill": "Poison King Samael",
-    "ultimateDescription": "Commands incurable spiritual venom and the agonizing spatial blade Bloody Bite.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/45/Ultima_LN.png/revision/latest/scale-to-width-down/342?cb=20220219055228",
-    "avatarBg": "from-purple-600 via-violet-800 to-slate-900",
-    "accentColor": "#c084fc",
-    "glowColor": "rgba(192, 132, 252, 0.8)",
-    "avatarIcon": "🔮",
-    "voiceLines": {
-      "start": "Hehehe! Lord Rimuru, watch me poison their entire defensive formation!",
-      "capture": "Bloody Bite! Did that sting? Hehehe!",
-      "check": "Check! Your king is shivering with dread!",
-      "advantage": "My poison is already circulating through all your files!",
-      "loss": "Uuuugh! You’re so mean for countering my trap!",
-      "win": "Venomous Checkmate! Another victory dedicated to Lord Rimuru!"
-    }
-  },
-  {
-    "id": "luminous_s4",
-    "name": "Luminous Valentine",
-    "jpName": "ルミナス・バレンタイン",
-    "title": "Queen of Nightmares / Demon Lord of Lubelius",
-    "season": "Season 4",
-    "race": "True Ancestor Vampire Demon Lord",
-    "element": "holy",
-    "ep": 5000000,
-    "ultimateSkill": "Lustful King Asmodeus",
-    "ultimateDescription": "Mastery over the laws of Life and Death, resurrecting allies and commanding Sanctuary disintegration.",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/b/b2/Luminous_LN_Profile.png/revision/latest/scale-to-width-down/370?cb=20260627094126",
-    "avatarBg": "from-rose-900 via-indigo-950 to-slate-900",
-    "accentColor": "#f43f5e",
-    "glowColor": "rgba(244, 63, 94, 0.7)",
-    "avatarIcon": "🩸",
-    "voiceLines": {
-      "start": "Insolent mortals. Gaze upon the true elegance of the Holy Sanctuary.",
-      "capture": "Sanctuary Disintegration. Your sacrifice was predetermined.",
-      "check": "Check. Bow your head before the Queen of Nightmares.",
-      "advantage": "The balance of life and death tilts entirely in my favor.",
-      "loss": "Hmph. You possess more intellect than the foolish dragon Veldora.",
-      "win": "Nightmare Checkmate. Fall into eternal crimson slumber."
-    }
-  },
-  {
-    "id": "hinata_s4",
+    "id": "hinata_Season4",
     "name": "Hinata Sakaguchi",
     "jpName": "ヒナタ・サカグチ",
     "title": "Saint of Lubelius / Chief Knight Captain",
@@ -2502,7 +1352,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "chloe_s4",
+    "id": "chloe_Season4",
     "name": "Chloe Aubert / Chronoa",
     "jpName": "クロエ・オベール / クロノア",
     "title": "Hero of Time / True Hero",
@@ -2527,7 +1377,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "benimaru_s4",
+    "id": "benimaru_Season4",
     "name": "Benimaru",
     "jpName": "ベニマル",
     "title": "Samurai General / Flare Lord",
@@ -2552,7 +1402,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "shion_s4",
+    "id": "shion_Season4",
     "name": "Shion",
     "jpName": "シオン",
     "title": "War Lord / Rimuru’s Bodyguard",
@@ -2577,7 +1427,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "shuna_s4",
+    "id": "shuna_Season4",
     "name": "Shuna",
     "jpName": "シュナ",
     "title": "Holy Princess / Tempest Weaver",
@@ -2602,7 +1452,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "souei_s4",
+    "id": "souei_Season4",
     "name": "Souei",
     "jpName": "ソウエイ",
     "title": "Shadow Lord / Spy Leader",
@@ -2627,7 +1477,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "hakuro_s4",
+    "id": "hakuro_Season4",
     "name": "Hakuro",
     "jpName": "ハクロウ",
     "title": "Sword Saint / Military Instructor",
@@ -2652,7 +1502,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "zegion_s4",
+    "id": "zegion_Season4",
     "name": "Zegion",
     "jpName": "ゼギオン",
     "title": "Mist Lord / Supreme Labyrinth Guardian",
@@ -2677,7 +1527,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "gobta_s4",
+    "id": "gobta_Season4",
     "name": "Gobta & Ranga",
     "jpName": "ゴブタ ＆ ランガ",
     "title": "Star Wolf Rider / Lucky Genius",
@@ -2702,7 +1552,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "yuuki_s4",
+    "id": "yuuki_Season4",
     "name": "Yuuki Kagurazaka",
     "jpName": "ユウキ・カグラザカ",
     "title": "Grandmaster / Leader of Moderate Harlequin",
@@ -2727,32 +1577,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "shizue-izawa_s4",
-    "name": "Shizue Izawa",
-    "title": "The Conqueror of Flames",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/8/8c/Volume_11_-_Shizu.png/revision/latest/scale-to-width-down/304?cb=20220813053213",
-    "accentColor": "#ef4444",
-    "element": "fire",
-    "ultimateSkill": "Degenerate",
-    "jpName": "",
-    "season": "Season 4",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "ramiris_s4",
+    "id": "ramiris_Season4",
     "name": "Ramiris",
     "title": "Fairy of the Labyrinth",
     "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/a/a4/Ramiris_LN.png/revision/latest/scale-to-width-down/496?cb=20220701180204",
@@ -2777,7 +1602,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "geld_s4",
+    "id": "geld_Season4",
     "name": "Geld",
     "title": "Orc Disaster / Orc King",
     "image": "https://tensura.fandom.com/wiki/Special:FilePath/Geld_Anime.png",
@@ -2802,57 +1627,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "gabiru_s4",
-    "name": "Gabiru",
-    "title": "Dragonewt Leader",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/49/Gabil_Novel.png/revision/latest/scale-to-width-down/413?cb=20180928121050",
-    "accentColor": "#6366f1",
-    "element": "water",
-    "ultimateSkill": "Vortex Spear",
-    "jpName": "",
-    "season": "Season 4",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "clayman_s4",
-    "name": "Clayman",
-    "title": "Marionette Master",
-    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/6/6c/Clayman_LN.png/revision/latest/scale-to-width-down/550?cb=20220220082304",
-    "accentColor": "#8b5cf6",
-    "element": "dark",
-    "ultimateSkill": "Demon Lord Haki",
-    "jpName": "",
-    "season": "Season 4",
-    "race": "Unknown",
-    "ep": 100000,
-    "ultimateDescription": "A unique ultimate skill.",
-    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
-    "glowColor": "rgba(255, 255, 255, 0.5)",
-    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
-    "voiceLines": {
-      "start": "Let us begin!",
-      "capture": "Got you!",
-      "check": "Check!",
-      "advantage": "Checkmate.",
-      "win": "I emerge victorious.",
-      "loss": "I miscalculated..."
-    }
-  },
-  {
-    "id": "treyni_s4",
+    "id": "treyni_Season4",
     "name": "Treyni",
     "title": "Dryad of the Great Forest",
     "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/6/6d/Treyni_LN.jpg/revision/latest/scale-to-width-down/338?cb=20230907163946",
@@ -2877,7 +1652,207 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     }
   },
   {
-    "id": "gazel-dwargo_s4",
+    "id": "velgrynd_Season4",
+    "name": "Velgrynd",
+    "jpName": "ヴェルグリンド",
+    "title": "Scorch Dragon / True Dragon Sister",
+    "season": "Season 4",
+    "race": "True Dragon (Scorch Species)",
+    "element": "fire",
+    "ep": 74350087,
+    "ultimateSkill": "Charity King Raguel & Flame God Cthugha",
+    "ultimateDescription": "Wields the burning acceleration and dimension-leaping flames capable of incinerating entire armies.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/c/c0/Velgrynd_LN.png/revision/latest/scale-to-width-down/169?cb=20210525224438",
+    "avatarBg": "from-red-600 via-rose-600 to-amber-500",
+    "accentColor": "#f43f5e",
+    "glowColor": "rgba(244, 63, 94, 0.8)",
+    "avatarIcon": "🔥",
+    "voiceLines": {
+      "start": "Do not test my patience. The Scorch Dragon’s flame does not forgive mistakes.",
+      "capture": "Charred to nonexistence! You cannot withstand my heat.",
+      "check": "Burning Acceleration! Your king is engulfed in flames!",
+      "advantage": "My blazing aura covers all escape routes. Surrender.",
+      "loss": "Impressive... You managed to extinguish the Scorch Dragon’s advance.",
+      "win": "Cardinal Acceleration Checkmate! Burn into eternity."
+    }
+  },
+  {
+    "id": "velzard_Season4",
+    "name": "Velzard",
+    "jpName": "ヴェルザード",
+    "title": "White Ice Dragon / Northern Sovereign",
+    "season": "Season 4",
+    "race": "True Dragon (Ice Species)",
+    "element": "ice",
+    "ep": 80000000,
+    "ultimateSkill": "Patience King Gabriel & Ice God Cthulhu",
+    "ultimateDescription": "Absolute zero deceleration, eternal frozen domain, and impenetrable crystal ice defense.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/5/52/LN_20_08.jpg/revision/latest/scale-to-width-down/352?cb=20220929152738",
+    "avatarBg": "from-cyan-300 via-blue-500 to-indigo-700",
+    "accentColor": "#38bdf8",
+    "glowColor": "rgba(56, 189, 248, 0.8)",
+    "avatarIcon": "❄️",
+    "voiceLines": {
+      "start": "Let us see if your mind can withstand absolute zero stillness.",
+      "capture": "Frozen in eternity. Your piece will never move again.",
+      "check": "Diamond Dust! Your king cannot escape the frost.",
+      "advantage": "The entire board is frozen under my sovereign command.",
+      "loss": "Fascinating. You managed to shatter my eternal glacier.",
+      "win": "Absolute Zero Checkmate. Sleep peacefully in the ice."
+    }
+  },
+  {
+    "id": "testarossa_Season4",
+    "name": "Testarossa (Blanc)",
+    "jpName": "テスタロッサ",
+    "title": "Killer Lord / White Primordial",
+    "season": "Season 4",
+    "race": "Primordial Demon (White Progenitor)",
+    "element": "fire",
+    "ep": 3333333,
+    "ultimateSkill": "Hell King Belial",
+    "ultimateDescription": "Commands Death Streak and hellish nuclear magic that extinguishes souls instantly without a trace.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/9e/Testarossa_LN.png/revision/latest/scale-to-width-down/315?cb=20250903072845",
+    "avatarBg": "from-rose-500 via-red-800 to-slate-950",
+    "accentColor": "#fb7185",
+    "glowColor": "rgba(251, 113, 133, 0.8)",
+    "avatarIcon": "🌹",
+    "voiceLines": {
+      "start": "Allow me, Testarossa, to handle our diplomatic resolution on this board.",
+      "capture": "Death Streak. A clean and silent execution.",
+      "check": "Check. How unfortunate for your royal defender.",
+      "advantage": "My diplomatic calculations guarantee total victory for Lord Rimuru.",
+      "loss": "An exquisite duel. You have my sincere compliments.",
+      "win": "Nuclear Flame Checkmate. The negotiations are concluded."
+    }
+  },
+  {
+    "id": "carrera_Season4",
+    "name": "Carrera (Jaune)",
+    "jpName": "カレラ",
+    "title": "Menace Lord / Yellow Primordial",
+    "season": "Season 4",
+    "race": "Primordial Demon (Yellow Progenitor)",
+    "element": "lightning",
+    "ep": 7000000,
+    "ultimateSkill": "Extinction King Abaddon",
+    "ultimateDescription": "Unleashes the golden nuclear blade Abyss Annihilation and the God-class gun handgun.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/95/Carrera_LN.png/revision/latest/scale-to-width-down/351?cb=20210531221712",
+    "avatarBg": "from-yellow-400 via-amber-600 to-red-700",
+    "accentColor": "#f59e0b",
+    "glowColor": "rgba(245, 158, 11, 0.8)",
+    "avatarIcon": "⚡",
+    "voiceLines": {
+      "start": "AHAHAHA! Time to blow up the entire board with gold nuclear magic!",
+      "capture": "Abyss Annihilation! That piece was vaporized into dust!",
+      "check": "Target locked! Golden strike aimed at your king!",
+      "advantage": "Ahahaha! The explosions are getting louder! We win!",
+      "loss": "WHAT?! How did you dodge my nuclear shot?! Next game, I won’t hold back!",
+      "win": "Extinction Checkmate! A glorious golden victory!"
+    }
+  },
+  {
+    "id": "ultima_Season4",
+    "name": "Ultima (Violet)",
+    "jpName": "ウルティマ",
+    "title": "Pain Lord / Violet Primordial",
+    "season": "Season 4",
+    "race": "Primordial Demon (Purple Progenitor)",
+    "element": "dark",
+    "ep": 2666666,
+    "ultimateSkill": "Poison King Samael",
+    "ultimateDescription": "Commands incurable spiritual venom and the agonizing spatial blade Bloody Bite.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/45/Ultima_LN.png/revision/latest/scale-to-width-down/342?cb=20220219055228",
+    "avatarBg": "from-purple-600 via-violet-800 to-slate-900",
+    "accentColor": "#c084fc",
+    "glowColor": "rgba(192, 132, 252, 0.8)",
+    "avatarIcon": "🔮",
+    "voiceLines": {
+      "start": "Hehehe! Lord Rimuru, watch me poison their entire defensive formation!",
+      "capture": "Bloody Bite! Did that sting? Hehehe!",
+      "check": "Check! Your king is shivering with dread!",
+      "advantage": "My poison is already circulating through all your files!",
+      "loss": "Uuuugh! You’re so mean for countering my trap!",
+      "win": "Venomous Checkmate! Another victory dedicated to Lord Rimuru!"
+    }
+  },
+  {
+    "id": "luminous_Season4",
+    "name": "Luminous Valentine",
+    "jpName": "ルミナス・バレンタイン",
+    "title": "Queen of Nightmares / Demon Lord of Lubelius",
+    "season": "Season 4",
+    "race": "True Ancestor Vampire Demon Lord",
+    "element": "holy",
+    "ep": 5000000,
+    "ultimateSkill": "Lustful King Asmodeus",
+    "ultimateDescription": "Mastery over the laws of Life and Death, resurrecting allies and commanding Sanctuary disintegration.",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/b/b2/Luminous_LN_Profile.png/revision/latest/scale-to-width-down/370?cb=20260627094126",
+    "avatarBg": "from-rose-900 via-indigo-950 to-slate-900",
+    "accentColor": "#f43f5e",
+    "glowColor": "rgba(244, 63, 94, 0.7)",
+    "avatarIcon": "🩸",
+    "voiceLines": {
+      "start": "Insolent mortals. Gaze upon the true elegance of the Holy Sanctuary.",
+      "capture": "Sanctuary Disintegration. Your sacrifice was predetermined.",
+      "check": "Check. Bow your head before the Queen of Nightmares.",
+      "advantage": "The balance of life and death tilts entirely in my favor.",
+      "loss": "Hmph. You possess more intellect than the foolish dragon Veldora.",
+      "win": "Nightmare Checkmate. Fall into eternal crimson slumber."
+    }
+  },
+  {
+    "id": "shizue-izawa_Season4",
+    "name": "Shizue Izawa",
+    "title": "The Conqueror of Flames",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/8/8c/Volume_11_-_Shizu.png/revision/latest/scale-to-width-down/304?cb=20220813053213",
+    "accentColor": "#ef4444",
+    "element": "fire",
+    "ultimateSkill": "Degenerate",
+    "jpName": "",
+    "season": "Season 4",
+    "race": "Unknown",
+    "ep": 100000,
+    "ultimateDescription": "A unique ultimate skill.",
+    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
+    "glowColor": "rgba(255, 255, 255, 0.5)",
+    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
+    "voiceLines": {
+      "start": "Let us begin!",
+      "capture": "Got you!",
+      "check": "Check!",
+      "advantage": "Checkmate.",
+      "win": "I emerge victorious.",
+      "loss": "I miscalculated..."
+    }
+  },
+  {
+    "id": "gabiru_Season4",
+    "name": "Gabiru",
+    "title": "Dragonewt Leader",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/49/Gabil_Novel.png/revision/latest/scale-to-width-down/413?cb=20180928121050",
+    "accentColor": "#6366f1",
+    "element": "water",
+    "ultimateSkill": "Vortex Spear",
+    "jpName": "",
+    "season": "Season 4",
+    "race": "Unknown",
+    "ep": 100000,
+    "ultimateDescription": "A unique ultimate skill.",
+    "avatarBg": "bg-gradient-to-br from-slate-900 to-slate-800",
+    "glowColor": "rgba(255, 255, 255, 0.5)",
+    "avatarIcon": "https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png",
+    "voiceLines": {
+      "start": "Let us begin!",
+      "capture": "Got you!",
+      "check": "Check!",
+      "advantage": "Checkmate.",
+      "win": "I emerge victorious.",
+      "loss": "I miscalculated..."
+    }
+  },
+  {
+    "id": "gazel-dwargo_Season4",
     "name": "Gazel Dwargo",
     "title": "King of Dwargon",
     "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/a/a3/LN_15_04.jpg/revision/latest/scale-to-width-down/442?cb=20190928081119",
@@ -2903,105 +1878,101 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
   }
 ];
 
-
 export const PIECE_CHARACTER_MAP: Record<string, { name: string; avatar: string; skill: string; image: string; element: string; accentColor: string }> = {
-  // --- WHITE PIECES (Tempest / Octagram Vanguard) ---
-  'w-k': { 
-    name: 'Rimuru Tempest', 
-    avatar: '💧', 
-    skill: 'Void God Nodens & Beelzebuth', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/0/0a/Rimuru_%28Slime%29_LN.png/revision/latest?cb=20230322164422',
-    element: 'water',
-    accentColor: '#06b6d4'
+  "w-k": {
+    "name": "Rimuru Tempest",
+    "avatar": "💧",
+    "skill": "Void God Nodens & Beelzebuth",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/0/0a/Rimuru_%28Slime%29_LN.png/revision/latest?cb=20230322164422",
+    "element": "water",
+    "accentColor": "#06b6d4"
   },
-  'w-q': { 
-    name: 'Ciel / Raphael', 
-    avatar: '✨', 
-    skill: 'Voice of the World & Akashic Records', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/1/1c/LN_White_Shirt_Rimuru.png/revision/latest/scale-to-width-down/240?cb=20220629192231',
-    element: 'holy',
-    accentColor: '#38bdf8'
+  "w-q": {
+    "name": "Ciel / Raphael",
+    "avatar": "✨",
+    "skill": "Voice of the World & Akashic Records",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/1/1c/LN_White_Shirt_Rimuru.png/revision/latest/scale-to-width-down/240?cb=20220629192231",
+    "element": "holy",
+    "accentColor": "#38bdf8"
   },
-  'w-r': { 
-    name: 'Veldora Tempest', 
-    avatar: '⚡', 
-    skill: 'Storm Dragon Magic & Faust', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/f/f1/Veldora_Human_LN.png/revision/latest/scale-to-width-down/407?cb=20190107181108',
-    element: 'lightning',
-    accentColor: '#eab308'
+  "w-r": {
+    "name": "Veldora Tempest",
+    "avatar": "⚡",
+    "skill": "Storm Dragon Magic & Faust",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/f/f1/Veldora_Human_LN.png/revision/latest/scale-to-width-down/407?cb=20190107181108",
+    "element": "lightning",
+    "accentColor": "#eab308"
   },
-  'w-b': { 
-    name: 'Diablo (Noir)', 
-    avatar: '🖤', 
-    skill: 'Temptation World & Azazel', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/2/2d/DiabloLN.png/revision/latest/scale-to-width-down/208?cb=20210124222857',
-    element: 'dark',
-    accentColor: '#a855f7'
+  "w-b": {
+    "name": "Diablo (Noir)",
+    "avatar": "🖤",
+    "skill": "Temptation World & Azazel",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/2/2d/DiabloLN.png/revision/latest/scale-to-width-down/208?cb=20210124222857",
+    "element": "dark",
+    "accentColor": "#a855f7"
   },
-  'w-n': { 
-    name: 'Benimaru', 
-    avatar: '🔥', 
-    skill: 'Blazing Sun King Amaterasu', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/f/f8/Benimaru_LN_Rendered.png/revision/latest/scale-to-width-down/252?cb=20250820151216',
-    element: 'fire',
-    accentColor: '#f97316'
+  "w-n": {
+    "name": "Benimaru",
+    "avatar": "🔥",
+    "skill": "Blazing Sun King Amaterasu",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/f/f8/Benimaru_LN_Rendered.png/revision/latest/scale-to-width-down/252?cb=20250820151216",
+    "element": "fire",
+    "accentColor": "#f97316"
   },
-  'w-p': { 
-    name: 'Gobta & Ranga', 
-    avatar: '🐺', 
-    skill: 'Demon Wolf Shadow Step', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/1/16/Gobta_LN_Rendered.png/revision/latest/scale-to-width-down/200?cb=20200515050614',
-    element: 'earth',
-    accentColor: '#10b981'
+  "w-p": {
+    "name": "Gobta & Ranga",
+    "avatar": "🐺",
+    "skill": "Demon Wolf Shadow Step",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/1/16/Gobta_LN_Rendered.png/revision/latest/scale-to-width-down/200?cb=20200515050614",
+    "element": "earth",
+    "accentColor": "#10b981"
   },
-
-  // --- BLACK PIECES (Demon Lord Coalition & Rival Legends) ---
-  'b-k': { 
-    name: 'Guy Crimson (Rouge)', 
-    avatar: '👑', 
-    skill: 'Lord of Darkness Lucifer', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/7/7a/Guy_Novel_Colour.png/revision/latest/scale-to-width-down/353?cb=20180928134016',
-    element: 'fire',
-    accentColor: '#ef4444'
+  "b-k": {
+    "name": "Guy Crimson (Rouge)",
+    "avatar": "👑",
+    "skill": "Lord of Darkness Lucifer",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/7/7a/Guy_Novel_Colour.png/revision/latest/scale-to-width-down/353?cb=20180928134016",
+    "element": "fire",
+    "accentColor": "#ef4444"
   },
-  'b-q': { 
-    name: 'Milim Nava', 
-    avatar: '🐉', 
-    skill: 'Drago Nova & Satanael', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/3/31/LN_05_03.jpg/revision/latest/scale-to-width-down/355?cb=20220216143221',
-    element: 'fire',
-    accentColor: '#f43f5e'
+  "b-q": {
+    "name": "Milim Nava",
+    "avatar": "🐉",
+    "skill": "Drago Nova & Satanael",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/3/31/LN_05_03.jpg/revision/latest/scale-to-width-down/355?cb=20220216143221",
+    "element": "fire",
+    "accentColor": "#f43f5e"
   },
-  'b-r': { 
-    name: 'Velzard (Ice Dragon)', 
-    avatar: '❄️', 
-    skill: 'Patience King Gabriel', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/5/52/LN_20_08.jpg/revision/latest/scale-to-width-down/352?cb=20220929152738',
-    element: 'ice',
-    accentColor: '#38bdf8'
+  "b-r": {
+    "name": "Velzard (Ice Dragon)",
+    "avatar": "❄️",
+    "skill": "Patience King Gabriel",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/5/52/LN_20_08.jpg/revision/latest/scale-to-width-down/352?cb=20220929152738",
+    "element": "ice",
+    "accentColor": "#38bdf8"
   },
-  'b-b': { 
-    name: 'Hinata Sakaguchi', 
-    avatar: '⚔️', 
-    skill: 'Seven Celestial Slashes', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/1/11/Hinata_Sakaguchi_LN.png/revision/latest/scale-to-width-down/192?cb=20230301071450',
-    element: 'holy',
-    accentColor: '#6366f1'
+  "b-b": {
+    "name": "Hinata Sakaguchi",
+    "avatar": "⚔️",
+    "skill": "Seven Celestial Slashes",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/1/11/Hinata_Sakaguchi_LN.png/revision/latest/scale-to-width-down/192?cb=20230301071450",
+    "element": "holy",
+    "accentColor": "#6366f1"
   },
-  'b-n': { 
-    name: 'Shion (War Lord)', 
-    avatar: '🗡️', 
-    skill: 'Tyrant King Susanoo', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/b/b5/Shion_LN_Rendered.png/revision/latest/scale-to-width-down/230?cb=20241124174539',
-    element: 'dark',
-    accentColor: '#a855f7'
+  "b-n": {
+    "name": "Shion (War Lord)",
+    "avatar": "🗡️",
+    "skill": "Tyrant King Susanoo",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/b/b5/Shion_LN_Rendered.png/revision/latest/scale-to-width-down/230?cb=20241124174539",
+    "element": "dark",
+    "accentColor": "#a855f7"
   },
-  'b-p': { 
-    name: 'Testarossa & Vanguard', 
-    avatar: '🌹', 
-    skill: 'Death Streak Flame', 
-    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/9e/Testarossa_LN.png/revision/latest/scale-to-width-down/315?cb=20250903072845',
-    element: 'fire',
-    accentColor: '#fb7185'
+  "b-p": {
+    "name": "Testarossa & Vanguard",
+    "avatar": "🌹",
+    "skill": "Death Streak Flame",
+    "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/9/9e/Testarossa_LN.png/revision/latest/scale-to-width-down/315?cb=20250903072845",
+    "element": "fire",
+    "accentColor": "#fb7185"
   }
 };

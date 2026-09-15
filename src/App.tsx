@@ -483,7 +483,7 @@ export default function App() {
       setTournamentStage(1);
       setDifficulty('easy');
       setTimerMode('3m');
-      setOpponentCharacter(TENSURA_CHARACTERS.find(c => c.name === 'Gobta & Ranga') || TENSURA_CHARACTERS[1]);
+      setOpponentCharacter(TENSURA_CHARACTERS.find(c => c.name === 'Gobta & Ranga') || TENSURA_CHARACTERS[0]);
       config.timerMode = '3m';
     }
 
