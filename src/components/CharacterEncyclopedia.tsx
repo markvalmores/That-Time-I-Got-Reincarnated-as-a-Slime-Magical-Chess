@@ -18,6 +18,12 @@ export const CharacterEncyclopedia: React.FC<CharacterEncyclopediaProps> = ({
 }) => {
   const [selectedChar, setSelectedChar] = useState<TensuraCharacter>(TENSURA_CHARACTERS[0]);
 
+  // Deduplicate characters by name
+  const uniqueCharacters = TENSURA_CHARACTERS.filter((char, index, self) => 
+    self.findIndex(c => c.name === char.name) === index
+  );
+
+
   if (!isOpen) return null;
 
   return (
@@ -61,7 +67,7 @@ export const CharacterEncyclopedia: React.FC<CharacterEncyclopediaProps> = ({
             
             {/* Left list of Characters */}
             <div className="space-y-2 max-h-[480px] overflow-y-auto pr-1">
-              {TENSURA_CHARACTERS.map((char) => (
+              {uniqueCharacters.map((char) => (
                 <button
                   key={char.id}
                   onClick={() => {

@@ -48,11 +48,18 @@ export const CharacterSelectScreen: React.FC<CharacterSelectScreenProps> = ({
     { id: 'Season 1', label: 'Season 1' }
   ];
 
-  const filteredCharacters = TENSURA_CHARACTERS.filter((char) => {
+  const filteredCharacters = TENSURA_CHARACTERS.filter((char, index, self) => {
     const matchSeason = filterSeason === 'all' || char.season === filterSeason;
     const matchSearch = char.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                         char.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                         char.ultimateSkill.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    if (filterSeason === 'all') {
+      // Deduplicate by name if showing all seasons
+      const isFirst = self.findIndex(c => c.name === char.name) === index;
+      return matchSearch && isFirst;
+    }
+    
     return matchSeason && matchSearch;
   });
 
