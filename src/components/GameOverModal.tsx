@@ -12,6 +12,8 @@ interface GameOverModalProps {
   playerCharacter: TensuraCharacter;
   opponentCharacter: TensuraCharacter;
   onRematch: () => void;
+  isTournament?: boolean;
+  tournamentStage?: number;
   onReturnTitle: () => void;
   onReplay: () => void;
 }
@@ -24,11 +26,14 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
   opponentCharacter,
   onRematch,
   onReturnTitle,
-  onReplay
+  onReplay,
+  isTournament,
+  tournamentStage
 }) => {
   const [phase, setPhase] = useState<'hidden' | 'flash' | 'text' | 'reveal'>('hidden');
 
   const isPlayerWinner = winner === 'w';
+  const showTournamentVictory = isTournament && tournamentStage === 5 && isPlayerWinner;
   const isDraw = winner === 'draw';
   const winningCharacter = isPlayerWinner ? playerCharacter : (!isDraw ? opponentCharacter : null);
   const winningColor = winningCharacter ? winningCharacter.accentColor : '#06b6d4';
@@ -230,7 +235,7 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
                 className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold font-mono text-xs shadow-lg shadow-cyan-500/40 hover:scale-105 transition"
               >
                 <RotateCcw className="w-4 h-4" />
-                <span>REMATCH</span>
+                <span>{showTournamentVictory ? 'CLAIM TITLE' : (isTournament && isPlayerWinner ? 'NEXT BATTLE' : (isTournament && !isPlayerWinner ? 'RETRY STAGE' : 'REMATCH'))}</span>
               </button>
   
               <button

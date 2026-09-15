@@ -607,7 +607,7 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
     id: 'geld',
     name: 'Geld',
     title: 'Orc Disaster / Orc King',
-    image: '',
+    image: 'https://tensura.fandom.com/wiki/Special:FilePath/Geld_Anime.png',
     accentColor: '#ea580c',
     element: 'earth',
     ultimateSkill: 'Gourmet / Beelzebub (sub)',

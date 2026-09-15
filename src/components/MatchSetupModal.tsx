@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
+import {
+  Sparkles,
   Crown, 
   Clock, 
   Palette, 
@@ -28,7 +29,7 @@ interface MatchSetupModalProps {
     theme: BoardTheme;
     playerCharacter: TensuraCharacter;
     opponentCharacter: TensuraCharacter;
-    matchType: 'pvp' | 'pve' | 'cvc';
+    matchType: 'pvp' | 'pve' | 'cvc' | 'tournament';
   }) => void;
 }
 
@@ -42,7 +43,7 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
   const [difficulty, setDifficulty] = useState<AIDifficulty>('grandmaster');
   const [timerMode, setTimerMode] = useState<TimerMode>('none');
   const [theme, setTheme] = useState<BoardTheme>('tempest');
-  const [matchType, setMatchType] = useState<'pvp' | 'pve' | 'cvc'>('pve');
+  const [matchType, setMatchType] = useState<'pvp' | 'pve' | 'cvc' | 'tournament'>('pve');
   const [playerChar, setPlayerChar] = useState<TensuraCharacter>(TENSURA_CHARACTERS[0]); // Rimuru
   const [opponentChar, setOpponentChar] = useState<TensuraCharacter>(TENSURA_CHARACTERS[1]); // Veldora
 
@@ -202,7 +203,23 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
                 <Users className="w-4 h-4 text-purple-400" />
                 <span>LOCAL 2-PLAYER (PASS & PLAY)</span>
               </button>
+
+              <button
+                onClick={() => {
+                  soundEngine.playClick();
+                  setMatchType('tournament');
+                }}
+                className={`p-3 rounded-xl border flex items-center justify-center gap-2 font-mono text-xs font-bold transition-all ${
+                  matchType === 'tournament'
+                    ? 'bg-yellow-950 border-yellow-400 text-yellow-300 ring-1 ring-yellow-400'
+                    : 'bg-slate-950 border-slate-800 text-slate-400'
+                }`}
+              >
+                <Sparkles className="w-4 h-4 text-yellow-400" />
+                <span>TOURNAMENT</span>
+              </button>
             </div>
+
           </div>
 
           {/* AI Difficulty Selector (if vs AI) */}
@@ -239,6 +256,10 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
             </div>
           )}
 
+          {matchType !== 'tournament' && (
+          <div>
+          {matchType !== 'tournament' && (
+          <div>
           {/* Timer Mode Selector */}
           <div className="mb-5">
             <label className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider block mb-2">
@@ -272,6 +293,12 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
             </div>
           </div>
 
+          </div>
+          )}
+
+          </div>
+          )}
+
           {/* Board Theme Selector */}
           <div className="mb-6">
             <label className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider block mb-2">
@@ -303,6 +330,10 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
             </div>
           </div>
 
+          {matchType !== 'tournament' && (
+          <div>
+          {matchType !== 'tournament' && (
+          <div>
           {/* Combatant Selection Preview */}
           <div className="grid grid-cols-2 gap-4 mb-6 p-4 rounded-2xl bg-slate-950/80 border border-slate-800">
             <div className="flex items-center gap-3">
@@ -337,6 +368,12 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
               </div>
             </div>
           </div>
+
+          </div>
+          )}
+
+          </div>
+          )}
 
           {/* Action Footer */}
           <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">

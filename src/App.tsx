@@ -74,9 +74,11 @@ export default function App() {
   const [difficulty, setDifficulty] = useState<AIDifficulty>('grandmaster');
   const [timerMode, setTimerMode] = useState<TimerMode>('none');
   const [theme, setTheme] = useState<BoardTheme>('tempest');
-  const [matchType, setMatchType] = useState<'pvp' | 'pve' | 'cvc'>('pve');
+  const [matchType, setMatchType] = useState<'pvp' | 'pve' | 'cvc' | 'tournament'>('pve');
   const isVsAI = matchType === 'pve';
   const isAIVsAI = matchType === 'cvc';
+  const isTournament = matchType === 'tournament';
+  const [tournamentStage, setTournamentStage] = useState<number>(0);
   const [playerCharacter, setPlayerCharacter] = useState<TensuraCharacter>(TENSURA_CHARACTERS[0]);
   const [opponentCharacter, setOpponentCharacter] = useState<TensuraCharacter>(TENSURA_CHARACTERS[1]);
   const [isBoardFlipped, setIsBoardFlipped] = useState<boolean>(false);
@@ -467,7 +469,7 @@ export default function App() {
     theme: BoardTheme;
     playerCharacter: TensuraCharacter;
     opponentCharacter: TensuraCharacter;
-    matchType: 'pvp' | 'pve' | 'cvc';
+    matchType: 'pvp' | 'pve' | 'cvc' | 'tournament';
   }) => {
     setGameMode(config.mode);
     setDifficulty(config.difficulty);
@@ -476,6 +478,15 @@ export default function App() {
     setPlayerCharacter(config.playerCharacter);
     setOpponentCharacter(config.opponentCharacter);
     setMatchType(config.matchType);
+    
+    if (config.matchType === 'tournament') {
+      setTournamentStage(1);
+      setDifficulty('easy');
+      setTimerMode('3m');
+      setOpponentCharacter(TENSURA_CHARACTERS.find(c => c.name === 'Gobta & Ranga') || TENSURA_CHARACTERS[1]);
+      config.timerMode = '3m';
+    }
+
 
     // Reset board states
     setChessState(createInitialGameState(config.mode === 'chess960'));
@@ -710,7 +721,7 @@ export default function App() {
               turn={gameMode.startsWith('chess') ? chessState.turn : checkersState.turn}
               playerCharacter={playerCharacter}
               opponentCharacter={opponentCharacter}
-              matchType={isVsAI}
+              isVsAI={isVsAI}
               whiteTime={whiteTime}
               blackTime={blackTime}
               timerMode={timerMode}
@@ -909,17 +920,57 @@ export default function App() {
         reason={gameOverReason}
         playerCharacter={playerCharacter}
         opponentCharacter={opponentCharacter}
+        
+        isTournament={isTournament}
+        tournamentStage={tournamentStage}
         onRematch={() => {
-          startNewMatch({
-            mode: gameMode,
-            difficulty,
-            timerMode,
-            theme,
-            playerCharacter,
-            opponentCharacter,
-            matchType
-          });
+          if (isTournament) {
+            if (gameOverWinner === 'w') {
+              if (tournamentStage >= 5) {
+                // Won tournament, return to title
+                setIsGameOverOpen(false);
+                setCurrentScreen('title');
+                return;
+              }
+              // Next stage
+              const nextStage = tournamentStage + 1;
+              setTournamentStage(nextStage);
+              const tDiffs = ['easy', 'normal', 'hard', 'grandmaster', 'king'];
+              const tChars = ['Gobta & Ranga', 'Shion', 'Hinata Sakaguchi', 'Milim Nava', 'Guy Crimson (Rouge)'];
+              startNewMatch({
+                mode: gameMode,
+                difficulty: tDiffs[nextStage - 1] as any,
+                timerMode: '3m',
+                theme,
+                playerCharacter,
+                opponentCharacter: TENSURA_CHARACTERS.find(c => c.name === tChars[nextStage - 1]) || TENSURA_CHARACTERS[1],
+                matchType: 'tournament'
+              });
+            } else {
+              // Retry stage
+              startNewMatch({
+                mode: gameMode,
+                difficulty,
+                timerMode: '3m',
+                theme,
+                playerCharacter,
+                opponentCharacter,
+                matchType: 'tournament'
+              });
+            }
+          } else {
+            startNewMatch({
+              mode: gameMode,
+              difficulty,
+              timerMode,
+              theme,
+              playerCharacter,
+              opponentCharacter,
+              matchType
+            });
+          }
         }}
+
         onReturnTitle={() => {
           setIsGameOverOpen(false);
           setCurrentScreen('title');
