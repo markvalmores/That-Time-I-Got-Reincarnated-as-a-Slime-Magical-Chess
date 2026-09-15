@@ -55,7 +55,7 @@ export default function App() {
   // Video Background Global Settings (Default: Background Video Music Auto ON)
   const [videoSettings, setVideoSettings] = useState<VideoSettings>({
     showVideo: true,
-    isMuted: false, // Default: Background Video Music Auto ON
+    isMuted: true, // Default muted for browser autoplay compatibility
     zoom: 1.5,
     opacity: 0.85,
     fitMode: 'cover',

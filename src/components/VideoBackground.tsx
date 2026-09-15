@@ -80,7 +80,7 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({
       fitMode: 'cover',
       panX: 0,
       panY: 0,
-      isMuted: false // Default Auto ON
+      isMuted: true // Default muted for browser autoplay compatibility
     });
   };
 
@@ -196,7 +196,7 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({
                   </div>
                   <div>
                     <div className="text-[11px] font-bold text-slate-200">Video Music</div>
-                    <div className="text-[9px] text-cyan-400/80">Default: Auto ON</div>
+                    <div className="text-[9px] text-cyan-400/80">Default: Muted (Auto-Play Policy)</div>
                   </div>
                 </div>
 
