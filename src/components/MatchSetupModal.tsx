@@ -28,7 +28,7 @@ interface MatchSetupModalProps {
     theme: BoardTheme;
     playerCharacter: TensuraCharacter;
     opponentCharacter: TensuraCharacter;
-    isVsAI: boolean;
+    matchType: 'pvp' | 'pve' | 'cvc';
   }) => void;
 }
 
@@ -42,7 +42,7 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
   const [difficulty, setDifficulty] = useState<AIDifficulty>('grandmaster');
   const [timerMode, setTimerMode] = useState<TimerMode>('none');
   const [theme, setTheme] = useState<BoardTheme>('tempest');
-  const [isVsAI, setIsVsAI] = useState<boolean>(true);
+  const [matchType, setMatchType] = useState<'pvp' | 'pve' | 'cvc'>('pve');
   const [playerChar, setPlayerChar] = useState<TensuraCharacter>(TENSURA_CHARACTERS[0]); // Rimuru
   const [opponentChar, setOpponentChar] = useState<TensuraCharacter>(TENSURA_CHARACTERS[1]); // Veldora
 
@@ -57,7 +57,7 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
       theme,
       playerCharacter: playerChar,
       opponentCharacter: opponentChar,
-      isVsAI
+      matchType
     });
     onClose();
   };
@@ -176,10 +176,10 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
               <button
                 onClick={() => {
                   soundEngine.playClick();
-                  setIsVsAI(true);
+                  setMatchType('pve');
                 }}
                 className={`p-3 rounded-xl border flex items-center justify-center gap-2 font-mono text-xs font-bold transition-all ${
-                  isVsAI
+                  matchType === 'pve'
                     ? 'bg-cyan-950 border-cyan-400 text-cyan-300 ring-1 ring-cyan-400'
                     : 'bg-slate-950 border-slate-800 text-slate-400'
                 }`}
@@ -191,10 +191,10 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
               <button
                 onClick={() => {
                   soundEngine.playClick();
-                  setIsVsAI(false);
+                  setMatchType('pvp');
                 }}
                 className={`p-3 rounded-xl border flex items-center justify-center gap-2 font-mono text-xs font-bold transition-all ${
-                  !isVsAI
+                  matchType === 'pvp'
                     ? 'bg-purple-950 border-purple-400 text-purple-300 ring-1 ring-purple-400'
                     : 'bg-slate-950 border-slate-800 text-slate-400'
                 }`}
@@ -206,7 +206,7 @@ export const MatchSetupModal: React.FC<MatchSetupModalProps> = ({
           </div>
 
           {/* AI Difficulty Selector (if vs AI) */}
-          {isVsAI && (
+          {(matchType === 'pve' || matchType === 'cvc') && (
             <div className="mb-5">
               <label className="text-xs font-mono font-bold text-amber-300 uppercase tracking-wider block mb-2">
                 A.I. DIFFICULTY LEVEL

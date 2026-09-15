@@ -74,7 +74,9 @@ export default function App() {
   const [difficulty, setDifficulty] = useState<AIDifficulty>('grandmaster');
   const [timerMode, setTimerMode] = useState<TimerMode>('none');
   const [theme, setTheme] = useState<BoardTheme>('tempest');
-  const [isVsAI, setIsVsAI] = useState<boolean>(true);
+  const [matchType, setMatchType] = useState<'pvp' | 'pve' | 'cvc'>('pve');
+  const isVsAI = matchType === 'pve';
+  const isAIVsAI = matchType === 'cvc';
   const [playerCharacter, setPlayerCharacter] = useState<TensuraCharacter>(TENSURA_CHARACTERS[0]);
   const [opponentCharacter, setOpponentCharacter] = useState<TensuraCharacter>(TENSURA_CHARACTERS[1]);
   const [isBoardFlipped, setIsBoardFlipped] = useState<boolean>(false);
@@ -83,6 +85,29 @@ export default function App() {
   const [chessState, setChessState] = useState(createInitialGameState());
   const [checkersState, setCheckersState] = useState(createInitialCheckersState());
   const [isAIThinking, setIsAIThinking] = useState<boolean>(false);
+
+  // Replay Mode
+  const [isReplayMode, setIsReplayMode] = useState(false);
+  const [replayIndex, setReplayIndex] = useState(0);
+
+  // Replay State Computation
+  const activeChessState = React.useMemo(() => {
+    if (!isReplayMode || gameMode === 'checkers') return chessState;
+    let st = createInitialGameState(gameMode === 'chess960');
+    for (let i = 0; i < replayIndex && i < chessState.moveHistory.length; i++) {
+      st = makeChessMove(st, chessState.moveHistory[i]);
+    }
+    return st;
+  }, [isReplayMode, gameMode, chessState, replayIndex]);
+
+  const activeCheckersState = React.useMemo(() => {
+    if (!isReplayMode || gameMode !== 'checkers') return checkersState;
+    let st = createInitialCheckersState();
+    for (let i = 0; i < replayIndex && i < checkersState.moveHistory.length; i++) {
+      st = makeCheckersMove(st, checkersState.moveHistory[i]);
+    }
+    return st;
+  }, [isReplayMode, gameMode, checkersState, replayIndex]);
 
   // Clocks
   const [whiteTime, setWhiteTime] = useState<number>(300);
@@ -110,6 +135,7 @@ export default function App() {
   const [isGameOverOpen, setIsGameOverOpen] = useState(false);
   const [gameOverWinner, setGameOverWinner] = useState<'w' | 'b' | 'draw' | null>(null);
   const [gameOverReason, setGameOverReason] = useState<string>('');
+  
 
   // Hardware Diagnostics & Device Information
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo | null>(null);
@@ -146,8 +172,69 @@ export default function App() {
   };
 
   // Timer Countdown loop
+  // CVC (CPU vs CPU) Auto-Play Loop
   useEffect(() => {
-    if (currentScreen !== 'game' || timerMode === 'none' || isGameOverOpen) return;
+    if (isAIVsAI && currentScreen === 'game' && !isGameOverOpen && !isReplayMode && !isAIThinking) {
+      if (gameMode.startsWith('chess')) {
+        setIsAIThinking(true);
+        const thinkDelay = difficulty === 'easy' ? 400 : difficulty === 'normal' ? 600 : 800;
+        const t = setTimeout(() => {
+          const aiMove = getChessAIMove(chessState, difficulty);
+          if (aiMove) {
+            const aiNextState = makeChessMove(chessState, aiMove);
+            setChessState(aiNextState);
+            soundEngine.playMove();
+            if (aiMove.captured) soundEngine.playCapture();
+
+            const aiEval = evaluateChessBoard(aiNextState.board) / 100;
+            
+            if (aiNextState.isCheckmate) {
+              setGameOverWinner(chessState.turn);
+              setGameOverReason('Checkmate by CPU Commander!');
+              setIsGameOverOpen(true);
+              soundEngine.playCheckmate(false);
+            } else if (aiNextState.isStalemate) {
+              setGameOverWinner('draw');
+              setGameOverReason('Equilibrium Reached (Draw).');
+              setIsGameOverOpen(true);
+            } else if (aiNextState.isCheck) {
+              soundEngine.playCheck();
+              triggerCharacterBanter(chessState.turn === 'w' ? playerCharacter : opponentCharacter, 'check');
+            }
+            
+            runGreatSageAnalysis(aiEval, `CPU moved to ${toSquareNotation(aiMove.to.row, aiMove.to.col)}`, aiNextState.isCheck);
+          }
+          setIsAIThinking(false);
+        }, thinkDelay);
+        return () => clearTimeout(t);
+      } else {
+        setIsAIThinking(true);
+        const t = setTimeout(() => {
+          const aiMove = getAICheckersMove(checkersState, difficulty);
+          if (aiMove) {
+            const aiNextState = makeCheckersMove(checkersState, aiMove);
+            setCheckersState(aiNextState);
+            soundEngine.playMove();
+            if (aiMove.jumped && aiMove.jumped.length > 0) soundEngine.playCapture();
+
+            const aiEval = evaluateCheckersBoard(aiNextState.board) / 100;
+            runGreatSageAnalysis(aiEval, 'CPU move', false);
+
+            if (aiNextState.isGameOver) {
+              setGameOverWinner(aiNextState.winner);
+              setGameOverReason('Checkers match concluded.');
+              setIsGameOverOpen(true);
+            }
+          }
+          setIsAIThinking(false);
+        }, 600);
+        return () => clearTimeout(t);
+      }
+    }
+  }, [isAIVsAI, currentScreen, isGameOverOpen, isReplayMode, gameMode, difficulty, chessState, checkersState, isAIThinking, playerCharacter, opponentCharacter]);
+
+  useEffect(() => {
+    if (currentScreen !== 'game' || timerMode === 'none' || isGameOverOpen || isReplayMode) return;
 
     const interval = setInterval(() => {
       const currentTurn = gameMode.startsWith('chess') ? chessState.turn : checkersState.turn;
@@ -174,7 +261,7 @@ export default function App() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [currentScreen, timerMode, isGameOverOpen, gameMode, chessState.turn, checkersState.turn]);
+  }, [currentScreen, timerMode, isGameOverOpen, isReplayMode, gameMode, chessState.turn, checkersState.turn]);
 
   const handleTimeOut = (lostColor: 'w' | 'b') => {
     const winner = lostColor === 'w' ? 'b' : 'w';
@@ -380,7 +467,7 @@ export default function App() {
     theme: BoardTheme;
     playerCharacter: TensuraCharacter;
     opponentCharacter: TensuraCharacter;
-    isVsAI: boolean;
+    matchType: 'pvp' | 'pve' | 'cvc';
   }) => {
     setGameMode(config.mode);
     setDifficulty(config.difficulty);
@@ -388,7 +475,7 @@ export default function App() {
     setTheme(config.theme);
     setPlayerCharacter(config.playerCharacter);
     setOpponentCharacter(config.opponentCharacter);
-    setIsVsAI(config.isVsAI);
+    setMatchType(config.matchType);
 
     // Reset board states
     setChessState(createInitialGameState(config.mode === 'chess960'));
@@ -396,6 +483,8 @@ export default function App() {
     setIsGameOverOpen(false);
     setGameOverWinner(null);
     setHintMove(null);
+    setIsReplayMode(false);
+    setReplayIndex(0);
 
     // Initialize timer durations
     const timerMap: Record<TimerMode, number> = {
@@ -565,7 +654,7 @@ export default function App() {
               theme: 'tempest',
               playerCharacter: playerCharacter || TENSURA_CHARACTERS[0],
               opponentCharacter: opponentCharacter || TENSURA_CHARACTERS[1],
-              isVsAI: true
+              matchType: 'pve'
             });
           }}
           onOpenSetup={(m) => {
@@ -598,7 +687,7 @@ export default function App() {
               theme,
               playerCharacter: p,
               opponentCharacter: o,
-              isVsAI
+              matchType
             });
           }}
           onBack={() => setCurrentScreen('title')}
@@ -621,7 +710,7 @@ export default function App() {
               turn={gameMode.startsWith('chess') ? chessState.turn : checkersState.turn}
               playerCharacter={playerCharacter}
               opponentCharacter={opponentCharacter}
-              isVsAI={isVsAI}
+              matchType={isVsAI}
               whiteTime={whiteTime}
               blackTime={blackTime}
               timerMode={timerMode}
@@ -660,8 +749,8 @@ export default function App() {
           <main className="relative z-10 w-full flex flex-col items-center justify-center my-auto py-2">
             {gameMode.startsWith('chess') ? (
               <ChessBoard
-                state={chessState}
-                onMakeMove={handleChessPlayerMove}
+                state={activeChessState}
+                onMakeMove={(isReplayMode || isAIVsAI) ? () => {} : handleChessPlayerMove}
                 theme={theme}
                 playerColor="w"
                 isFlipped={isBoardFlipped}
@@ -672,8 +761,8 @@ export default function App() {
               />
             ) : (
               <CheckersBoard
-                state={checkersState}
-                onMakeMove={handleCheckersPlayerMove}
+                state={activeCheckersState}
+                onMakeMove={(isReplayMode || isAIVsAI) ? () => {} : handleCheckersPlayerMove}
                 theme={theme}
                 playerColor="w"
                 graphicsQuality={deviceInfo?.graphicsQuality || 'high'}
@@ -759,6 +848,60 @@ export default function App() {
         }}
       />
 
+      {/* Replay Controls HUD */}
+      {currentScreen === 'game' && isReplayMode && (
+        <div className="fixed bottom-32 left-1/2 -translate-x-1/2 z-40 bg-slate-900/90 backdrop-blur-xl border-2 border-cyan-500/50 p-4 rounded-3xl shadow-2xl flex flex-col sm:flex-row items-center gap-6 ring-2 ring-cyan-500/20">
+          <div className="flex flex-col items-center sm:items-start">
+            <span className="text-cyan-400 font-mono text-xs font-bold tracking-[0.2em] uppercase">Great Sage</span>
+            <span className="text-white font-bold tracking-widest uppercase">Match Replay</span>
+          </div>
+          
+          <div className="flex items-center gap-3 bg-slate-950/50 p-2 rounded-2xl border border-slate-800">
+            <button 
+              onClick={() => { setReplayIndex(0); soundEngine.playClick(); }}
+              disabled={replayIndex === 0}
+              className="w-12 h-12 flex items-center justify-center bg-slate-800 disabled:opacity-40 hover:bg-slate-700 rounded-xl text-white transition font-mono font-bold hover:scale-105 active:scale-95"
+            >
+              |&lt;
+            </button>
+            <button 
+              onClick={() => { setReplayIndex(r => Math.max(0, r - 1)); soundEngine.playClick(); }}
+              disabled={replayIndex === 0}
+              className="w-12 h-12 flex items-center justify-center bg-slate-800 disabled:opacity-40 hover:bg-slate-700 rounded-xl text-white transition font-mono font-bold hover:scale-105 active:scale-95"
+            >
+              &lt;
+            </button>
+            
+            <div className="w-20 text-center font-mono text-cyan-300 text-xl font-bold tracking-widest px-2">
+              {replayIndex}
+              <span className="text-slate-500 text-sm">/{gameMode.startsWith('chess') ? chessState.moveHistory.length : checkersState.moveHistory.length}</span>
+            </div>
+
+            <button 
+              onClick={() => { setReplayIndex(r => Math.min(gameMode.startsWith('chess') ? chessState.moveHistory.length : checkersState.moveHistory.length, r + 1)); soundEngine.playClick(); }}
+              disabled={replayIndex === (gameMode.startsWith('chess') ? chessState.moveHistory.length : checkersState.moveHistory.length)}
+              className="w-12 h-12 flex items-center justify-center bg-slate-800 disabled:opacity-40 hover:bg-slate-700 rounded-xl text-white transition font-mono font-bold hover:scale-105 active:scale-95"
+            >
+              &gt;
+            </button>
+            <button 
+              onClick={() => { setReplayIndex(gameMode.startsWith('chess') ? chessState.moveHistory.length : checkersState.moveHistory.length); soundEngine.playClick(); }}
+              disabled={replayIndex === (gameMode.startsWith('chess') ? chessState.moveHistory.length : checkersState.moveHistory.length)}
+              className="w-12 h-12 flex items-center justify-center bg-slate-800 disabled:opacity-40 hover:bg-slate-700 rounded-xl text-white transition font-mono font-bold hover:scale-105 active:scale-95"
+            >
+              &gt;|
+            </button>
+          </div>
+
+          <button
+            onClick={() => { setIsReplayMode(false); setIsGameOverOpen(true); soundEngine.playClick(); }}
+            className="px-6 py-3.5 bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-500/50 rounded-xl font-bold font-mono text-xs transition uppercase tracking-wider hover:text-white"
+          >
+            Exit Replay
+          </button>
+        </div>
+      )}
+
       {/* Game Over Modal */}
       <GameOverModal
         isOpen={isGameOverOpen}
@@ -774,12 +917,17 @@ export default function App() {
             theme,
             playerCharacter,
             opponentCharacter,
-            isVsAI
+            matchType
           });
         }}
         onReturnTitle={() => {
           setIsGameOverOpen(false);
           setCurrentScreen('title');
+        }}
+        onReplay={() => {
+          setIsGameOverOpen(false);
+          setIsReplayMode(true);
+          setReplayIndex(0);
         }}
       />
 

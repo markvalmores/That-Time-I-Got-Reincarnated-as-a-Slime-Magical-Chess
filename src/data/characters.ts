@@ -552,6 +552,182 @@ export const TENSURA_CHARACTERS: TensuraCharacter[] = [
       win: 'Grandmaster Stratagem Checkmate. The game is mine!'
     }
   }
+,
+  {
+    id: 'shizue-izawa',
+    name: 'Shizue Izawa',
+    title: 'The Conqueror of Flames',
+    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/8/8c/Volume_11_-_Shizu.png/revision/latest/scale-to-width-down/304?cb=20220813053213',
+    accentColor: '#ef4444',
+    element: 'fire',
+    ultimateSkill: 'Degenerate',
+    jpName: '',
+    season: 'Season 1',
+    race: 'Unknown',
+    ep: 100000,
+    ultimateDescription: 'A unique ultimate skill.',
+    avatarBg: 'bg-gradient-to-br from-slate-900 to-slate-800',
+    glowColor: 'rgba(255, 255, 255, 0.5)',
+    avatarIcon: 'https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png',
+    voiceLines: {
+      start: 'Let us begin!',
+      capture: 'Got you!',
+      check: 'Check!',
+      advantage: 'Checkmate.',
+      win: 'I emerge victorious.',
+      loss: 'I miscalculated...'
+    }
+  },
+  {
+    id: 'ramiris',
+    name: 'Ramiris',
+    title: 'Fairy of the Labyrinth',
+    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/a/a4/Ramiris_LN.png/revision/latest/scale-to-width-down/496?cb=20220701180204',
+    accentColor: '#a3e635',
+    element: 'holy',
+    ultimateSkill: 'Labyrinth Creation',
+    jpName: '',
+    season: 'Season 1',
+    race: 'Unknown',
+    ep: 100000,
+    ultimateDescription: 'A unique ultimate skill.',
+    avatarBg: 'bg-gradient-to-br from-slate-900 to-slate-800',
+    glowColor: 'rgba(255, 255, 255, 0.5)',
+    avatarIcon: 'https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png',
+    voiceLines: {
+      start: 'Let us begin!',
+      capture: 'Got you!',
+      check: 'Check!',
+      advantage: 'Checkmate.',
+      win: 'I emerge victorious.',
+      loss: 'I miscalculated...'
+    }
+  },
+  {
+    id: 'geld',
+    name: 'Geld',
+    title: 'Orc Disaster / Orc King',
+    image: '',
+    accentColor: '#ea580c',
+    element: 'earth',
+    ultimateSkill: 'Gourmet / Beelzebub (sub)',
+    jpName: '',
+    season: 'Season 1',
+    race: 'Unknown',
+    ep: 100000,
+    ultimateDescription: 'A unique ultimate skill.',
+    avatarBg: 'bg-gradient-to-br from-slate-900 to-slate-800',
+    glowColor: 'rgba(255, 255, 255, 0.5)',
+    avatarIcon: 'https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png',
+    voiceLines: {
+      start: 'Let us begin!',
+      capture: 'Got you!',
+      check: 'Check!',
+      advantage: 'Checkmate.',
+      win: 'I emerge victorious.',
+      loss: 'I miscalculated...'
+    }
+  },
+  {
+    id: 'gabiru',
+    name: 'Gabiru',
+    title: 'Dragonewt Leader',
+    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/4/49/Gabil_Novel.png/revision/latest/scale-to-width-down/413?cb=20180928121050',
+    accentColor: '#6366f1',
+    element: 'water',
+    ultimateSkill: 'Vortex Spear',
+    jpName: '',
+    season: 'Season 1',
+    race: 'Unknown',
+    ep: 100000,
+    ultimateDescription: 'A unique ultimate skill.',
+    avatarBg: 'bg-gradient-to-br from-slate-900 to-slate-800',
+    glowColor: 'rgba(255, 255, 255, 0.5)',
+    avatarIcon: 'https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png',
+    voiceLines: {
+      start: 'Let us begin!',
+      capture: 'Got you!',
+      check: 'Check!',
+      advantage: 'Checkmate.',
+      win: 'I emerge victorious.',
+      loss: 'I miscalculated...'
+    }
+  },
+  {
+    id: 'clayman',
+    name: 'Clayman',
+    title: 'Marionette Master',
+    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/6/6c/Clayman_LN.png/revision/latest/scale-to-width-down/550?cb=20220220082304',
+    accentColor: '#8b5cf6',
+    element: 'dark',
+    ultimateSkill: 'Demon Lord Haki',
+    jpName: '',
+    season: 'Season 1',
+    race: 'Unknown',
+    ep: 100000,
+    ultimateDescription: 'A unique ultimate skill.',
+    avatarBg: 'bg-gradient-to-br from-slate-900 to-slate-800',
+    glowColor: 'rgba(255, 255, 255, 0.5)',
+    avatarIcon: 'https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png',
+    voiceLines: {
+      start: 'Let us begin!',
+      capture: 'Got you!',
+      check: 'Check!',
+      advantage: 'Checkmate.',
+      win: 'I emerge victorious.',
+      loss: 'I miscalculated...'
+    }
+  },
+  {
+    id: 'treyni',
+    name: 'Treyni',
+    title: 'Dryad of the Great Forest',
+    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/6/6d/Treyni_LN.jpg/revision/latest/scale-to-width-down/338?cb=20230907163946',
+    accentColor: '#22c55e',
+    element: 'wind',
+    ultimateSkill: 'Aero Hand',
+    jpName: '',
+    season: 'Season 1',
+    race: 'Unknown',
+    ep: 100000,
+    ultimateDescription: 'A unique ultimate skill.',
+    avatarBg: 'bg-gradient-to-br from-slate-900 to-slate-800',
+    glowColor: 'rgba(255, 255, 255, 0.5)',
+    avatarIcon: 'https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png',
+    voiceLines: {
+      start: 'Let us begin!',
+      capture: 'Got you!',
+      check: 'Check!',
+      advantage: 'Checkmate.',
+      win: 'I emerge victorious.',
+      loss: 'I miscalculated...'
+    }
+  },
+  {
+    id: 'gazel-dwargo',
+    name: 'Gazel Dwargo',
+    title: 'King of Dwargon',
+    image: 'https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/a/a3/LN_15_04.jpg/revision/latest/scale-to-width-down/442?cb=20190928081119',
+    accentColor: '#f59e0b',
+    element: 'earth',
+    ultimateSkill: 'King of Swords',
+    jpName: '',
+    season: 'Season 1',
+    race: 'Unknown',
+    ep: 100000,
+    ultimateDescription: 'A unique ultimate skill.',
+    avatarBg: 'bg-gradient-to-br from-slate-900 to-slate-800',
+    glowColor: 'rgba(255, 255, 255, 0.5)',
+    avatarIcon: 'https://tensura.fandom.com/wiki/Special:FilePath/Rimuru_Tempest_Anime.png',
+    voiceLines: {
+      start: 'Let us begin!',
+      capture: 'Got you!',
+      check: 'Check!',
+      advantage: 'Checkmate.',
+      win: 'I emerge victorious.',
+      loss: 'I miscalculated...'
+    }
+  }
 ];
 
 // Piece mappings with authentic character artwork and icons for White (Tempest / Octagram) and Black (Demon Lords / Rivals)

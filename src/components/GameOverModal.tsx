@@ -13,6 +13,7 @@ interface GameOverModalProps {
   opponentCharacter: TensuraCharacter;
   onRematch: () => void;
   onReturnTitle: () => void;
+  onReplay: () => void;
 }
 
 export const GameOverModal: React.FC<GameOverModalProps> = ({
@@ -22,9 +23,16 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
   playerCharacter,
   opponentCharacter,
   onRematch,
-  onReturnTitle
+  onReturnTitle,
+  onReplay
 }) => {
   const [phase, setPhase] = useState<'hidden' | 'flash' | 'text' | 'reveal'>('hidden');
+
+  const isPlayerWinner = winner === 'w';
+  const isDraw = winner === 'draw';
+  const winningCharacter = isPlayerWinner ? playerCharacter : (!isDraw ? opponentCharacter : null);
+  const winningColor = winningCharacter ? winningCharacter.accentColor : '#06b6d4';
+  const winningSkill = winningCharacter ? winningCharacter.ultimateSkill : 'Notice';
 
   useEffect(() => {
     if (isOpen && winner) {
@@ -40,15 +48,15 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
         if (winner === 'w') {
           soundEngine.playCheckmate(true);
           confetti({
-            particleCount: 120,
-            spread: 80,
+            particleCount: 150,
+            spread: 90,
             origin: { y: 0.6 },
-            colors: ['#06b6d4', '#3b82f6', '#eab308', '#ec4899', '#ffffff']
+            colors: [winningColor, '#ffffff', '#eab308']
           });
         } else if (winner === 'b') {
           soundEngine.playCheckmate(false);
         }
-      }, 2800);
+      }, 3500); // Extended delay for epic character reveal
 
       return () => {
         clearTimeout(t1);
@@ -57,12 +65,9 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
     } else {
       setPhase('hidden');
     }
-  }, [isOpen, winner]);
+  }, [isOpen, winner, winningColor]);
 
   if (!isOpen || !winner) return null;
-
-  const isPlayerWinner = winner === 'w';
-  const isDraw = winner === 'draw';
 
   return (
     <AnimatePresence>
@@ -74,11 +79,14 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.5 } }}
-            className="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center z-50"
+            className="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center z-50 overflow-hidden"
           >
             {/* Geometric Great Sage overlay grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#06b6d41a_1px,transparent_1px),linear-gradient(to_bottom,#06b6d41a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] opacity-30" />
-            
+            <div 
+              className="absolute inset-0 bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] opacity-30" 
+              style={{ backgroundImage: `linear-gradient(to right, ${winningColor}20 1px, transparent 1px), linear-gradient(to bottom, ${winningColor}20 1px, transparent 1px)` }}
+            />
+                
             <AnimatePresence>
               {phase === 'text' && (
                 <motion.div
@@ -86,26 +94,51 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
                   animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
                   exit={{ scale: 1.1, opacity: 0, filter: 'blur(10px)' }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="relative z-10 flex flex-col items-center"
+                  className="relative z-10 flex flex-col items-center justify-center w-full h-full"
                 >
-                  <div className="absolute -inset-12 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
+                  <div className="absolute -inset-24 rounded-full blur-[100px] animate-pulse" style={{ backgroundColor: `${winningColor}40` }} />
                   
+                  {/* Character Bust */}
+                  {winningCharacter && (
+                    <motion.div 
+                      initial={{ scale: 1.5, opacity: 0, y: 50 }}
+                      animate={{ scale: 1, opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                      className="absolute bottom-0 w-full flex justify-center opacity-70 pointer-events-none"
+                    >
+                      <img 
+                        src={winningCharacter.image} 
+                        alt={winningCharacter.name}
+                        className="h-[80vh] w-auto object-contain mix-blend-screen"
+                        style={{ maskImage: 'linear-gradient(to top, transparent 0%, black 100%)', WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 100%)' }}
+                      />
+                    </motion.div>
+                  )}
+                      
                   <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="h-px bg-cyan-400/50 mb-4 overflow-hidden"
+                    className="h-px mb-4 overflow-hidden relative z-20 w-[80%] max-w-4xl"
+                    style={{ backgroundColor: winningColor }}
                   />
-                  
-                  <h1 className="text-4xl md:text-6xl font-black font-mono tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 drop-shadow-[0_0_15px_rgba(6,182,212,0.8)] text-center uppercase">
-                    &lt;&lt; Notice &gt;&gt;
+                 
+                  <h1 
+                    className="text-4xl md:text-6xl lg:text-7xl font-black font-mono tracking-widest text-transparent bg-clip-text text-center uppercase relative z-20 px-4"
+                    style={{ 
+                      backgroundImage: `linear-gradient(to right, ${winningColor}, #fff, ${winningColor})`,
+                      filter: `drop-shadow(0 0 15px ${winningColor}80)`
+                    }}
+                  >
+                    &lt;&lt; {winningSkill} &gt;&gt;
                   </h1>
-                  
+                 
                   <motion.div 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.6 }}
-                    className="mt-6 text-xl md:text-2xl text-cyan-400 font-bold tracking-[0.2em] uppercase text-center"
+                    className="mt-6 text-xl md:text-2xl font-bold tracking-[0.2em] uppercase text-center relative z-20 px-4"
+                    style={{ color: winningColor }}
                   >
                     {isPlayerWinner ? 'Checkmate Condition Met' : isDraw ? 'Equilibrium Detected' : 'Tactical Defeat Logged'}
                   </motion.div>
@@ -114,7 +147,8 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="h-px bg-cyan-400/50 mt-6"
+                    className="h-px mt-6 relative z-20 w-[80%] max-w-4xl"
+                    style={{ backgroundColor: winningColor }}
                   />
                 </motion.div>
               )}
@@ -186,27 +220,40 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <button
-              onClick={() => {
-                soundEngine.playSkillActivation();
-                onRematch();
-              }}
-              className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold font-mono text-xs shadow-lg shadow-cyan-500/40 hover:scale-105 transition"
-            >
-              <RotateCcw className="w-4 h-4" />
-              <span>REMATCH</span>
-            </button>
-
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button
+                onClick={() => {
+                  soundEngine.playSkillActivation();
+                  onRematch();
+                }}
+                className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold font-mono text-xs shadow-lg shadow-cyan-500/40 hover:scale-105 transition"
+              >
+                <RotateCcw className="w-4 h-4" />
+                <span>REMATCH</span>
+              </button>
+  
+              <button
+                onClick={() => {
+                  soundEngine.playClick();
+                  onReplay();
+                }}
+                className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800 text-cyan-400 border border-cyan-500/30 font-bold font-mono text-xs shadow-lg hover:bg-slate-700 hover:text-white transition"
+              >
+                <RotateCcw className="w-4 h-4 rotate-180" />
+                <span>WATCH REPLAY</span>
+              </button>
+            </div>
+            
             <button
               onClick={() => {
                 soundEngine.playClick();
                 onReturnTitle();
               }}
-              className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold font-mono text-xs border border-slate-700 transition"
+              className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900/50 text-slate-400 font-bold font-mono text-xs hover:bg-slate-800 hover:text-white transition"
             >
               <Home className="w-4 h-4" />
-              <span>TITLE SCREEN</span>
+              <span>RETURN TO TITLE</span>
             </button>
           </div>
 
